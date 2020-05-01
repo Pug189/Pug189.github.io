@@ -5,103 +5,6 @@
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Pug189/Pug189.github.io/logo/Mind_Exchange_Logo.png" sizes="64x64">
 </head>
 <title>Mind Exchange</title>
-<style>
-
-    ohno. {
-padding:5px;
-margin:0;
-position:absolute;
-display:inline;
-bottom:1vh;
-right:0.5vw;
-color:white;
-font-family:arial;
-filter:drop-shadow(5px 5px 0px black);
-border:white;
-border-style:groove;
-font-size:2vh;
-}
-
-    .gamecover {
-position: fixed;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-overflow: hidden;
-background: black;
-}
-
-    itstimetogetfunky. {
-color:white;
-filter:opacity(100%);
-background:transparent;
-position:absolute;
-left:-7vw;
-top:45vh;
-height:10vh;
-font-size:5vh;
-align-content: center;
-width:110%;
-filter:drop-shadow(5px 5px 5px white);
-border:white;
-border-style:double;
-border-radius:2%;
-}
-
-    .logobox {
-display: block;
-margin-left: auto;
-margin-right: auto;
-
-position: fixed;
-top: 1vh;
-left: 1vw;
-bottom: 0;
-right: 0;
-background-image:url("https://github.com/Pug189/Pug189.github.io/blob/logo/MEtest.png?raw=true");
-background-repeat:no-repeat;
-filter:brightness(90%);
-}
-
-    .backimg {
-display: block;
-margin-left: auto;
-margin-right: auto;
-width: 50%;
-position: fixed;
-top: 1vh;
-left: 0;
-bottom: 0;
-right: 0;
-overflow: auto;
-background-image:url("https://github.com/Pug189/Pug189.github.io/blob/logo/Mind_Exchange_Logo.png?raw=true");
-background-repeat:no-repeat;
-filter:opacity(10%);
-}
-
-   .fogroll {
-background-image:url(https://cdn.clipart.email/049d1f2b28094a14b57f14792016a2ea_download-free-png-fog-texture-png-102-images-in-collection-page-_894-894.jpeg);
-position: fixed;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-overflow: auto;
-filter:opacity(5%);
-animation: rollingcut 10s linear infinite;
-pointer-events: none;
-}
-
-    @keyframes rollingcut {
-        0% {left:0; filter:opacity(0%);}
-        10% {left:0; filter:opacity(0%);}
-        20% {left:0; filter:opacity(5%);}
-        100% {left:-135%; filter:opacity(0%);}
-}
-
-
-</style>
 <div class=onscreenchar id=screenchar></div>
 <div class=background id=background></div>
 <div class=character id=character></div>
@@ -153,7 +56,7 @@ audio.play();'>D</button>
     <div class=backimg></div>
     <div class=logobox></div>
     <div class=fogroll></div>
-<button class=itstimetogetfunky type=button onclick="document.getElementById('gamecover').remove();">Begin</button>
+<button class=heckitt type=button onclick="document.getElementById('gamecover').remove();">Begin</button>
 <p class=ohno>Disclaimers : <br>The game is undergoing an update, this version is experimental<br>There will be some loud sounds<br>The game's design might change<br>Progress might only be made on weekends<br>If you don't see the logo refresh the page</p>
 </div>
 
@@ -522,6 +425,103 @@ border-style:solid;
     border-width:10px;
     border-style: outset;
   }
+
+
+    ohno. {
+padding:5px;
+margin:0;
+position:absolute;
+display:inline;
+bottom:1vh;
+right:0.5vw;
+color:white;
+font-family:arial;
+filter:drop-shadow(5px 5px 0px black);
+border:white;
+border-style:groove;
+font-size:2vh;
+}
+
+    .gamecover {
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+overflow: hidden;
+background: black;
+}
+
+    heckitt. {
+color:white;
+filter:opacity(100%);
+background:transparent;
+position:absolute;
+left:-7vw;
+top:45vh;
+height:10vh;
+font-size:5vh;
+align-content: center;
+width:110%;
+filter:drop-shadow(5px 5px 5px white);
+border:white;
+border-style:double;
+border-radius:2%;
+}
+
+    .logobox {
+display: block;
+margin-left: auto;
+margin-right: auto;
+
+position: fixed;
+top: 1vh;
+left: 1vw;
+bottom: 0;
+right: 0;
+background-image:url("https://github.com/Pug189/Pug189.github.io/blob/logo/MEtest.png?raw=true");
+background-repeat:no-repeat;
+filter:brightness(90%);
+}
+
+    .backimg {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+position: fixed;
+top: 1vh;
+left: 0;
+bottom: 0;
+right: 0;
+overflow: auto;
+background-image:url("https://github.com/Pug189/Pug189.github.io/blob/logo/Mind_Exchange_Logo.png?raw=true");
+background-repeat:no-repeat;
+filter:opacity(10%);
+}
+
+   .fogroll {
+background-image:url(https://cdn.clipart.email/049d1f2b28094a14b57f14792016a2ea_download-free-png-fog-texture-png-102-images-in-collection-page-_894-894.jpeg);
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+overflow: auto;
+filter:opacity(5%);
+animation: rollingcut 10s linear infinite;
+pointer-events: none;
+}
+
+    @keyframes rollingcut {
+        0% {left:0; filter:opacity(0%);}
+        10% {left:0; filter:opacity(0%);}
+        20% {left:0; filter:opacity(5%);}
+        100% {left:-135%; filter:opacity(0%);}
+}
+
+
+
 </style>
 <script>
 var backaud = new Audio("Sound/background.wav");
