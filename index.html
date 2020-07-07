@@ -1,32 +1,7 @@
 <head>
-  <link rel="stylesheet" href="Font/specimen_files/specimen_stylesheet.css" type="text/css" charset="utf-8" />
- <meta charset='utf-8'>
-	<link rel="stylesheet" href="Font/stylesheet.css" type="text/css" charset="utf-8" />
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Pug189/Pug189.github.io/logo/Mind_Exchange_Logo.png" sizes="64x64">
 </head>
 <title>Mind Exchange</title>
-<div class=onscreenchar id=screenchar></div>
-<div class=background id=background></div>
-<div class=character id=character></div>
-<div class=storybtn id=storybtn>
-  <button class=choicebtn onclick='igconsolelog("Choice : A"); var audio = new Audio("Sound/Choice.wav"); pickedrun("A");
-audio.play();'>A</button>
-  <button class=choicebtn onclick='igconsolelog("Choice : B"); var audio = new Audio("Sound/ChoiceNewNewB.wav"); pickedrun("B");
-audio.play();'>B</button>
-  <button class=choicebtn onclick='igconsolelog("Choice : C"); var audio = new Audio("Sound/ChoiceNewNewCPitch.wav"); pickedrun("C");
-audio.play();'>C</button>
-  <button class=choicebtn onclick='igconsolelog("Choice : D"); var audio = new Audio("Sound/ChoiceNewNewDPitch.wav"); pickedrun("D");
-audio.play();'>D</button>
-</div>
-<div class=igconsole id=igconsole></div>
-<div class=sidebar id=sidebar>
-<button class=versionnote id=versionnote type="button" disabled>BETA</button>
-<button class=dayscount id=dayscount type="button" disabled>Day 1</button>
-<a href="https://github.com/Pug189"><button class="patreon" id="patreon" type="button">Github</button></a>
-<a href="https://discord.gg/gAk3Rnu"><button class=discord id=discord type="button">Discord</button></a>
-<div class=phone id=phone></div>
-</div>
-<button class=openclose id=openclose onclick="if (togglemenu==1) {document.getElementById('sidebar').style.left = '-100px'; document.getElementById('openclose').innerHTML = '>'; togglemenu=0;} else if (togglemenu==0) {document.getElementById('sidebar').style.left = '0px'; document.getElementById('openclose').innerHTML = '<'; togglemenu=1;}"><strong><</strong></button>
 <div class=containload>
     <div class=slopeone></div>
     <div class=slopetwo></div>
@@ -51,17 +26,95 @@ audio.play();'>D</button>
         </div>
     </div>
     </div>
-<div class=boxfull></div>
+<div class=igconsole id=igconsole></div><div class=zoomp></div><div class=linescrollcons></div><div class=linescrollconssecond></div><div class=vignette></div>
 <div class=gamecover id=gamecover>
     <div class=backimg></div>
     <div class=logobox></div>
     <div class=fogroll></div>
 <button class=beginstart type=button onclick="document.getElementById('gamecover').remove();">Begin</button>
-<p class=ohno>Disclaimers : <br>The game is undergoing an update, this version is experimental<br>There will be some loud sounds<br>The game's design might change<br>Progress might only be made on weekends<br>If you don't see the logo refresh the page</p>
+<p class=ohno>Disclaimers : <br>The game is undergoing an update, this version is experimental<br>The game's design might change<br>Progress might only be made on weekends<br>If you don't see the logo refresh the page<br>I haven't imported sounds yet</p>
 </div>
 
 <style>
-body {background:black; overflow-y:hidden;}
+    body {
+overflow:hidden;
+}
+
+.igconsole {
+background:black;
+overflow:scroll;
+overflow-wrap:break-word;
+overflow-x:hidden;
+height:100%;
+width:100%;
+position:absolute;
+top:0px;
+left:0px;
+padding:0px;
+margin:0px;
+color:lime;
+font-family:Candara;
+border:black;
+border-style:solid;
+text-shadow: 0 0 3px lime;
+font-size:1em;
+line-height:1em;
+text-align:center;
+cursor:crosshair;
+}
+    
+    .vignette {
+left:0px;
+top:0px;
+height:100%;
+width:100%;
+background:radial-gradient(transparent, black);
+filter:opacity(50%);
+position:absolute;
+pointer-events:none;
+}
+
+    .linescrollcons {
+background:gray;
+width:100%;
+height:0.5%;
+position:absolute;
+left:0px;
+top:10px;
+border:none;
+filter: opacity(4%);
+animation: 6s linear infinite scrollboi;
+pointer-events:none;
+}
+    .linescrollconssecond {
+background:gray;
+width:100%;
+height:0.5%;
+position:absolute;
+left:0px;
+top:10px;
+border:none;
+filter: opacity(5%);
+animation: 12s linear infinite scrollboi;
+pointer-events:none;
+}
+
+    @keyframes scrollboi {
+        0% {top:-5%;}
+        100% {top:105%;}
+}
+
+    .zoomp {
+left:0px;
+top:0px;
+width:100%;
+height:100%;
+background-image:url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+position:absolute;
+filter:opacity(2%);
+pointer-events:none;
+}
+
     .containload {
 position:absolute;
 top:-100px;
@@ -173,16 +226,6 @@ position:absolute;
 left:100px;
 top:-140px;
 }
-
-.boxfull {
-  background:radial-gradient(black, #100010, black);
-  height:100vh; 
-  width:100vw; 
-  position:absolute; 
-  left:-100vw; 
-  top:0vh;
-  }
-
     .onetwo {
 height:75px;
 width:75px;
@@ -270,163 +313,6 @@ position:absolute;
 left:25px;
 top:-10px;
 }
-
-  .choicebtn {
-font-size:4em;
-height:473px;
-width:115px;
-border:black;
-background:url("https://github.com/Pug189/Pug189.github.io/blob/Background/buttontile.png?raw=true");
-color:white;
-font-family:'convincingregular';
-border-style:solid;
-}
-  .storybtn {
-    position: fixed;
-    top: 30%;
-    left: -2%;
-    -webkit-transform: translate(10%, 2%);
-    transform: translate(10%, 2%);
-    transform: scale(.5);
-    width: 473px;
-    height: 473px;
-    filter: drop-shadow(4px 4px 3px black);
-    border: #161616;
-    border-width:10px;
-    border-style: outset;
-}
-
-  .igconsole {
-background:url("https://github.com/Pug189/Pug189.github.io/blob/Background/revisedtile.png?raw=true");
-overflow:scroll;
-height:630px;
-width:200px;
-left:75%;
-top:2.5%;
-position:absolute;
-color:black;
-font-family:'convincingregular';
-border:white;
-border-style:solid;
-filter: invert(100%);
-}
-  .openclose {
-background:transparent;
-color:black;
-top:50%;
-left:1%;
-filter: drop-shadow(0px 1px 0px blue) drop-shadow(0px -1px 0px blue) drop-shadow(-1px 0px 0px blue) drop-shadow(1px 0px 0px blue);
-font-family:Arial;
-position:absolute;
-font-size:2em;
-border:none;
-}
-  .sidebar {
-position:absolute;
-left:0px;
-top:0px;
-height:100%;
-width:51px;
-background:linear-gradient(90deg, #050505, #101010, #151515, #202020, #151515, #101010);
-}
-
-  .dayscount {
-background:#000022;
-color:white;
-position:inline;
-font-family:'convincingregular';
-border:black;
-border-style:solid;
-}
-  .patreon {
-background:red;
-color:white;
-font-family:Arial;
-width:51px;
-font-weight:italic;
-position:inline;
-height:20px;
-padding:1%;
-border:black;
-border-width:1px;
-border-style:solid;
-}
-  .discord {
-background:#36393E;
-color:white;
-width:51px;
-height:20px;
-font-family:Arial;
-position:inline;
-padding:1%;
-border:black;
-border-width:1px;
-border-style:solid;
-}
-.phone {
-height:100px;
-width:50px;
-background:linear-gradient(45deg, black, black, black, #161616, black, black);
-border-radius:10%;
-box-shadow:-2px -2px 0px lime, 2px 2px 0px lime, -2px 2px 0px lime, 2px -2px 0px lime, -4px 0px 0px green, -4px 4px 0px green, 0px 4px 0px green;
-position:absolute;
-left:2%;
-top:17%;
-transform:scale(0.7);
-filter:grayscale(100%);
-}
-  .versionnote {
-background:black;
-color:white;
-font-family:'convincingregular';
-position:inline;
-border:black;
-border-style:solid;
-}
-.onscreenchar {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    background-image: url("Death_Scenes/Mind_Exchange_Death.png");
-    filter: opacity(0%);
-    background-repeat: no-repeat;
-    width: 630px;
-    height: 630px;
-}
-.background {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%) scale(0.6);
-    background-image: url("Backgrounds/Annabell_Bedroom_V4.png");
-    background-repeat: no-repeat;
-    border: #323232;
-    border-style:solid;
-    border-width:10px;
-    width: 1024px;
-    height: 1024px;
-}
-.character {
-    position: fixed;
-    top: -10%;
-    left: -2%;
-    -webkit-transform: translate(10%, 2%);
-    transform: translate(10%, 2%);
-    background-image: url("https://raw.githubusercontent.com/Pug189/Pug189.github.io/Annabell/Annabell_Neutral.gif");
-    background-repeat: no-repeat;
-    transform: scale(.5);
-    width: 473px;
-    height: 473px;
-    filter: drop-shadow(4px 4px 3px black);
-    border:#161616;
-    border-width:10px;
-    border-style: outset;
-  }
-
-
     .ohno {
 padding:5px;
 margin:0px;
@@ -523,787 +409,583 @@ pointer-events: none;
 
 </style>
 <script>
-var backaud = new Audio("Sound/background.wav");
-backaud.play();
-var deathone = "It is very dark. You aren't in your room, or any room. You are standing up in an empty void, the nonexistent floor feeling like cool metal. Your time is over. It is time for you to go."; 
-var deathtwo = "You feel cold air around you, yet no wind. A gaze coming from two piercing white eyes glares at you from a distance. You blink. The eyes have crept closer, and the reflective metal of a scythe is visible now. You feel dizzy, and fall to the ground. You feel a metal object hit your head and a split second later you don't feel it anymore, or should I say you don't feel anything at all anymore."; 
-var deaththree = "You have woken up, yet it is time for you to sleep again. Glaring eyes come into your peripherals. You start running, but you still see the pair of eyes and a metallic object walking closer somehow. A bony hand comes into view and waves at you. You stop for a moment, but in that moment your body goes numb. You can't see anymore. You try to think, yet your thoughts are jumbled. A last glimpse of the waving hand reaches your mind, but your senses are already starting to fade.";
-var deathfour = "A red flickering eye comes into view, and you are confused for a second. The eye shatters and you lose consciousness.";
-var deathfive = "You wake up standing in a dark room. There is a face with two white glowing eyes and a cloak. You look at their hand to see a scythe. They seem bored and wanting to get this over with. You step closer to them. They pull back the scythe, and then swing at you before you can understand what just happened.";
-var deathsix = "You instantly feel a metal object hit your head and you fall asleep as fast as you woke up";
-var deathseven = "You see a cloaked figure crying blood, and you already know they just want to get this over with, and so do you.";
-var togglemenu = 1;
-var day = 0;
-var JoaKol = {
-name : 'Joann Kolkka',
-height : "5'6",
-age : 31,
-weight : "150",
-hobby : "baking",
-ingame : false,
-shady : false,
-strong : false,
-ofcolor : true,
-inradius : false,
-group : false,
-tired : false,
-stamina : 2000,
-hunger : 0,
-thirst : 0,
-mind : "JoaKol",
-location : "bakery",
-};
-var WilLir = {
-name : 'Willow Lirixi',
-height : "4'8",
-age : 16,
-weight : "60",
-hobby : "singing",
-ingame : false,
-shady : true,
-strong : false,
-ofcolor : false,
-inradius : false,
-group : false,
-tired : false,
-stamina : 1800,
-hunger : 0,
-thirst : 0,
-mind : "WilLir",
-location : "homeshower",
-};
-var Spirit = {
-name : 'Spirit',
-height : "7'3",
-age : 19,
-weight : "220",
-hobby : "bodybuilding",
-ingame : false,
-shady : false,
-strong : true,
-ofcolor : false,
-inradius : false,
-group : false,
-tired : false,
-stamina : 3000,
-hunger : 0,
-thirst : 0,
-mind : "Spirit",
-location : "gym",
+var pathstring = "";
+    document.onkeypress = function(event){
+  if (event.key.toLowerCase()=="a") {
+optionrun("A");
 }
-var KieWin = {
-name : 'Kieth Winedmaster',
-height : "6'2",
-age : 19,
-weight : "220",
-hobby : "bodybuilding",
-ingame : false,
-shady : false,
-strong : true,
-ofcolor : false,
-inradius : false,
-group : false,
-tired : false,
-stamina : 3000,
-hunger : 0,
-thirst : 0,
-mind : "KieWin",
-location : "gym",
-};
-var RyaWin = {
-name : 'Ryan Winedmaster',
-height : "6'2",
-age : 19,
-weight : "160",
-hobby : "gaming",
-ingame : false,
-shady : true,
-strong : false,
-ofcolor : false,
-inradius : false,
-group : false,
-tired : false,
-stamina : 1500,
-hunger : 0,
-thirst : 0,
-mind : "RyaWin",
-location : "homebed",
-};
-var JohWil = {
-name : 'John Wilson',
-height : "5'11",
-age : 21,
-weight : "160",
-hobby : "birdwatching",
-ingame : false,
-shady : false,
-strong : false,
-ofcolor : false,
-inradius : false,
-group : false,
-tired : false,
-stamina : 1600,
-hunger : 0,
-thirst : 0,
-mind : "JohWil",
-location : "park",
-};
-var KylDie = {
-name : 'Kyle Diem',
-gender : "M",
-height : "6'2",
-age : 24,
-weight: 275,
-hobby : "eating",
-ingame : false,
-shady : false,
-strong : false,
-ofcolor : false,
-inradius : false,
-group : false,
-tired : false,
-stamina : 2000,
-hunger : 0,
-thirst : 0,
-mind : "KylDie",
-location : "homekitchen",
-};
-var AnnLax = {
-name : 'Annabell Laxil',
-gender : "F",
-height : "4'5", //I'll keep this info here but I won't be using it any time soon
-age : 11,
-weight: 45,
-hobby : "friendmaking",
-neutralemotion : "url(Annabell/Annabell_Neutral.gif)",
-happyemotion : "url(Annabell/Annabell_Happy.png)",
-sademotion : "url(Annabell/Annabell_Sad.png)",
-ingame : false,
-shady : false,
-strong : false,
-ofcolor : false,
-inradius : false,
-group : false,
-tired : false,
-stamina : 1500,
-hunger : 0,
-thirst : 0,
-money : 500,
-mind : "AnnLax",
-location : "homebedroom",
-};
-var Ulru = {
-name : 'Ulru',
-gender : "M",
-height : "6'4",
-age : "18",
-weight: "180",
-hobby : "looking in the mirror",
-ingame : false,
-shady : true,
-strong : true,
-ofcolor : true,
-inradius : false,
-group : false,
-tired : false,
-stamina : 4000,
-hunger : 0,
-thirst : 0,
-mind : "Ulru",
-location : "homelivingroom",
-};
-var Reaper = {
-name : 'The Reaper',
-gender : "???",
-height : "???",
-age : "???",
-weight: "???",
-hobby : "???",
-ingame : false,
-shady : true,
-strong : true,
-ofcolor : "???",
-inradius : false,
-group : false,
-tired : false,
-stamina : 1000000,
-hunger : 0,
-thirst : 0,
-mind : "Death",
-location : "???",
-};
-var NalJac = {
-name : 'Nala Jackson',
-gender : "F",
-height : "5'3",
-age : "23",
-weight: "170",
-hobby : "Essential Oils",
-neutralemotion : "url(Characters/Nala/Nala_Jackson_Neutral.png)",
-happyemotion : "url(Characters/Nala/Nala_Jackson_Happy.png)",
-sademotion : "url(Characters/Nala/Nala_Jackson_Sad.png)",
-ingame : false,
-shady : false,
-strong : false,
-ofcolor : true,
-inradius : false,
-group : false,
-tired : false,
-stamina : 2200,
-hunger : 0,
-thirst : 0,
-mind : "NalJac",
-location : "veganstore",
-};
-var AnnLaxInv = [];
-function igconsolelog(msg) {
-var igconsolehtml = document.getElementById('igconsole').innerHTML;
-document.getElementById('igconsole').innerHTML = igconsolehtml + "<br> >" + msg.toString() + "<br>";
+else   if (event.key.toLowerCase()=="b") {
+optionrun("B");
 }
-function ReadInv() {
-var AnnLaxInv = [];
-var AnnLaxInvRead = "";
-for (i=-1;i<AnnLaxInv.length+1;i++) {
-if (i < AnnLaxInv.length-1) {
-AnnLaxInvRead = AnnLaxInvRead + AnnLaxInv[i] + ", ";
+else   if (event.key.toLowerCase()=="c") {
+optionrun("C");
 }
-else if (i == AnnLaxInv.length-1) {
-AnnLaxInvRead = AnnLaxInvRead + "and " + AnnLaxInv[i];
+else   if (event.key.toLowerCase()=="d") {
+optionrun("D");
+}
+    }
+function consreboot() {
+document.getElementById("igconsole").innerHTML = "";
+pathstring="";
+CheatDeathCount = 0;
+actionresponse = 0;
+var chargingphone = 0;
+Bdeathity = 0;
+igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
+igconsolelog("What do you do now?");
+igconsolelog("A : Get up");
+igconsolelog("B : Stay in bed");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");
+}
+consreboot();
+//Achievement things and memory
+//Charging
+var chargingphone = 0;
+//Gun Game
+var rerollfix = 0;
+var reloadplyr = 1;
+var reloadcons = 1;
+//Fix (ish)
+function fixgg() {
+var rerollfix = 0;
+var reloadplyr = 1;
+var reloadcons = 1;
+}
+//Secrets
+var spoonkeep = 0;
+var bowlkeep = 0;
+//Misc
+var phonebatt = 0;
+var wafflers = 0;
+var banapple = 0;
+var hasphone = 0;
+var CheatDeathCount = 0;
+var actionresponse = 0;
+var Bdeathity = 0;
+//Achievements
+var ThaWasQui = 0;
+var CheatDeath = 0;
+var SonBean = 0;
+var Timeloop = 0;
+//Path function
+function optionrun(choice) {
+if (chargingphone==1&&phonebatt<100) {phonebatt++;}
+document.getElementById('igconsole').innerHTML = "";
+if (chargingphone==1&&phonebatt==100) {igconsolelog("100% battery reached, charging has stopped");}
+//Important things
+igconsolelog("Choice : " + choice);
+pathstring = pathstring + choice;
+//Path stuff
+
+//PATH A
+
+if (pathstring=="A") {
+igconsolelog("New day, new you. Not yet, but you'll see what I mean soon.");
+igconsolelog("Make your choice, it isn't mine to decide yet.");
+igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");
+}
+
+//PATH AA (COMPUTER)
+
+if (pathstring=="AA") {
+if (hasphone==1&&phonebatt>99) {igconsolelog("You set your phone down on the desk and sit in your chair, starting up your PC.");}
+if (hasphone==1&&phonebatt<100) {igconsolelog("You plug your phone into a charger and sit in your chair, starting up your PC.");}
+if (hasphone==0) {igconsolelog("You sit in your chair and start up your PC.");}
+if (hasphone==1&&phonebatt<100) {igconsolelog("Note : The more time you spend on your computer the more your phone charges.");}
+igconsolelog("A : Gun Game");
+igconsolelog("B : Rock Paper Scissors");
+igconsolelog("C : Back");
+if (hasphone==1) {chargingphone=1};
+}
+
+//PATH AAC
+
+if (pathstring=="AAC") {pathstring="A"; igconsolelog("Welcome back."); igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory"); chargingphone=0;}
+
+//PATH AAD (no)
+
+if (pathstring=="AAD") {pathstring="AA"; igconsolelog("A : Gun Game");
+igconsolelog("B : Rock Paper Scissors");
+igconsolelog("C : Back");
+}
+
+//PATH AAA (GUN GAME) (TRIPLE A BATTERIES)
+
+if (pathstring=="AAA") {
+igconsolelog("Note : If the console knew your move and reacted to it then you would always lose so it is randomized for the sake of your hubris");
+igconsolelog("Another note : If you reload, keep blocking until the console shoots, then shoot you win 100% of the time. Don't be a trashbag the console has feelings too.");
+igconsolelog("A : Shoot");
+igconsolelog("B : Block");
+igconsolelog("C : Reload");
+igconsolelog("D : End game");
+}
+
+//PATH AAAA (GUN GAME SHOOT) (REALLY NICE BATTERIES)
+
+//Can shoot
+if (pathstring=="AAAA"&&reloadplyr==0) {
+shootgg();
+igconsolelog("You : Shoot");
+function shootgg() {
+if (reloadcons==0) {
+var ggcons = Math.floor(Math.random() * 2) + 1;
+}
+if (reloadcons==1) {
+var ggcons = Math.floor(Math.random() * 3) + 1;
+}
+if (ggcons==1&&reloadcons==0) {igconsolelog("Cons : Shoot"); igconsolelog("DRAW"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog("A : Shoot");
+igconsolelog("B : Block");
+igconsolelog("C : Reload");
+igconsolelog("D : End game"); igconsolelog("Path : " + pathstring); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
+else if (ggcons==2) {igconsolelog("Cons : Block"); pathstring="AAA"; reloadplyr=1; rerollfix=0;}
+else if (ggcons==3) {igconsolelog("Cons : Reload"); igconsolelog("YOU WIN"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog("A : Shoot");
+igconsolelog("B : Block");
+igconsolelog("C : Reload");
+igconsolelog("D : End game"); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
+else {shootggreroll(); rerollfix=1;}
+}
+function shootggreroll() {
+shootgg();
 }
 }
-if (AnnLaxInvRead.slice(11) == "ed")
-{igconsolelog("You have nothing in your inventory"); scrolligconsole();}
-else {console.log(AnnLaxInvRead.slice(11));}
+//Can't shoot
+if (pathstring=="AAAA"&&reloadplyr==1&&rerollfix==0) {igconsolelog("You can't shoot, you either block or reload."); pathstring="AAA"; igconsolelog("A : Shoot");
+igconsolelog("B : Block");
+igconsolelog("C : Reload");
+igconsolelog("D : End game");}
+
+//PATH AAAB (GUN GAME BLOCK) (HEIGHT:GYM)
+
+if (pathstring=="AAAB") {
+blockgg();
+igconsolelog("You : Block");
+function blockgg() {
+if (reloadcons==0) {
+var ggcons = Math.floor(Math.random() * 2) + 1;
 }
+if (reloadcons==1) {
+var ggcons = Math.floor(Math.random() * 3) + 1;
+}
+if (ggcons==1&&reloadcons==0) {igconsolelog("Cons : Shoot"); pathstring="AAA"; reloadcons=1;}
+else if (ggcons==2&&reloadplyr==0) {igconsolelog("Cons : Block"); pathstring="AAA";}
+else if (ggcons==3) {igconsolelog("Cons : Reload"); pathstring="AAA"; reloadcons=0;}
+else {blockggreroll();}
+}
+function blockggreroll() {
+blockgg();
+}
+}
+
+//PATH AAAC (GUN GAME RELOAD)
+//Can reload
+if (pathstring=="AAAC"&&reloadplyr==1) {
+reloadgg();
+igconsolelog("You : Reload");
+function reloadgg() {
+if (reloadcons==0) {
+var ggcons = Math.floor(Math.random() * 2) + 1;
+}
+if (reloadcons==1) {
+var ggcons = Math.floor(Math.random() * 3) + 1;
+}
+if (ggcons==1&&reloadcons==0) {igconsolelog("Cons : Shoot"); igconsolelog("YOU LOSE"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog("A : Shoot");
+igconsolelog("B : Block");
+igconsolelog("C : Reload");
+igconsolelog("D : End game"); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
+else if (ggcons==2&&reloadplyr==0) {igconsolelog("Cons : Block"); pathstring="AAA"; rerollfix=0;}
+else if (ggcons==3) {igconsolelog("Cons : Reload"); pathstring="AAA"; reloadcons=0; rerollfix=0; reloadplyr=0;}
+else {reloadggreroll(); rerollfix=1;}
+reloadplyr=0;
+}
+function reloadggreroll() {
+reloadgg();
+}
+}
+//Can't reload
+if (pathstring=="AAAC"&&reloadplyr==0&&rerollfix==0) {igconsolelog("A : Shoot");
+igconsolelog("B : Block");
+igconsolelog("C : Reload");
+igconsolelog("D : End game");
+igconsolelog("You've already reloaded. Shoot or block."); pathstring="AAA";
+}
+
+//PATH AAAD (END GAME)
+
+if (pathstring=="AAAD") {pathstring="AA"; igconsolelog("A : Gun Game");
+igconsolelog("B : Rock Paper Scissors");
+igconsolelog("C : Back");}
+
+//PATH AAB (RPS)
+
+if (pathstring=="AAB") {
+igconsolelog("Note : If the console knew your move and reacted to it then you would always lose so it is randomized for the sake of your hubris");
+igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors");
+igconsolelog("D : Back");
+}
+
+//PATH AABA (Rock)
+
+if (pathstring=="AABA") {
+igconsolelog("You : Rock");
+var rpscons = Math.floor(Math.random() * 3) + 1;
+if (rpscons==1) {
+igconsolelog("Cons : Rock");
+igconsolelog("Tie");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+if (rpscons==2) {
+igconsolelog("Cons : Paper");
+igconsolelog("You lose");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+if (rpscons==3) {
+igconsolelog("Cons : Scissors");
+igconsolelog("You win");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+}
+
+//PATH AABB (Paper)
+
+if (pathstring=="AABB") {
+igconsolelog("You : Paper");
+var rpscons = Math.floor(Math.random() * 3) + 1;
+if (rpscons==1) {
+igconsolelog("Cons : Rock");
+igconsolelog("You win");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+if (rpscons==2) {
+igconsolelog("Cons : Paper");
+igconsolelog("Tie");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+if (rpscons==3) {
+igconsolelog("Cons : Scissors");
+igconsolelog("You lose");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+}
+
+//PATH AABC
+
+if (pathstring=="AABC") {
+igconsolelog("You : Scissors");
+var rpscons = Math.floor(Math.random() * 3) + 1;
+if (rpscons==1) {
+igconsolelog("Cons : Rock");
+igconsolelog("You lose");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+if (rpscons==2) {
+igconsolelog("Cons : Paper");
+igconsolelog("You win");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+if (rpscons==3) {
+igconsolelog("Cons : Scissors");
+igconsolelog("Tie");
+setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
+igconsolelog("");
+igconsolelog("A : Rock");
+igconsolelog("B : Paper");
+igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+}
+}
+
+//PATH AABD (Back)
+
+if (pathstring=="AABD") {
+pathstring="AA";
+igconsolelog("A : Gun Game");
+igconsolelog("B : Rock Paper Scissors");
+igconsolelog("C : Back");
+}
+
+//PATH AB (Get Cereal)
+
+if (pathstring=="AB") {
+igconsolelog("What kind of cereal do you want?");
+igconsolelog("A : Banapple O's");
+igconsolelog("B : Wafflers");
+}
+
+//PATH ABA (Banapple O's)
+
+if (pathstring=="ABA") {
+igconsolelog("Banapple O's! I feel like you're biased towards this one.");
+igconsolelog("You finish your cereal, now what?");
+banapple = 1;
+pathstring="E";
+igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");
+}
+
+//PATH ABB (Wafflers)
+
+if (pathstring=="ABB") {
+igconsolelog("I searched for words that rhyme with Wafflers and I got some German surnames so pretend I have something here.");
+igconsolelog("You finish your cereal, now what?");
+wafflers = 1;
+pathstring="E";
+igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");
+}
+
+//PATH EB
+
+if(pathstring=="EB") {
+if (hasphone==1&&CheatDeathCount==0) {igconsolelog("You log onto Melon, somebody died a few minutes ago. Unknown causes. They were in bed, but that seems unrelated.");}
+if (hasphone==1&&CheatDeathCount>0&&wafflers==1) {igconsolelog("You log onto Melon, nothing has happened.");}
+if (hasphone==1&&CheatDeathCount>0&&banapple==1) {igconsolelog("You log onto Melon, nothing has happened.");}
+if (hasphone==1&&CheatDeathCount>0&&bowlkeep==1&&wafflers==0&&banapple==0) {igconsolelog("You log onto Melon, somebody found shards of a bowl on their roof.");}
+if (hasphone==0) {igconsolelog("You look at your wrist. It's skin o'clock");}
+}
+
+//PATH EC (spoonkeep)
+
+if (pathstring=="EC"&&spoonkeep==0) {
+spoonkeep = 1;
+if (wafflers==1) {
+igconsolelog("You decide to keep the spoon. It smells like waffles.");
+}
+if (banapple==1) {
+igconsolelog("You decide to keep the spoon. It smells like banana apples.");
+}
+if (wafflers==0&&banapple==0) {igconsolelog("There is no spoon.");}
+pathstring="E";
+igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");
+}
+if (pathstring=="EC"&&spoonkeep==1) {
+igconsolelog("You try to pick up the spoon again and accidentally sell your nonexistent son for a bean.");
+if (SonBean==0) {
+SonBean = 1;
+igconsolelog("Achievement : Oops [Sell your fictional son for a bean]");
+}
+setTimeout(function() {consreboot();}, 5000);
+}
+
+//PATH ED (bowlkeep)
+
+if (pathstring=="ED"&&bowlkeep==0) {
+bowlkeep = 1;
+if (wafflers==1) {
+igconsolelog("You decide to keep the bowl. It smells like waffles.");
+}
+if (banapple==1) {
+igconsolelog("You decide to keep the bowl. It smells like banana apples.");
+}
+if (wafflers==0&&banapple==0) {igconsolelog("The bowl vanishes as you try to pick it up and you hear a sound across the street. It sounded like a bowl shattering.");}
+pathstring="E";
+igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");
+}
+if (pathstring=="ED"&&bowlkeep==1) {
+igconsolelog("You try to pick up the bowl a second time and get stuck in a time loop.");
+if (Timeloop==0) {
+Timeloop = 1;
+igconsolelog("Achievement : I've come to bargain [Get stuck in a time loop]");
+}
+setTimeout(function() {consreboot();}, 5000);
+}
+
+//PATH ABC (alphabet)
+
+if (pathstring=="ABC") {
+pathstring="AB";
+igconsolelog("What kind of cereal do you want?");
+igconsolelog("A : Banapple O's");
+igconsolelog("B : Wafflers");
+}
+
+//PATH ABD (Not a choice)
+
+if (pathstring=="ABD") {
+pathstring="AB";
+igconsolelog("What kind of cereal do you want?");
+igconsolelog("A : Banapple O's");
+igconsolelog("B : Wafflers");
+}
+
+//PATH EA (eXpEnSiVe)
+
+if (pathstring=="EA") {
+igconsolelog("Still working on this part, stand by");
+igconsolelog("A : ");
+igconsolelog("B : ");
+igconsolelog("C : ");
+igconsolelog("D : ");
+}
+
+//PATH AC (GRAB PHONE)
+
+if (pathstring=="AC") {
+if (hasphone==1) {igconsolelog("Grab what?"); pathstring="A";}
+else if (hasphone==0) {
+phonebatt = Math.floor(Math.random() * 100) + 1;
+igconsolelog("Battery : " + phonebatt + "%");
+if (phonebatt==100) {igconsolelog("Perfection.");}
+if (phonebatt==99) {igconsolelog("Close enough.");}
+if (phonebatt==70) {igconsolelog("This is one of those times you wish you hadn't charged your phone that 1% more.");}
+if (phonebatt==69) {igconsolelog("Have your laugh.");}
+if (phonebatt==68) {igconsolelog("Not very nice.");}
+if (phonebatt==50) {igconsolelog("Expect your phone to have a mid-life crisis.");}
+if (phonebatt==42) {igconsolelog("I refuse to believe that your phone battery is the meaning of life.");}
+if (phonebatt==21) {igconsolelog("9+10, anyone?");}
+if (phonebatt==18) {igconsolelog("Your phone is of legal drinking battery percent.");}
+if (phonebatt==13) {igconsolelog("Is your phone considered a teenager now?");}
+if (phonebatt==2) {igconsolelog("At least it isn't 1%. Yet.");}
+if (phonebatt==1) {igconsolelog("Have fun with that, bud.");}
+hasphone = 1;
+igconsolelog("New Item : Centauri brand phone");
+pathstring = "A";
+}
+igconsolelog("New day, new you. Not yet, but you'll see what I mean soon.");
+igconsolelog("Make your choice, it isn't mine to decide yet.");
+igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");
+}
+
+//PATH B (SLEEP)
+
+if (pathstring=="B") {
+var literallyB = Math.floor(Math.random() * 2) + 1;
+if (literallyB==1) {
+if (Bdeathity==0) {
+igconsolelog("Well, you died.");
+igconsolelog("Nobody else is sleeping so good ol' reaper boi goes stab stab on you.");
+if (ThaWasQui==0) {
+igconsolelog("Achievement : That was quick [Press B]");
+ThaWasQui=1;
+}
+setTimeout(function() {consreboot();}, 5000);
+}//I sold my son for a bean
+else if (Bdeathity==1) {
+igconsolelog("I'm not disappointed, just very disappointed. C'mon bud, you're doing this to yourself.");
+ if (ThaWasQui==0) {
+igconsolelog("Achievement : That was quick [Press B]");
+ThaWasQui=1;
+}
+setTimeout(function() {consreboot();}, 5000);
+}
+}
+else if (literallyB==2) {igconsolelog("You mind-exchanged with yourself. Next time be a bit more careful sleeping when nobody else is. You could get yourself killed."); Bdeathity=1; CheatDeathCount++; pathstring="";
+}
+//CheatDeath
+if (CheatDeathCount==5&&CheatDeath==0) {CheatDeath=1; igconsolelog("Achievement : Cheat Death [Survive the first sleep option five times in a row]");}
+}
+
+//PATH C (GRAB PHONE)
+
+if (pathstring=="C") {
+if (hasphone==0) {
+phonebatt = Math.floor(Math.random() * 100) + 1;
+igconsolelog("Battery : " + phonebatt + "%");
+if (phonebatt==100) {igconsolelog("Perfection.");}
+if (phonebatt==99) {igconsolelog("Close enough.");}
+if (phonebatt==70) {igconsolelog("This is one of those times you wish you hadn't charged your phone that 1% more.");}
+if (phonebatt==69) {igconsolelog("Have your laugh.");}
+if (phonebatt==68) {igconsolelog("Not very nice.");}
+if (phonebatt==50) {igconsolelog("Expect your phone to have a mid-life crisis.");}
+if (phonebatt==42) {igconsolelog("I refuse to believe that your phone battery is the meaning of life.");}
+if (phonebatt==21) {igconsolelog("9+10, anyone?");}
+if (phonebatt==18) {igconsolelog("Your phone is of legal drinking battery percent.");}
+if (phonebatt==13) {igconsolelog("Is your phone considered a teenager now?");}
+if (phonebatt==2) {igconsolelog("At least it isn't 1%. Yet.");}
+if (phonebatt==1) {igconsolelog("Have fun with that, bud.");}
+hasphone = 1;
+igconsolelog("New Item : Centauri brand phone");
+pathstring = "";
+}
+else if (hasphone==1) {
+igconsolelog("What is there to pick up? You already have your phone.");
+pathstring = "";
+}
+igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
+igconsolelog("What do you do now?");
+igconsolelog("A : Get up");
+igconsolelog("B : Stay in bed");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");
+}
+
+//PATH ..D.. (CHECK INVENTORY)
+
+//NOTHING
+if (pathstring=="D"&&hasphone==0) {igconsolelog("You have nothing."); pathstring=""; actionresponse=1;}
+if (pathstring=="AD"&&actionresponse==0&&hasphone==0) {igconsolelog("You have nothing."); pathstring="A";}
+if (pathstring=="AD"&&actionresponse==1&&hasphone==0) {igconsolelog("You just did this, you still have nothing. Did you expect anything different? Did you expect to magically find some change? No. You're just as broke as you were five seconds ago."); pathstring="A";}
+//HAS PHONE
+if (pathstring=="D"&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring=""; actionresponse=2;}
+if (pathstring=="AD"&&actionresponse==0&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
+if (pathstring=="AD"&&actionresponse==1&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
+if (pathstring=="AD"&&actionresponse==2&&hasphone==1) {igconsolelog("I said you have a phone from Centauri."); pathstring="A";}
+scrolligconsole();
+igconsolelog("Path : " + pathstring);
+if (chargingphone==1) {igconsolelog("Phone Battery : " + phonebatt);}
+}
+
 function scrolligconsole() {
-    igconsolelog("---------------");
   var theigconsole = document.getElementById('igconsole');  
   theigconsole.scrollTop = theigconsole.scrollHeight;   
 }
-document.onkeypress = function(event){
-  if (event.key.toLowerCase()=="a" && DeathQuestion!=1 && choicetoggle==0 && allowtest==1) {igconsolelog("Choice : A"); scrolligconsole(); var audio = new Audio("Sound/Choice.wav");
-pickedrun("A");
-audio.play();}
- 	if (event.key.toLowerCase()=="b" && DeathQuestion!=1 && choicetoggle==0 && allowtest==1) {igconsolelog("Choice : B"); scrolligconsole(); var audio = new Audio("Sound/ChoiceNewNewB.wav"); pickedrun("B");
-audio.play();}
- 	if (event.key.toLowerCase()=="c" && DeathQuestion!=1 && choicetoggle==0 && allowtest==1) {igconsolelog("Choice : C"); scrolligconsole(); var audio = new Audio("Sound/ChoiceNewNewCPitch.wav"); pickedrun("C");
-audio.play();}
- 	if (event.key.toLowerCase()=="d" && DeathQuestion!=1 && choicetoggle==0 && allowtest==1) {igconsolelog("Choice : D"); scrolligconsole(); var audio = new Audio("Sound/ChoiceNewNewDPitch.wav"); pickedrun("D");
-audio.play();}
-}
-var beginningMES = 0;
-var firstcrossroads = 0;
-var annstartsleep = 0;
-var anncomputerstart = 0;
-var anncomputerselect = 0;
-var uselesscheckcount = 0;
-var cerealgo = 0;
-var waffle = 0;
-var waffleamount = 100;
-var anncomputernotes = 0;
-var anndoor = 0;
-var rngphone = Math.floor(Math.random() * 2) + 1;
-var rngphonebat = Math.floor(Math.random() * 100) + 1;
-var pickupphone = 0;
-var storego = 0;
-var aisleone = 0;
-var aisletwo = 0;
-var choicetoggle = 0;
-var allowtest = 1;
-var sharpsnickers = 0;
-var normalsnicc = 0;
-var trippininthebackstreets = 0;
-var stabstab = 0;
-var fourbreak = 0;
-var iamthemanager = 0;
-var heckinaddicted = 0;
-var sikecandy = 0;
-function pickedrun(choice) {
-if (beginningMES==0) {
-beginningMES++;
-igconsolelog("You wake up as Annabell in Annabell's bedroom (duh)");
-igconsolelog("[A : Five more minutes]"); igconsolelog("(Not five minutes)"); igconsolelog("[B : Get up]");
-}
-if (beginningMES==1 && annstartsleep==0 && firstcrossroads==0 && choice=="A") {
-choice="";
-day=Math.round(1000*(day+0.12))/1000;
-annstartsleep++; sleeprand(); if (AnnLax.mind == "Death" && DeathQuestion!=1) {beginningMES--; annstartsleep--; igconsolelog("You wake up as Annabell in Annabell's bedroom... again"); igconsolelog("[A : Five more minutes] [B : Get up]"); scrolligconsole();} else if (AnnLax.mind=="AnnLax") {beginningMES--; annstartsleep--; igconsolelog("No dip sherlock ^^"); igconsolelog("[A : Five more minutes]"); igconsolelog("(Not five minutes)"); igconsolelog("[B : Get up]"); scrolligconsole();}
-if (AnnLax.mind == "Death" && DeathQuestion==1 && day==0.12) {
-igconsolelog("1: Wait they died by sleeping once?");
-igconsolelog("2: Well yeah it is random.");
-igconsolelog("1: Bring them back to life");
-igconsolelog("2: Hm why");
-igconsolelog("1: THEY DIED BY SLEEPING ONCE");
-igconsolelog("2: YOU THINK?");
-igconsolelog("1: *dials 411 into microwave*");
-igconsolelog("microwave: 411 blue raspberry or cherry");
-igconsolelog("1: THERE HAS BEEN A MURDER");
-igconsolelog("microwave: We don't have that flavor");
-scrolligconsole();
-}
-}
-if (firstcrossroads==1 && cerealgo==0 && anncomputerstart==0 && choice=="B") {cerealgo++; 
-choice="";
-                                                          
-document.getElementById('screenchar').style.backgroundImage = "url(Backgrounds/DeathKitchen.png)";     
-AnnLax.location = "homekitchen";
-document.getElementById('background').style.filter = "opacity(0%)";
-document.getElementById('screenchar').style.filter = "opacity(100%)";
-igconsolelog("What will you pick today?"); igconsolelog("[A : Banapple O's (🔒)]"); igconsolelog("[B : Wafflers]"); scrolligconsole();
-}
-
-if (cerealgo==1 && waffle==0 && anncomputerstart==0 && choice=="B") {waffle++; 
-choice="";
-                                                          
-document.getElementById('screenchar').style.backgroundImage = "url(Backgrounds/Wafflers.png)";     
-document.getElementById('background').style.filter = "opacity(0%)";
-document.getElementById('screenchar').style.filter = "opacity(100%)";
-var cerealrand = Math.floor(Math.random() * 10) + 1;
-waffleamount = waffleamount- cerealrand;
-if (waffleamount<0) {waffleamount=0;}
-AnnLax.hunger = AnnLax.hunger - (cerealrand*1.5);
-AnnLax.thirst = AnnLax.thirst - (cerealrand*0.5);
-igconsolelog("I wish I knew how to make real waffles, but these are fine.");
-igconsolelog("Hunger : " + AnnLax.hunger);
-igconsolelog("Thirst : " + AnnLax.thirst);
-igconsolelog("Wafflers left : %" + waffleamount);
-igconsolelog("[A] Go outside");
-igconsolelog("[B] Eat more cereal (🔒)");
-igconsolelog("[C] Look around the kitchen (🔒)");
-igconsolelog("[D] Go back to your room (🔒)"); scrolligconsole();
-}
-
-if (waffle==1 /* || CEREALS*/&& anncomputerstart==0 && anndoor==0 && choice=="A") {anndoor++; 
-choice="";
-                                                          
-document.getElementById('background').style.backgroundImage = "url(Backgrounds/AnnLaxDoor_V2.png)";     
-document.getElementById('screenchar').style.filter = "opacity(0%)";
-document.getElementById('background').style.filter = "opacity(100%)";
-var energyrand = Math.floor(Math.random() * 10) + 1;
-AnnLax.location="homefrontdoor";
-igconsolelog("Alright, where to?");
-igconsolelog("[A] Park (🔒)");
-igconsolelog("[B] Store");
-igconsolelog("[C] Walk aimlessly (🔒)");
-igconsolelog("[D] Back to the kitchen (🔒)"); scrolligconsole();
-}
-
-  
-  
-  
-  if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==0 && choice=="A")
-{
-aisleone++
-choice="";
-AnnLax.location="storeaisleone";
-AnnLax.stamina=AnnLax.stamina+12;
-day=day+0.05
-AnnLax.tired=false;
-choiceoff();
-igconsolelog("You notice that the icecream is on sale. Might as well get some.");
-igconsolelog("[A] Get icecream");
-igconsolelog("[B] Get popsicles");
-igconsolelog("[C] Get frozen yogurt");
-scrolligconsole();
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("Wait..."); scrolligconsole();}, 2000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("This can't be right"); scrolligconsole();}, 4000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("What if I.."); scrolligconsole();}, 6000);
-setTimeout(function() {var audio = new Audio("Sound/Interact.wav"); audio.play();}, 7500);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("That should fix it."); scrolligconsole();}, 9000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("Huh?"); scrolligconsole();}, 11000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("But the game broke; I had to fix it"); scrolligconsole();}, 13000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("Oh so I can't talk?"); scrolligconsole();}, 17000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("..."); scrolligconsole();}, 20000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("I won't do it again, just please leave me alone"); scrolligconsole();}, 21000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("I already told you I w-"); scrolligconsole();}, 23000);
-setTimeout(function() {var audio = new Audio("Sound/RadioNoise3.wav"); audio.play();}, 23100);
-setTimeout(function() {var audio = new Audio("Sound/RadioTransmissionCutOut.wav"); audio.play(); igconsolelog("Repairing System."); scrolligconsole();}, 26000);
-setTimeout(function() {igconsoleedit("Repairing System.", "Repairing System..");}, 27000);
-setTimeout(function() {igconsoleedit("Repairing System..", "Repairing System...");}, 28000);
-setTimeout(function() {var audio = new Audio("Sound/RealityWarp.wav"); audio.play(); igconsolelog("Rebooting"); scrolligconsole();}, 29000);
-setTimeout(function() {location.reload();}, 35000);
-}
-  
-  
-    if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==0 && choice=="B")
-{
-aisletwo++
-choice="";
-AnnLax.location="storeaisletwo";
-AnnLax.stamina=AnnLax.stamina+12;
-day=day+0.05
-AnnLax.tired=false;
-igconsolelog("Oh, everybody raided the candy aisle. It isn't too surprising since it is halloween.");
-igconsolelog("[A] Look to see what they have left");
-igconsolelog("[B] Go back (🔒)");
-igconsolelog("[C] Check your phone");
-scrolligconsole();
-}
-    if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==0 && heckinaddicted==0 && choice=="C")
-{
-if (pickupphone==1) {
-heckinaddicted++
-choice="";
-AnnLax.location="storeaisletwo";
-day=day+0.02
-igconsolelog("Eh, not much happened.");
-igconsolelog("[A] Open the Melon app(🔒)");
-igconsolelog("[B] Go back (🔒)");
-igconsolelog("congratulations you trapped yourself and now you need to reload the page");
-scrolligconsole();
-}
-if (pickupphone==0) {
-igconsolelog("It would be really nice if you actually had a phone to check. You never picked it up.");
-scrolligconsole();
-}
-}
-  
- if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==0 && heckinaddicted==0 && choice=="A")
-{
-sharpsnickers++;
-choice="";
-AnnLax.location="storeaisletwocandy";
-AnnLax.stamina=AnnLax.stamina+8;
-day=day+0.05
-AnnLax.tired=false;
-igconsolelog("There is one thing that survived. A ca- A candy bar with a razorblade in it alright that is nice");
-igconsolelog("[A] Take out the razor blade");
-igconsolelog("[B] Go back (🔒)");
-igconsolelog("[C] Go to the back room");
-scrolligconsole();
-}
-  trippininthebackstreets
-
- if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==1 && trippininthebackstreets==0 && normalsnicc==0 && choice=="C")
-{
-trippininthebackstreets++;
-choice="";
-AnnLax.location="storeback";
-day=day+0.10;
-igconsolelog("Why? Why are you here? What is your goal? I don't understa-oh hey they have more stock that they want to keep all to themselves.");
-igconsolelog("[A] Steal some candies (🔒)");
-igconsolelog("[B] Take the candies but leave money (🔒)");
-igconsolelog("[C] Restock the shelves");
-scrolligconsole();
-}
-   if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==1 && stabstab==0 && trippininthebackstreets==1 && normalsnicc==0 && iamthemanager==0 && choice=="C")
-{
-iamthemanager++;
-choice="";
-AnnLax.location="store";
-day=day+0.50;
-igconsolelog("Huh.. alright do that.");
-igconsolelog("[A] Take a candy (🔒)");
-igconsolelog("[B] Exit (🔒)");
-scrolligconsole();
-}
-  
-     if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==1 && stabstab==0 && trippininthebackstreets==1 && normalsnicc==0 && iamthemanager==1 && sikecandy==0 && choice=="A")
-{
-sikecandy++;
-choice="";
-AnnLax.location="store";
-day=day+0.50;
-igconsolelog("And here I was thinking that you were actually being nice but no you had to steal a single candy");
-igconsolelog("[A] Eat the candy (🔒)");
-igconsolelog("[B] Save it for later (🔒)");
-scrolligconsole();
-}
-  
-  
-   if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==1 && normalsnicc==0 && trippininthebackstreets==0 && choice=="A")
-{
-normalsnicc++
-choice="";
-AnnLax.location="storeaisletwocandy";
-day=day+0.05
-igconsolelog("Your prints are on the murder weapo-i'll stop. Alright congratulations you have a razor blade covered in melting chocolate now. What is your goal?");
-igconsolelog("[A] Put it back");
-igconsolelog("[B] Put it in your pocket (🔒)");
-igconsolelog("[C] Cut yourself (🔒)");
-scrolligconsole();
-}
-     if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==1 && normalsnicc==1 && stabstab==0 && trippininthebackstreets==0 && choice=="A")
-{
-stabstab++
-choice="";
-AnnLax.location="storeaisletwocandy";
-day=day+0.05
-igconsolelog("Okay but why?");
-igconsolelog("[A] Because I said so");
-scrolligconsole();
-}
-  
-       if (anncomputerstart==0 && anndoor==1 && storego==1 && aisleone==0 && aisletwo==1 && sharpsnickers==1 && normalsnicc==1 && stabstab==1 && fourbreak == 0 && trippininthebackstreets==0 && choice=="A")
-{
-fourbreak++
-choice="";
-AnnLax.location="storeaisletwocandy";
-day=day+0.05
-choiceoff();
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog(". . ."); scrolligconsole();}, 2000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("Are you talking to me?"); scrolligconsole();}, 4000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("How did you.."); scrolligconsole();}, 7000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("Huh?"); scrolligconsole();}, 8000);
-setTimeout(function() {var audio = new Audio("Sound/TextSend.wav"); audio.play(); igconsolelog("Oh, something broke on another path. Hold on."); scrolligconsole();}, 10000);
-setTimeout(function() {var audio = new Audio("Sound/RadioNoise3.wav"); audio.play();}, 12000);
-setTimeout(function() {var audio = new Audio("Sound/RadioTransmissionCutOut.wav"); audio.play();}, 15000);
-setTimeout(function() {var audio = new Audio("Sound/Alarm.wav"); audio.play();}, 20000);
-setTimeout(function() {var audio = new Audio("Sound/Alarm.wav"); audio.play();}, 21000);
-setTimeout(function() {var audio = new Audio("Sound/Alarm.wav"); audio.play();}, 22000);
-setTimeout(function() {location.reload();}, 23000);
-scrolligconsole();
-}
-  
-  
-if (anncomputerstart==0 && anndoor==1 && storego==0 && choice=="B")
-{
-storego++;
-choice="";
-AnnLax.location="storeentrance";
-document.getElementById('screenchar').style.backgroundImage = "url(Backgrounds/tempback.gif)";     
-document.getElementById('background').style.filter = "opacity(0%)";
-document.getElementById('screenchar').style.filter = "opacity(100%)";
-var staminatakerninethousand = Math.floor(Math.random() * 300) + 1;
-var hydrogenoxygen = Math.floor(Math.random() * 10) + 1;
-AnnLax.thirst=AnnLax.thirst-hydrogenoxygen;
-AnnLax.stamina=AnnLax.stamina-staminatakerninethousand;
-AnnLax.hunger++;
-AnnLax.hunger=Math.floor(AnnLax.hunger);
-AnnLax.tired=true;
-igconsolelog("You are tired from walking, but thankfully the store is decently close.");
-igconsolelog("Hunger : " + AnnLax.hunger);
-if (AnnLax.thirst<3) /*thirst and <3 should not be directly next to eachother*/{igconsolelog("You are mildly thirsty, but overall fine.");}
-if (AnnLax.thirst>3 && AnnLax.thirst<5) {igconsolelog("You need water.");}
-if (AnnLax.thirst>5 && AnnLax.thirst<7) {igconsolelog("You desperately need water.");}
-if (AnnLax.thirst>7 && AnnLax.thirst<10) {igconsolelog("You are dying of dehydration.");}
-igconsolelog("Stamina : " + AnnLax.stamina);
-igconsolelog("How much does the nearly 24/7 AC in a store cost per day? I will never know. Alrighty, where to?");
-igconsolelog("[A] Aisle 1");
-igconsolelog("[B] Aisle 2");
-igconsolelog("[C] Aisle 3 (🔒)");
-igconsolelog("[D] More Options (🔒)"); scrolligconsole();
-}
-
-if (beginningMES==1 && firstcrossroads==0 && choice=="B") {
-choice="";
-firstcrossroads++; igconsolelog("You are contemplating what to do."); igconsolelog("[A : Go to your computer]"); igconsolelog("[B : Get cereal]"); if (rngphone==2) {igconsolelog("[C : Pick up your phone from your desk]");} scrolligconsole();}
-
-if (firstcrossroads==1 && anncomputerstart==0 && cerealgo==0 && uselesscheckcount==0 && rngphone==2 && pickupphone==0 && choice=="C") 
-{
-var phonecolorcheck = -(180-1.8*rngphonebat);
-document.getElementById('phone').style.filter = "grayscale(0%) hue-rotate(" + phonecolorcheck + "deg)";
-pickupphone++; 
-choice="";
-if (rngphonebat==69) {
-igconsolelog("You picked up your phone. It is at " + rngphonebat + "% ba-was that intentional?");
-scrolligconsole();
-}
-else if (rngphonebat==99) {
-igconsolelog("You picked up your phone. It is at " + rngphonebat + "% battery. Close enough.");
-scrolligconsole();
-}
-else if (rngphonebat==100) {
-igconsolelog("You picked up your phone. It is at " + rngphonebat + "% battery. Perfection.");
-scrolligconsole();
-}
-else if (rngphonebat==5) {
-igconsolelog("You picked up your phone. It is at " + rngphonebat + "% battery. Have fun with that.");
-scrolligconsole();
-}
-else if (rngphonebat==1) {
-igconsolelog("You picked up your phone. It is at " + rngphonebat + "% battery. 1% alone is rare, so I am guessing you are trying to get 0% or 100%, and just saying 0% is impossible. I am nice in a mean way.");
-scrolligconsole();
-}
-else if (rngphonebat==21) {
-igconsolelog("You picked up your phone. It is at " + rngphonebat + "% battery. What is 9+10?");
-scrolligconsole();
-}
-else if (rngphonebat==50) {
-igconsolelog("You picked up your phone. It is at " + rngphonebat + "% battery. Expect your phone to have a mid-life crisis.");
-scrolligconsole();
-}
-else {igconsolelog("You picked up your phone. It is at " + rngphonebat + "% battery.");
-scrolligconsole();}
-rngphone=0;
-}
-if (anncomputernotes==0 && firstcrossroads==1 && anncomputerstart==1 && choice=="A") {
-choice="";
-igconsolelog("Cause of death : sleep");
-igconsolelog("Grab your phone before doing anything else");
-igconsolelog("(🔒) means that a path is locked for development and will unlock later on");
-if (rngphone==2) {igconsolelog("By checking your computer's notes, you forgot about your phone.");}
-scrolligconsole();
-AnnLax.hunger = AnnLax.hunger + 0.3;
-AnnLax.thirst = AnnLax.thirst + 0.1;
-day=day+0.02;
-}
-
-if (anncomputerstart==1 && firstcrossroads==1 && anncomputernotes==0 && choice=="B") {
-choice="";
-document.getElementById('screenchar').style.filter = "opacity(0%)";
-document.getElementById('background').style.filter = "opacity(100%)";
- uselesscheckcount++; anncomputerstart--; 
-
-if (uselesscheckcount<25 && uselesscheckcount>0) {
-igconsolelog("Checked your computer for no reason counter : " + uselesscheckcount);
-}
-if (uselesscheckcount>24 && uselesscheckcount<50) {
-igconsolelog("Why are you still here? Go be productive (" + uselesscheckcount + ")");
-}
-if (uselesscheckcount>49 && uselesscheckcount<75) {
-igconsolelog("If I honk at you will you go away (" + uselesscheckcount + ")");
-}
-if (uselesscheckcount>74 && uselesscheckcount<100) {
-igconsolelog("You asked for it now deal with the honking until 100 (" + uselesscheckcount + ")");
-var honkatyou = Math.floor(Math.random() * 2) + 1;
-if (honkatyou==1) {var audio = new Audio("Sound/CarHonk.wav"); audio.play();}
-if (honkatyou==2) {var audio = new Audio("Sound/CarHonk2.wav"); audio.play();}
-}
-if (uselesscheckcount>99 && uselesscheckcount<200) {
-igconsolelog("Okay stop it (" + uselesscheckcount + ")");
-}
-if (uselesscheckcount>199 && uselesscheckcount<300) {
-igconsolelog("bOi YoU bEtTeR dO sOmEtHiNg PrOdUcTiVe Or I aM gOnNa TeLl MoM (" + uselesscheckcount + ")");
-}
-if (uselesscheckcount>299 && uselesscheckcount<1000) {
-igconsolelog("If you get to 1,000 I will be both proud and dissapointed (" + uselesscheckcount + ")");
-}
-if (uselesscheckcount>999) {
-igconsolelog("There is nothing past here by the way so don't murder your fingers over nothing. Congratulations though. Actually play the game now.");
-}
-
-igconsolelog("[A : Go to your computer]"); igconsolelog("[B : Get cereal]");
-scrolligconsole();}
-
-if (firstcrossroads==1 && anncomputerstart==0 && cerealgo==0 && choice=="A") {anncomputerstart++; 
-choice="";
-document.getElementById('screenchar').style.backgroundImage = "url(Backgrounds/AnnabellComputer.png)";
-document.getElementById('background').style.filter = "opacity(0%)";
-document.getElementById('screenchar').style.filter = "opacity(100%)";
-igconsolelog("Ah yes, potato. My favorite number of the alphabet."); igconsolelog("[A : Open Notes]"); igconsolelog("[B : Go back]"); scrolligconsole();
-AnnLax.hunger = AnnLax.hunger + 0.5;
-AnnLax.thirst = AnnLax.thirst + 0.1;
-
-if (AnnLax.hunger > 1 && AnnLax.hunger < 6) {igconsolelog("You are starting to get hungry.");}
-if (AnnLax.hunger > 6 && AnnLax.hunger < 10) {igconsolelog("You are hungry, eat something soon."); AnnLax.stamina = AnnLax.stamina - 10;}
-if (AnnLax.hunger > 10 && AnnLax.hunger < 15) {igconsolelog("You are starving, eat as soon as possible.");}
-if (AnnLax.hunger > 15) {
-
-document.getElementById('character').style.width = "0px";
-document.getElementById('background').style.top = "1000px";
-document.getElementById('background').style.width = "0px";
-document.getElementById('storybtn').style.width = "0px"
-document.getElementById('storybtn').style.top = "999px"
-var DeathImage = "";
-DeathQuestion=1;
-DeathImage="url(Death_Scenes/Mind_Exchange_Starve.png)"; 
-igconsolelog("Well done you starved by checking your computer a bunch of times. Donut do that again.");
-document.getElementById('screenchar').style.backgroundImage = DeathImage;
-document.getElementById('screenchar').style.filter = "opacity(100%)";
-document.body.style.background = 'black';
-scrolligconsole();
-setTimeout(function() {location.reload();}, 15000);
-}
-day=Math.floor(day);
-}
-}
-pickedrun("", "");
-function exchange(person1, person2) {
-var person1mind = person1.mind;
-var person2mind = person2.mind;
-person1.mind = person2mind;
-person2.mind = person1mind;
-}
-function igconsoleedit(a, b) {
-var igconsedit = document.getElementById("igconsole").innerHTML;
-var igconseditcomplete = igconsedit.replace(a, b);
-document.getElementById("igconsole").innerHTML = igconseditcomplete;
-} /*No spaces ^^*/
-function choiceon() {
-document.getElementById("storybtn").style.pointerEvents = "all";
-choicetoggle=0;
-}
-function choiceoff() {
-document.getElementById("storybtn").style.pointerEvents = "none";
-choicetoggle=1;
-}
-/*choiceoff();*/
-var DeathQuestion = "";
-function mindfind() {
-if (JoaKol.mind == "AnnLax") {console.log("JoaKol");} else
-if (WilLir.mind == "AnnLax") {console.log("WilLir");} else
-if (KieWin.mind == "AnnLax") {console.log("KieWin");} else
-if (RyaWin.mind == "AnnLax") {console.log("RyaWin");} else
-if (JohWil.mind == "AnnLax") {console.log("JohWil");} else
-if (KylDie.mind == "AnnLax") {console.log("KylDie");} else
-if (AnnLax.mind == "AnnLax") {document.getElementById('character').style.backgroundImage = AnnLax.neutralemotion; document.getElementById('background').style.backgroundImage = "url(Backgrounds/Annabell_Bedroom_V4.png)";} else
-if (Ulru.mind == "AnnLax") {console.log("Ulru");} else
-if (Reaper.mind == "AnnLax") {DeathQuestion = Math.floor(Math.random() * 6) + 1;
-if (DeathQuestion==1) {
-document.getElementById('character').style.width = "0px";
-document.getElementById('background').style.top = "1000px";
-document.getElementById('background').style.width = "0px";
-document.getElementById('storybtn').style.width = "0px"
-document.getElementById('storybtn').style.top = "999px"
-var DeathScene = Math.floor(Math.random() * 10) + 1;
-var DeathImage = "";
-if (DeathScene==1) {DeathImage="url(Death_Scenes/Mind_Exchange_Annoyed_Death.png)"; igconsolelog(deathfive);}
-else if (DeathScene==2) {DeathImage="url(Death_Scenes/Mind_Exchange_Bye_Bye_Death.png)"; igconsolelog(deaththree);}
-else if (DeathScene==3) {DeathImage="url(Death_Scenes/Mind_Exchange_Death.png)"; 
-igconsolelog(deathone);}
-else if (DeathScene==4) {DeathImage="url(Death_Scenes/Mind_Exchange_Eyebleed_Death.png)"; igconsolelog(deathseven);}
-else if (DeathScene==5) {DeathImage="url(Death_Scenes/Mind_Exchange_Silent_Death.png)"; igconsolelog(deathone);}
-else if (DeathScene==6) {DeathImage="url(Death_Scenes/Mind_Exchange_Glitch_Bleed_Death.gif)"; igconsolelog(deathseven);}
-else if (DeathScene==7) {DeathImage="url(Death_Scenes/Mind_Exchange_Tired_Death.png)"; igconsolelog(deathfive);}
-else if (DeathScene==8) {DeathImage="url(Death_Scenes/Mind_Exchange_Welp_Death.png)"; igconsolelog(deathone);}
-else if (DeathScene==9) {DeathImage="url(Death_Scenes/Mind_Exchange_Eye_Death.gif)"; igconsolelog(deathfour);}
-else if (DeathScene==10) {DeathImage="url(Death_Scenes/Mind_Exchange_Quick_Death.gif)"; igconsolelog(deathsix);}
-document.getElementById('screenchar').style.backgroundImage = DeathImage;
-document.getElementById('screenchar').style.filter = "opacity(100%)";
-document.body.style.background = 'black';
-scrolligconsole();
-setTimeout(function() {location.reload();}, 15000);
-}
-} else
-if (NalJac.mind == "AnnLax") {document.getElementById('character').style.backgroundImage = NalJac.neutralemotion;
-document.getElementById('background').style.backgroundImage = "url(Backgrounds/Nala_Bedroom_V4.png)";}
-}
-function swapcurrentlyingameminds() {
-igconsolelog("Exchanging Minds");
-var JoaKolMindExchange = Math.floor(Math.random() * 2) + 1;
-var WilLirMindExchange = Math.floor(Math.random() * 2) + 1;
-var KieWinMindExchange = Math.floor(Math.random() * 2) + 1;
-var RyaWinMindExchange = Math.floor(Math.random() * 2) + 1;
-var JohWilMindExchange = Math.floor(Math.random() * 2) + 1;
-var KylDieMindExchange = Math.floor(Math.random() * 2) + 1;
-var AnnLaxMindExchange = Math.floor(Math.random() * 2) + 1;
-var UlruMindExchange = Math.floor(Math.random() * 2) + 1;
-var NalJacMindExchange = Math.floor(Math.random() * 2) + 1;
-if (JoaKol.inradius == true && JoaKolMindExchange == 1) {exchange(AnnLax, JoaKol);} else
-if (WilLir.inradius == true && WilLirMindExchange == 2) {exchange(AnnLax, WilLir);} else
-if (KieWin.inradius == true && KieWinMindExchange == 1) {exchange(AnnLax, KieWin); exchange(JoaKol, WilLir);} else
-if (RyaWin.inradius == true && RyaWinMindExchange == 2) {exchange(AnnLax, RyaWin); exchange(WilLir, KieWin);} else
-if (JohWil.inradius == true && JohWilMindExchange == 1) {exchange(AnnLax, JohWil); exchange(KieWin, RyaWin);} else
-if (KylDie.inradius == true && KylDieMindExchange == 2) {exchange(AnnLax, KylDie); exchange(RyaWin, JohWil);} else
-if (AnnLax.inradius == true && AnnLaxMindExchange == 1) {exchange(AnnLax, AnnLax); exchange(JohWil, KylDie);} else
-if (Ulru.inradius == true && UlruMindExchange == 2) {exchange(AnnLax, Ulru); exchange(KylDie, AnnLax);} else
-if (NalJac.inradius == true && NalJacMindExchange == 1) {exchange(AnnLax, NalJac);} else
-{exchange(AnnLax, Reaper);}
-}
-var previousmind = "(You just started the game, at least two sleep cycles are needed for this mechanic to work)";
-setInterval(function() {document.getElementById('dayscount').innerHTML = "Day " + day;}, 250);
-function sleeprand() {
-var audioSOD = new Audio("Sound/SleepOrDeath.wav"); audioSOD.play();
-igconsolelog("You slept");
-igconsolelog("It is now day " + day.toString());
-swapcurrentlyingameminds();
-mindfind();
-if (AnnLax.mind == "Death" && DeathQuestion==1) {igconsolelog("You died");}
-else if (AnnLax.mind == "Death" && DeathQuestion != 1) {igconsolelog("You weren't affected by the mind exchange");}
-else if (previousmind=="(You just started the game, at least two sleep cycles are needed for this mechanic to work)") {igconsolelog("You are currently : " + AnnLax.mind); previousmind = AnnLax.mind;}
-  else {igconsolelog("Yeah the game doesn't know what to do right now, there are probably only one or two characters in the game.");}
-scrolligconsole();
+function igconsolelog(msg) {
+var igconsolehtml = document.getElementById('igconsole').innerHTML;
+document.getElementById('igconsole').innerHTML = igconsolehtml + "<br>" + msg.toString() + "<br>";
 }
 //.TaserPhone {
 //Height : Gym;
