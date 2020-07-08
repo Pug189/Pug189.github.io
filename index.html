@@ -477,21 +477,20 @@ if (chargingphone==1&&phonebatt==100) {igconsolelog("100% battery reached, charg
 igconsolelog("Choice : " + choice);
 pathstring = pathstring + choice;
 //Path stuff
-
+switch(pathstring) {
 //PATH A
-
-if (pathstring=="A") {
+    case "A":
 igconsolelog("New day, new you. Not yet, but you'll see what I mean soon.");
 igconsolelog("Make your choice, it isn't mine to decide yet.");
 igconsolelog("A : Play on computer");
 igconsolelog("B : Get cereal");
 igconsolelog("C : Grab your phone");
 igconsolelog("D : Check your inventory");
-}
+break;
 
 //PATH AA (COMPUTER)
 
-if (pathstring=="AA") {
+    case "AA":
 if (hasphone==1&&phonebatt>99) {igconsolelog("You set your phone down on the desk and sit in your chair, starting up your PC.");}
 if (hasphone==1&&phonebatt<100) {igconsolelog("You plug your phone into a charger and sit in your chair, starting up your PC.");}
 if (hasphone==0) {igconsolelog("You sit in your chair and start up your PC.");}
@@ -500,37 +499,40 @@ igconsolelog("A : Gun Game");
 igconsolelog("B : Rock Paper Scissors");
 igconsolelog("C : Back");
 if (hasphone==1) {chargingphone=1};
-}
+break;
 
 //PATH AAC
 
-if (pathstring=="AAC") {pathstring="A"; igconsolelog("Welcome back."); igconsolelog("A : Play on computer");
+    case "AAC":
+pathstring="A"; igconsolelog("Welcome back."); igconsolelog("A : Play on computer");
 igconsolelog("B : Get cereal");
 igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory"); chargingphone=0;}
-
+igconsolelog("D : Check your inventory"); chargingphone=0;
+break;
 //PATH AAD (no)
 
-if (pathstring=="AAD") {pathstring="AA"; igconsolelog("A : Gun Game");
+    case "AAD":
+pathstring="AA"; igconsolelog("A : Gun Game");
 igconsolelog("B : Rock Paper Scissors");
 igconsolelog("C : Back");
-}
+break;
 
 //PATH AAA (GUN GAME) (TRIPLE A BATTERIES)
 
-if (pathstring=="AAA") {
+    case "AAA":
 igconsolelog("Note : If the console knew your move and reacted to it then you would always lose so it is randomized for the sake of your hubris");
 igconsolelog("Another note : If you reload, keep blocking until the console shoots, then shoot you win 100% of the time. Don't be a trashbag the console has feelings too.");
 igconsolelog("A : Shoot");
 igconsolelog("B : Block");
 igconsolelog("C : Reload");
 igconsolelog("D : End game");
-}
+break;
 
 //PATH AAAA (GUN GAME SHOOT) (REALLY NICE BATTERIES)
 
 //Can shoot
-if (pathstring=="AAAA"&&reloadplyr==0) {
+    case "AAAA":
+if (reloadplyr==0) {
 shootgg();
 igconsolelog("You : Shoot");
 function shootgg() {
@@ -556,14 +558,14 @@ shootgg();
 }
 }
 //Can't shoot
-if (pathstring=="AAAA"&&reloadplyr==1&&rerollfix==0) {igconsolelog("You can't shoot, you either block or reload."); pathstring="AAA"; igconsolelog("A : Shoot");
+if (reloadplyr==1&&rerollfix==0) {igconsolelog("You can't shoot, you either block or reload."); pathstring="AAA"; igconsolelog("A : Shoot");
 igconsolelog("B : Block");
 igconsolelog("C : Reload");
 igconsolelog("D : End game");}
-
+break;
 //PATH AAAB (GUN GAME BLOCK) (HEIGHT:GYM)
 
-if (pathstring=="AAAB") {
+    case "AAAB":
 blockgg();
 igconsolelog("You : Block");
 function blockgg() {
@@ -581,11 +583,12 @@ else {blockggreroll();}
 function blockggreroll() {
 blockgg();
 }
-}
+break;
 
 //PATH AAAC (GUN GAME RELOAD)
 //Can reload
-if (pathstring=="AAAC"&&reloadplyr==1) {
+    case "AAAC":
+if (reloadplyr==1) {
 reloadgg();
 igconsolelog("You : Reload");
 function reloadgg() {
@@ -609,22 +612,23 @@ reloadgg();
 }
 }
 //Can't reload
-if (pathstring=="AAAC"&&reloadplyr==0&&rerollfix==0) {igconsolelog("A : Shoot");
+if (reloadplyr==0&&rerollfix==0) {igconsolelog("A : Shoot");
 igconsolelog("B : Block");
 igconsolelog("C : Reload");
 igconsolelog("D : End game");
 igconsolelog("You've already reloaded. Shoot or block."); pathstring="AAA";
 }
-
+break;
 //PATH AAAD (END GAME)
 
-if (pathstring=="AAAD") {pathstring="AA"; igconsolelog("A : Gun Game");
+    case "AAAD":
+pathstring="AA"; igconsolelog("A : Gun Game");
 igconsolelog("B : Rock Paper Scissors");
-igconsolelog("C : Back");}
-
+igconsolelog("C : Back");
+break;
 //PATH AAB (RPS)
 
-if (pathstring=="AAB") {
+    case "AAB":
 igconsolelog("Note : If the console knew your move and reacted to it then you would always lose so it is randomized for the sake of your hubris");
 igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
@@ -632,11 +636,11 @@ igconsolelog("A : Rock");
 igconsolelog("B : Paper");
 igconsolelog("C : Scissors");
 igconsolelog("D : Back");
-}
+break;
 
 //PATH AABA (Rock)
 
-if (pathstring=="AABA") {
+    case "AABA":
 igconsolelog("You : Rock");
 var rpscons = Math.floor(Math.random() * 3) + 1;
 if (rpscons==1) {
@@ -666,11 +670,11 @@ igconsolelog("A : Rock");
 igconsolelog("B : Paper");
 igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
 }
-}
+break;
 
 //PATH AABB (Paper)
 
-if (pathstring=="AABB") {
+    case "AABB":
 igconsolelog("You : Paper");
 var rpscons = Math.floor(Math.random() * 3) + 1;
 if (rpscons==1) {
@@ -700,11 +704,11 @@ igconsolelog("A : Rock");
 igconsolelog("B : Paper");
 igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
 }
-}
+break;
 
 //PATH AABC
 
-if (pathstring=="AABC") {
+    case "AABC":
 igconsolelog("You : Scissors");
 var rpscons = Math.floor(Math.random() * 3) + 1;
 if (rpscons==1) {
@@ -734,28 +738,28 @@ igconsolelog("A : Rock");
 igconsolelog("B : Paper");
 igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
 }
-}
+break;
 
 //PATH AABD (Back)
 
-if (pathstring=="AABD") {
+    case "AABD":
 pathstring="AA";
 igconsolelog("A : Gun Game");
 igconsolelog("B : Rock Paper Scissors");
 igconsolelog("C : Back");
-}
+break;
 
 //PATH AB (Get Cereal)
 
-if (pathstring=="AB") {
+    case "AB":
 igconsolelog("What kind of cereal do you want?");
 igconsolelog("A : Banapple O's");
 igconsolelog("B : Wafflers");
-}
+break;
 
 //PATH ABA (Banapple O's)
 
-if (pathstring=="ABA") {
+    case "ABA":
 igconsolelog("Banapple O's! I feel like you're biased towards this one.");
 igconsolelog("You finish your cereal, now what?");
 banapple = 1;
@@ -764,11 +768,11 @@ igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
 igconsolelog("C : Keep the spoon for some reason");
 igconsolelog("D : Keep the bowl for some reason");
-}
+break;
 
 //PATH ABB (Wafflers)
 
-if (pathstring=="ABB") {
+    case "ABB":
 igconsolelog("I searched for words that rhyme with Wafflers and I got some German surnames so pretend I have something here.");
 igconsolelog("You finish your cereal, now what?");
 wafflers = 1;
@@ -777,21 +781,36 @@ igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
 igconsolelog("C : Keep the spoon for some reason");
 igconsolelog("D : Keep the bowl for some reason");
-}
+break;
 
 //PATH EB
 
-if(pathstring=="EB") {
-if (hasphone==1&&CheatDeathCount==0) {igconsolelog("You log onto Melon, somebody died a few minutes ago. Unknown causes. They were in bed, but that seems unrelated.");}
-if (hasphone==1&&CheatDeathCount>0&&wafflers==1) {igconsolelog("You log onto Melon, nothing has happened.");}
-if (hasphone==1&&CheatDeathCount>0&&banapple==1) {igconsolelog("You log onto Melon, nothing has happened.");}
-if (hasphone==1&&CheatDeathCount>0&&bowlkeep==1&&wafflers==0&&banapple==0) {igconsolelog("You log onto Melon, somebody found shards of a bowl on their roof.");}
-if (hasphone==0) {igconsolelog("You look at your wrist. It's skin o'clock");}
-}
+    case "EB":
+if (hasphone==1&&CheatDeathCount==0) {igconsolelog("You log onto Melon, somebody died a few minutes ago. Unknown causes. They were in bed, but that seems unrelated."); pathstring="E"; igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");}
+if (hasphone==1&&CheatDeathCount>0&&wafflers==1) {igconsolelog("You log onto Melon, nothing has happened."); pathstring="E"; igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");}
+if (hasphone==1&&CheatDeathCount>0&&banapple==1) {igconsolelog("You log onto Melon, nothing has happened."); pathstring="E"; igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");}
+if (hasphone==1&&CheatDeathCount>0&&bowlkeep==1&&wafflers==0&&banapple==0) {igconsolelog("You log onto Melon, somebody found shards of a bowl on their roof."); pathstring="E"; igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");}
+if (hasphone==0) {igconsolelog("You look at your wrist. It's skin o'clock"); pathstring="E"; igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason");
+igconsolelog("D : Keep the bowl for some reason");}
+break;
 
 //PATH EC (spoonkeep)
-
-if (pathstring=="EC"&&spoonkeep==0) {
+    case "EC":
+if (spoonkeep==0) {
 spoonkeep = 1;
 if (wafflers==1) {
 igconsolelog("You decide to keep the spoon. It smells like waffles.");
@@ -814,10 +833,11 @@ igconsolelog("Achievement : Oops [Sell your fictional son for a bean]");
 }
 setTimeout(function() {consreboot();}, 5000);
 }
+break;
 
 //PATH ED (bowlkeep)
-
-if (pathstring=="ED"&&bowlkeep==0) {
+    case "ED":
+if (bowlkeep==0) {
 bowlkeep = 1;
 if (wafflers==1) {
 igconsolelog("You decide to keep the bowl. It smells like waffles.");
@@ -832,7 +852,7 @@ igconsolelog("B : Check your phone");
 igconsolelog("C : Keep the spoon for some reason");
 igconsolelog("D : Keep the bowl for some reason");
 }
-if (pathstring=="ED"&&bowlkeep==1) {
+if (bowlkeep==1) {
 igconsolelog("You try to pick up the bowl a second time and get stuck in a time loop.");
 if (Timeloop==0) {
 Timeloop = 1;
@@ -840,38 +860,37 @@ igconsolelog("Achievement : I've come to bargain [Get stuck in a time loop]");
 }
 setTimeout(function() {consreboot();}, 5000);
 }
-
+break;
 //PATH ABC (alphabet)
 
-if (pathstring=="ABC") {
+    case "ABC":
 pathstring="AB";
 igconsolelog("What kind of cereal do you want?");
 igconsolelog("A : Banapple O's");
 igconsolelog("B : Wafflers");
-}
-
+break;
 //PATH ABD (Not a choice)
 
-if (pathstring=="ABD") {
+    case "ABD":
 pathstring="AB";
 igconsolelog("What kind of cereal do you want?");
 igconsolelog("A : Banapple O's");
 igconsolelog("B : Wafflers");
-}
+break;
 
 //PATH EA (eXpEnSiVe)
 
-if (pathstring=="EA") {
+    case "EA":
 igconsolelog("Still working on this part, stand by");
 igconsolelog("A : ");
 igconsolelog("B : ");
 igconsolelog("C : ");
 igconsolelog("D : ");
-}
+break;
 
 //PATH AC (GRAB PHONE)
 
-if (pathstring=="AC") {
+    case "AC":
 if (hasphone==1) {igconsolelog("Grab what?"); pathstring="A";}
 else if (hasphone==0) {
 phonebatt = Math.floor(Math.random() * 100) + 1;
@@ -898,11 +917,11 @@ igconsolelog("A : Play on computer");
 igconsolelog("B : Get cereal");
 igconsolelog("C : Grab your phone");
 igconsolelog("D : Check your inventory");
-}
+break;
 
 //PATH B (SLEEP)
 
-if (pathstring=="B") {
+    case "B":
 var literallyB = Math.floor(Math.random() * 2) + 1;
 if (literallyB==1) {
 if (Bdeathity==0) {
@@ -927,11 +946,11 @@ else if (literallyB==2) {igconsolelog("You mind-exchanged with yourself. Next ti
 }
 //CheatDeath
 if (CheatDeathCount==5&&CheatDeath==0) {CheatDeath=1; igconsolelog("Achievement : Cheat Death [Survive the first sleep option five times in a row]");}
-}
+break;
 
 //PATH C (GRAB PHONE)
 
-if (pathstring=="C") {
+    case "C":
 if (hasphone==0) {
 phonebatt = Math.floor(Math.random() * 100) + 1;
 igconsolelog("Battery : " + phonebatt + "%");
@@ -955,28 +974,33 @@ else if (hasphone==1) {
 igconsolelog("What is there to pick up? You already have your phone.");
 pathstring = "";
 }
+break;
+//I don't know what this is but I'm guessing it starts the game after the console clears
 igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
 igconsolelog("What do you do now?");
 igconsolelog("A : Get up");
 igconsolelog("B : Stay in bed");
 igconsolelog("C : Grab your phone");
 igconsolelog("D : Check your inventory");
-}
 
 //PATH ..D.. (CHECK INVENTORY)
 
 //NOTHING
-if (pathstring=="D"&&hasphone==0) {igconsolelog("You have nothing."); pathstring=""; actionresponse=1;}
-if (pathstring=="AD"&&actionresponse==0&&hasphone==0) {igconsolelog("You have nothing."); pathstring="A";}
-if (pathstring=="AD"&&actionresponse==1&&hasphone==0) {igconsolelog("You just did this, you still have nothing. Did you expect anything different? Did you expect to magically find some change? No. You're just as broke as you were five seconds ago."); pathstring="A";}
-//HAS PHONE
-if (pathstring=="D"&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring=""; actionresponse=2;}
-if (pathstring=="AD"&&actionresponse==0&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
-if (pathstring=="AD"&&actionresponse==1&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
-if (pathstring=="AD"&&actionresponse==2&&hasphone==1) {igconsolelog("I said you have a phone from Centauri."); pathstring="A";}
+    case "D":
+if (hasphone==0) {igconsolelog("You have nothing."); pathstring=""; actionresponse=1;}
+if (hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring=""; actionresponse=2;}
+break;
+    case "AD":
+if (actionresponse==0&&hasphone==0) {igconsolelog("You have nothing."); pathstring="A";}
+if (actionresponse==1&&hasphone==0) {igconsolelog("You just did this, you still have nothing. Did you expect anything different? Did you expect to magically find some change? No. You're just as broke as you were five seconds ago."); pathstring="A";}
+if (actionresponse==0&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
+if (actionresponse==1&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
+if (actionresponse==2&&hasphone==1) {igconsolelog("I said you have a phone from Centauri."); pathstring="A";}
+break;
 scrolligconsole();
 igconsolelog("Path : " + pathstring);
 if (chargingphone==1) {igconsolelog("Phone Battery : " + phonebatt);}
+}
 }
 
 function scrolligconsole() {
