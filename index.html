@@ -2,7 +2,16 @@
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Pug189/Pug189.github.io/logo/Mind_Exchange_Logo.png" sizes="64x64">
 </head>
 <title>Mind Exchange</title>
-<div class=containload>
+<!--
+This is the code for Mind Exchange. You can contact me, the creator, on Discord. (I'm Pug#8082)
+The game also has a beta tester server so if you want to be invited just ask.
+-->
+<div class=aquacons id=aquacons><br>Awaiting Input</div>
+<div class=switchhover id=switchhover>View Stats</div>
+<div class=igconsole id=igconsole></div>
+<div class=deathpanel id=deathpanel></div>
+<div class=cantsee id=cantsee><span class=disclaim>⚠️ Disclaimers ⚠️</span><br><br>This version is experimental<br>Not all features are implemented<br>Some paths are broken<br>Mind Exchange is designed for Chrome<br>It is recommended to refresh at least once to load all death screens</div>
+<div class=containload id=containload>
     <div class=slopeone></div>
     <div class=slopetwo></div>
     <div class=hidesquare></div>
@@ -25,41 +34,129 @@
             </div>
         </div>
     </div>
-    </div>
-<div class=igconsole id=igconsole></div><div class=zoomp></div><div class=linescrollcons></div><div class=linescrollconssecond></div><div class=vignette></div>
+</div>
+<div class=zoomp></div>
+<div class=linescrollcons></div>
+<div class=linescrollconssecond></div>
+<div class=vignette></div>
 <div class=gamecover id=gamecover>
     <div class=backimg></div>
     <div class=logobox></div>
     <div class=fogroll></div>
-<button class=beginstart type=button onclick="document.getElementById('gamecover').remove();">Begin</button>
-<p class=ohno>Disclaimers : <br>The game is undergoing an update, this version is experimental<br>The game's design might change<br>Progress might only be made on weekends<br>If you don't see the logo refresh the page<br>I haven't imported sounds yet</p>
+<button class=beginstart type=button onclick="starterupper();">Begin</button>
+<!--<p class=ohno>notes at bottom right of title screen</p>-->
 </div>
 
 <style>
     body {
 overflow:hidden;
 }
-
-.igconsole {
-background:black;
-overflow:scroll;
-overflow-wrap:break-word;
-overflow-x:hidden;
-height:100%;
+    .switchhover {
+height:5vh;
 width:100%;
 position:absolute;
-top:0px;
+top:95vh;
 left:0px;
+padding:0px;
+margin:0px;
+border:0px;
+overflow:hidden;
+background:linear-gradient(90deg, aqua, black, black, #161616, black, black, lime);
+text-align:center;
+color:lime;
+filter:opacity(0%);
+pointer-events:none;
+cursor:crosshair;
+font-family:Candara;
+z-index:10;
+vertical-align:middle;
+}
+    .switchhover:hover {
+animation:hoverani 1s 1 alternate ease-in-out;
+animation-fill-mode: forwards;
+}
+
+    @keyframes hoverani {
+        0% {color:lime;}
+        100% {color:aqua;}
+}
+    @keyframes splitani {
+        0% {width:100%; left:0%;}
+        100% {width:50%; left:50%;}
+}
+    .switchhover:hover + .igconsole {
+animation:splitani 0.5s ease-in-out;
+animation-fill-mode: forwards;
+}
+.igconsole {
+background:black;
+overflow:hidden;
+overflow-wrap:break-word;
+height:100%;
+width:100%;
+position:fixed;
+top:-3px;
+left:-3px;
 padding:0px;
 margin:0px;
 color:lime;
 font-family:Candara;
-border:black;
-border-style:solid;
+border:2px;
 text-shadow: 0 0 3px lime;
 font-size:1em;
 line-height:1em;
 text-align:center;
+cursor:crosshair;
+border-left:white;
+border-style:solid;
+}
+
+.cantsee {
+position: fixed;
+top: 0px;
+left: 0px;
+bottom: 0px;
+right: 0px;
+text-align:center;
+color:white;
+font-family:monospace;
+font-size:3vw;
+overflow: hidden;
+background: black;
+text-shadow: 10px 5px 0px #161616, 20px 10px 0px #080808;
+}
+    .disclaim {font-size:3em;}
+    .deathpanel {
+overflow:hidden;
+position: fixed;
+top: 0px;
+left: 0px;
+bottom: 0px;
+right: 0px;
+background-image:url("");
+filter:opacity(50%);
+background-repeat: no-repeat;
+pointer-events:none;
+}
+.aquacons {
+background:black;
+overflow:hidden;
+overflow-wrap:break-word;
+height:100%;
+width:50%;
+position:fixed;
+top:0px;
+left:0px;
+padding:0px;
+margin:0px;
+color:#0ff;
+font-family:Impact;
+border:0px;
+text-shadow: 0 0 3px #0ff;
+font-size:5vh;
+line-height:15vh;
+text-align:center;
+vertical-align:middle;
 cursor:crosshair;
 }
     
@@ -69,7 +166,7 @@ top:0px;
 height:100%;
 width:100%;
 background:radial-gradient(transparent, black);
-filter:opacity(50%);
+filter:opacity(10%);
 position:absolute;
 pointer-events:none;
 }
@@ -117,10 +214,12 @@ pointer-events:none;
 
     .containload {
 position:absolute;
-top:-100px;
-left:45px;
-filter:opacity(0%);
-pointer-events:none;
+top:-15vh;
+left:12vw;
+padding:0px;
+margin:0px;
+border:0px;
+filter: blur(5px) opacity(20%);
 }
     .hidesquare {
 height:100px;
@@ -175,7 +274,7 @@ top:-10px;
 position:absolute;
 top:150px;
 transform-origin:center;
-animation:spin 6s linear infinite;
+animation:spin 6s cubic-bezier(.55,-1.57,0,1.87) infinite;
 }
     .firsthalf {
 position:absolute;
@@ -198,13 +297,9 @@ border-style:solid;
 }
 
 @keyframes blink {
-     0%
-        {filter:blur(100px);}
-     35% {filter:blur(100px);}
-     50% {filter:blur(0px);}
-     65% {filter:blur(100px);}
-     100%
-        {filter:blur(100px);}
+     0% {filter:blur(0px);}
+     70% {filter:blur(0px);}
+     100% {filter:blur(100px);}
 }
 
 
@@ -261,7 +356,7 @@ position:absolute;
 top:150px;
 left:150px;
 transform-origin:center;
-animation:spintwo 6s linear infinite;
+animation:spintwo 6s cubic-bezier(.55,-1.57,0,1.87) infinite;
 }
     .secondhalf {
 position:absolute;
@@ -318,7 +413,7 @@ padding:5px;
 margin:0px;
 position:absolute;
 display:inline;
-bottom:1vh;
+bottom:5vh;
 right:0.5vw;
 color:white;
 font-family:arial;
@@ -349,7 +444,7 @@ height:10vh;
 font-size:5vh;
 align-content: center;
 width:110%;
-filter:drop-shadow(5px 5px 5px white);
+filter:drop-shadow(0px 0px 2px white);
 border:white;
 border-style:double;
 border-radius:2%;
@@ -375,12 +470,12 @@ margin-left: auto;
 margin-right: auto;
 width: 50%;
 position: fixed;
-top: 1vh;
+top: 2vh;
 left: 0px;
 bottom: 0px;
 right: 0px;
 overflow: auto;
-background-image:url("https://github.com/Pug189/Pug189.github.io/blob/logo/Mind_Exchange_Logo.png?raw=true");
+background-image:url("https://github.com/Pug189/Pug189.github.io/blob/logo/animlogo.gif?raw=true");
 background-repeat:no-repeat;
 filter:opacity(10%);
 }
@@ -409,8 +504,38 @@ pointer-events: none;
 
 </style>
 <script>
+//Deaths
+function deathimage(url) {
+document.getElementById("deathpanel").style.backgroundImage = "url(\"" + url + "\")";
+}
+function deathshow() {
+document.getElementById("deathpanel").style.filter = "opacity(50%)";
+}
+function deathhide() {
+document.getElementById("deathpanel").style.filter = "opacity(0%)";
+}
+//Startup
+function starterupper() {
+document.getElementById('gamecover').remove();
+setTimeout(
+function () {
+ChoiceLock=0;
+deathhide();
+document.getElementById('containload').remove();
+document.getElementById('cantsee').remove();
+document.getElementById('switchhover').style.filter = "opacity(100%)";
+document.getElementById('switchhover').style.pointerEvents = "all";
+}, 8000);
+}
+//Color change on death
+function conscolor() {
+document.getElementById("igconsole").style.color = "red";
+document.getElementById("igconsole").style.textShadow = "0 0 3px red";
+}
+//Path stuff and choice detection
 var pathstring = "";
     document.onkeypress = function(event){
+if (ChoiceLock==0) {
   if (event.key.toLowerCase()=="a") {
 optionrun("A");
 }
@@ -424,12 +549,20 @@ else   if (event.key.toLowerCase()=="d") {
 optionrun("D");
 }
     }
+    }
 function consreboot() {
+document.getElementById("igconsole").style.color = "lime";
+document.getElementById("igconsole").style.textShadow = "0 0 3px lime";
 document.getElementById("igconsole").innerHTML = "";
+deathhide();
 pathstring="";
 CheatDeathCount = 0;
 actionresponse = 0;
-var chargingphone = 0;
+wafflers = 0;
+bowlkeep = 0;
+spoonkeep = 0;
+banapple = 0;
+chargingphone = 0;
 Bdeathity = 0;
 igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
 igconsolelog("What do you do now?");
@@ -439,14 +572,49 @@ igconsolelog("C : Grab your phone");
 igconsolelog("D : Check your inventory");
 }
 consreboot();
+//Functions can't call themselves so I need to make another function that I call which runs the function that called it being the option thing
+function choicefix() {
+optionrun("");
+}
 //Achievement things and memory
+//Day of week
+var getterupper = new Date();
+var /*are you ready to see your */fixerupper = getterupper.getDay();
+var upperupper = "";
+switch(fixerupper) {
+    case 0:
+upperupper="Sunday";
+break;
+    case 1:
+upperupper="Monday";
+break;
+    case 2:
+upperupper="Tuesday";
+break;
+    case 3:
+upperupper="Wednesday";
+break;
+    case 4:
+upperupper="Thursday";
+break;
+    case 5:
+upperupper="Friday";
+break;
+    case 6:
+upperupper="Saturday";
+break;
+}
+//Aquacons values
+var charname = "Annabell Laxil"
+var daycount = "1";
 //Charging
 var chargingphone = 0;
 //Gun Game
 var rerollfix = 0;
 var reloadplyr = 1;
 var reloadcons = 1;
-//Fix (ish)
+//Fixes
+//gungame
 function fixgg() {
 var rerollfix = 0;
 var reloadplyr = 1;
@@ -468,14 +636,20 @@ var ThaWasQui = 0;
 var CheatDeath = 0;
 var SonBean = 0;
 var Timeloop = 0;
+var GoinUp = 0;
 //Path function
 function optionrun(choice) {
+var totalach = ThaWasQui + CheatDeath + SonBean + Timeloop + GoinUp;
+setTimeout(function () {
+document.getElementById("aquacons").innerHTML = "STATISTICS<br>(Updates on key press)<br>Character : " + charname + "<br>Day : " + daycount + "<br>Path : " + pathstring + "<br>Achievements : " + totalach + "/5";
+}, 5);
 if (chargingphone==1&&phonebatt<100) {phonebatt++;}
 document.getElementById('igconsole').innerHTML = "";
 if (chargingphone==1&&phonebatt==100) {igconsolelog("100% battery reached, charging has stopped");}
 //Important things
 igconsolelog("Choice : " + choice);
 pathstring = pathstring + choice;
+var ChoiceLock = 1;
 //Path stuff
 switch(pathstring) {
 //PATH A
@@ -687,7 +861,7 @@ igconsolelog("B : Paper");
 igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
 }
 if (rpscons==2) {
-igconsolelog("Cons : Paper");
+igconsolelog("Cons : Paper");//chimkemnunget
 igconsolelog("Tie");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
@@ -730,7 +904,7 @@ igconsolelog("B : Paper");
 igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
 }
 if (rpscons==3) {
-igconsolelog("Cons : Scissors");
+igconsolelog("Cons : Scissors"); //Armadillo groceries
 igconsolelog("Tie");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
@@ -766,8 +940,8 @@ banapple = 1;
 pathstring="E";
 igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");
 break;
 
 //PATH ABB (Wafflers)
@@ -779,8 +953,8 @@ wafflers = 1;
 pathstring="E";
 igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");
 break;
 
 //PATH EB
@@ -788,44 +962,29 @@ break;
     case "EB":
 if (hasphone==1&&CheatDeathCount==0) {igconsolelog("You log onto Melon, somebody died a few minutes ago. Unknown causes. They were in bed, but that seems unrelated."); pathstring="E"; igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");}
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");}
 if (hasphone==1&&CheatDeathCount>0&&wafflers==1) {igconsolelog("You log onto Melon, nothing has happened."); pathstring="E"; igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");}
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");}
 if (hasphone==1&&CheatDeathCount>0&&banapple==1) {igconsolelog("You log onto Melon, nothing has happened."); pathstring="E"; igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");}
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");}
 if (hasphone==1&&CheatDeathCount>0&&bowlkeep==1&&wafflers==0&&banapple==0) {igconsolelog("You log onto Melon, somebody found shards of a bowl on their roof."); pathstring="E"; igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");}
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");}
 if (hasphone==0) {igconsolelog("You look at your wrist. It's skin o'clock"); pathstring="E"; igconsolelog("A : Go outside");
 igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");}
-break;
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");}
+break;//Hard boiled ketchup
 
 //PATH EC (spoonkeep)
     case "EC":
-if (spoonkeep==0) {
-spoonkeep = 1;
-if (wafflers==1) {
-igconsolelog("You decide to keep the spoon. It smells like waffles.");
-}
-if (banapple==1) {
-igconsolelog("You decide to keep the spoon. It smells like banana apples.");
-}
-if (wafflers==0&&banapple==0) {igconsolelog("There is no spoon.");}
-pathstring="E";
-igconsolelog("A : Go outside");
-igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");
-}
-if (pathstring=="EC"&&spoonkeep==1) {
+if (spoonkeep==1) {
 igconsolelog("You try to pick up the spoon again and accidentally sell your nonexistent son for a bean.");
 if (SonBean==0) {
 SonBean = 1;
@@ -833,25 +992,23 @@ igconsolelog("Achievement : Oops [Sell your fictional son for a bean]");
 }
 setTimeout(function() {consreboot();}, 5000);
 }
+if (spoonkeep==0) {
+spoonkeep = 1;
+if (wafflers==1) {
+igconsolelog("You decide to keep the spoon. It smells like waffles.");
+pathstring="E";
+}
+if (banapple==1) {
+igconsolelog("You decide to keep the spoon. It smells like banana apples.");
+pathstring="E";
+}
+if (wafflers==0&&banapple==0) {igconsolelog("There is no spoon.");}
+pathstring="E";
+}
 break;
 
 //PATH ED (bowlkeep)
     case "ED":
-if (bowlkeep==0) {
-bowlkeep = 1;
-if (wafflers==1) {
-igconsolelog("You decide to keep the bowl. It smells like waffles.");
-}
-if (banapple==1) {
-igconsolelog("You decide to keep the bowl. It smells like banana apples.");
-}
-if (wafflers==0&&banapple==0) {igconsolelog("The bowl vanishes as you try to pick it up and you hear a sound across the street. It sounded like a bowl shattering.");}
-pathstring="E";
-igconsolelog("A : Go outside");
-igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason");
-igconsolelog("D : Keep the bowl for some reason");
-}
 if (bowlkeep==1) {
 igconsolelog("You try to pick up the bowl a second time and get stuck in a time loop.");
 if (Timeloop==0) {
@@ -859,6 +1016,31 @@ Timeloop = 1;
 igconsolelog("Achievement : I've come to bargain [Get stuck in a time loop]");
 }
 setTimeout(function() {consreboot();}, 5000);
+}
+if (bowlkeep==0) {
+bowlkeep = 1;
+if (wafflers==1) {
+igconsolelog("You decide to keep the bowl. It smells like waffles.");
+pathstring="E";
+igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");
+}
+if (banapple==1) {
+igconsolelog("You decide to keep the bowl. It smells like banana apples.");
+pathstring="E";
+igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");
+}
+if (wafflers==0&&banapple==0) {igconsolelog("The bowl vanishes as you try to pick it up and you hear a sound across the street. It sounded like a bowl shattering.");}
+pathstring="E";
+igconsolelog("A : Go outside");
+igconsolelog("B : Check your phone");
+igconsolelog("C : Keep the spoon for some reason (broken)");
+igconsolelog("D : Keep the bowl for some reason (broken)");
 }
 break;
 //PATH ABC (alphabet)
@@ -881,11 +1063,56 @@ break;
 //PATH EA (eXpEnSiVe)
 
     case "EA":
-igconsolelog("Still working on this part, stand by");
-igconsolelog("A : ");
-igconsolelog("B : ");
-igconsolelog("C : ");
-igconsolelog("D : ");
+if (CheatDeathCount==0) {
+igconsolelog("You step outside and cool air rushes over your face. Even if you don't have a destination it is nice to be out here. To your left is the sidewalk, in front of you is the road, and to your right is more sidewalk. It's early in the morning so there are a lot of cars going by.");
+}
+if (CheatDeathCount>0) {
+igconsolelog("You step outside. To your left is the sidewalk, in front of you is the road, and to your right is more sidewalk. It's later in the morning and everybody has gone to work, so there aren't any cars.");
+}
+igconsolelog("A : Walk left (🔒 Locked for development)");
+igconsolelog("B : Walk forwards");
+igconsolelog("C : Walk right (🔒 Locked for development)");
+igconsolelog("D : Walk up");
+break;
+
+//PATH EAB (Step into road)
+
+    case "EAB":
+if (CheatDeathCount==0) {
+var StepRoad = Math.floor(Math.random() * 2) + 1;
+switch (StepRoad) {
+    case 1:
+conscolor();
+deathshow();
+deathimage("https://github.com/Pug189/Pug189.github.io/blob/deaths/cardeath.gif?raw=true");
+igconsolelog("You step into the road. You hear frantic honking and the screeching of tires as the person driving towards you attempts to stop. The last thing they see is you smiling before you get hit.");
+setTimeout(function() {consreboot();}, 15000);
+break;
+    case 2:
+igconsolelog("You run across the road to the other side of the sidewalk. You're getting honked at.");
+pathstring="F";
+break;
+}
+}
+if (CheatDeathCount>0) {
+igconsolelog("You walk into the road. Now what?");
+pathstring="G";
+}
+break;
+
+//PATH EAD (You wish)
+
+    case "EAD":
+igconsolelog("You wish.");
+igconsolelog("A : Walk left");
+igconsolelog("B : Walk forwards");
+igconsolelog("C : Walk right");
+igconsolelog("D : Walk up");
+if (GoinUp==0) {
+GoinUp++;
+igconsolelog("Achievement : Goin up on a " + upperupper + " [Walk up]");
+}
+pathstring="EA";
 break;
 
 //PATH AC (GRAB PHONE)
@@ -893,6 +1120,17 @@ break;
     case "AC":
 if (hasphone==1) {igconsolelog("Grab what?"); pathstring="A";}
 else if (hasphone==0) {
+var phoneoops = Math.floor(Math.random() * 3) + 1;
+switch (phoneoops) {
+    case 1: 
+igconsolelog("You reach over to your desk and slide your hand around trying to find your phone. Your hand accidentally hits it and it falls off. You grumble as you lean over to get it.");
+break;
+    case 2: 
+igconsolelog("You reach over to your desk and grab your phone.");
+break;
+    case 3:
+igconsolelog("You reach over to your desk and try to grab your phone. Your phone grabs you.");
+}
 phonebatt = Math.floor(Math.random() * 100) + 1;
 igconsolelog("Battery : " + phonebatt + "%");
 if (phonebatt==100) {igconsolelog("Perfection.");}
@@ -908,7 +1146,9 @@ if (phonebatt==13) {igconsolelog("Is your phone considered a teenager now?");}
 if (phonebatt==2) {igconsolelog("At least it isn't 1%. Yet.");}
 if (phonebatt==1) {igconsolelog("Have fun with that, bud.");}
 hasphone = 1;
-igconsolelog("New Item : Centauri brand phone");
+if (phoneoops==1) {igconsolelog("New Item : Scuffed Centauri brand phone");}
+if (phoneoops==2) {igconsolelog("New Item : Centauri brand phone");}
+if (phoneoops==3) {igconsolelog("New Item : Yourself");}
 pathstring = "A";
 }
 igconsolelog("New day, new you. Not yet, but you'll see what I mean soon.");
@@ -924,11 +1164,14 @@ break;
     case "B":
 var literallyB = Math.floor(Math.random() * 2) + 1;
 if (literallyB==1) {
+conscolor();
+deathshow();
+deathimage("https://github.com/Pug189/Pug189.github.io/blob/deaths/pillowstick.png?raw=true");
 if (Bdeathity==0) {
 igconsolelog("Well, you died.");
 igconsolelog("Nobody else is sleeping so good ol' reaper boi goes stab stab on you.");
 if (ThaWasQui==0) {
-igconsolelog("Achievement : That was quick [Press B]");
+igconsolelog("Achievement : Pillow on a stick [Press B]");
 ThaWasQui=1;
 }
 setTimeout(function() {consreboot();}, 5000);
@@ -936,22 +1179,37 @@ setTimeout(function() {consreboot();}, 5000);
 else if (Bdeathity==1) {
 igconsolelog("I'm not disappointed, just very disappointed. C'mon bud, you're doing this to yourself.");
  if (ThaWasQui==0) {
-igconsolelog("Achievement : That was quick [Press B]");
+igconsolelog("Achievement : Pillow on a stick [Press B]");
 ThaWasQui=1;
 }
 setTimeout(function() {consreboot();}, 5000);
 }
 }
-else if (literallyB==2) {igconsolelog("You mind-exchanged with yourself. Next time be a bit more careful sleeping when nobody else is. You could get yourself killed."); Bdeathity=1; CheatDeathCount++; pathstring="";
+else if (literallyB==2) {igconsolelog("You mind-exchanged with yourself. Next time be a bit more careful sleeping when nobody else is. You could get yourself killed."); Bdeathity=1; CheatDeathCount++; pathstring=""; igconsolelog("You wake up again. The sun isn't coming through your shutters anymore. It's probably around noon.");
+igconsolelog("A : Get up");
+igconsolelog("B : Stay in bed (again)");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");
 }
 //CheatDeath
-if (CheatDeathCount==5&&CheatDeath==0) {CheatDeath=1; igconsolelog("Achievement : Cheat Death [Survive the first sleep option five times in a row]");}
+if (CheatDeathCount==3&&CheatDeath==0) {CheatDeath=1; igconsolelog("Achievement : Cheat Death [Survive the first sleep option three times in a row]");}
 break;
 
 //PATH C (GRAB PHONE)
 
     case "C":
 if (hasphone==0) {
+var phoneoops = Math.floor(Math.random() * 3) + 1;
+switch (phoneoops) {
+    case 1: 
+igconsolelog("You reach over to your desk and slide your hand around trying to find your phone. Your hand accidentally hits it and it falls off. You grumble as you lean over to get it.");
+break;
+    case 2: 
+igconsolelog("You reach over to your desk and grab your phone.");
+break;
+    case 3:
+igconsolelog("You reach over to your desk and try to grab your phone. Your phone grabs you.");
+}
 phonebatt = Math.floor(Math.random() * 100) + 1;
 igconsolelog("Battery : " + phonebatt + "%");
 if (phonebatt==100) {igconsolelog("Perfection.");}
@@ -967,13 +1225,19 @@ if (phonebatt==13) {igconsolelog("Is your phone considered a teenager now?");}
 if (phonebatt==2) {igconsolelog("At least it isn't 1%. Yet.");}
 if (phonebatt==1) {igconsolelog("Have fun with that, bud.");}
 hasphone = 1;
-igconsolelog("New Item : Centauri brand phone");
+if (phoneoops==1) {igconsolelog("New Item : Scuffed Centauri brand phone");}
+if (phoneoops==2) {igconsolelog("New Item : Centauri brand phone");}
+if (phoneoops==3) {igconsolelog("New Item : Yourself");}
 pathstring = "";
 }
 else if (hasphone==1) {
 igconsolelog("What is there to pick up? You already have your phone.");
 pathstring = "";
 }
+igconsolelog("A : Get up");
+igconsolelog("B : Stay in bed");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");
 break;
 //I don't know what this is but I'm guessing it starts the game after the console clears
 igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
@@ -987,22 +1251,47 @@ igconsolelog("D : Check your inventory");
 
 //NOTHING
     case "D":
-if (hasphone==0) {igconsolelog("You have nothing."); pathstring=""; actionresponse=1;}
-if (hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring=""; actionresponse=2;}
+if (hasphone==0) {igconsolelog("You have nothing."); pathstring=""; actionresponse=1; igconsolelog("A : Get up");
+igconsolelog("B : Stay in bed");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");}
+if (hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring=""; actionresponse=2; igconsolelog("A : Get up");
+igconsolelog("B : Stay in bed");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");}
 break;
     case "AD":
-if (actionresponse==0&&hasphone==0) {igconsolelog("You have nothing."); pathstring="A";}
-if (actionresponse==1&&hasphone==0) {igconsolelog("You just did this, you still have nothing. Did you expect anything different? Did you expect to magically find some change? No. You're just as broke as you were five seconds ago."); pathstring="A";}
-if (actionresponse==0&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
-if (actionresponse==1&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A";}
-if (actionresponse==2&&hasphone==1) {igconsolelog("I said you have a phone from Centauri."); pathstring="A";}
+if (actionresponse==0&&hasphone==0) {igconsolelog("You have nothing."); pathstring="A"; igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");}
+if (actionresponse==1&&hasphone==0) {igconsolelog("You just did this, you still have nothing. Did you expect anything different? Did you expect to magically find some change? No. You're just as broke as you were five seconds ago."); pathstring="A"; igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");}
+if (actionresponse==0&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A"; igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");}
+if (actionresponse==1&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A"; igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");}
+if (actionresponse==2&&hasphone==1) {igconsolelog("I said you have a phone from Centauri."); pathstring="A"; igconsolelog("A : Play on computer");
+igconsolelog("B : Get cereal");
+igconsolelog("C : Grab your phone");
+igconsolelog("D : Check your inventory");}
+
 break;
+
+default:
+igconsolelog("Unknown Path");
+break;
+
 scrolligconsole();
-igconsolelog("Path : " + pathstring);
 if (chargingphone==1) {igconsolelog("Phone Battery : " + phonebatt);}
 }
 }
-
 function scrolligconsole() {
   var theigconsole = document.getElementById('igconsole');  
   theigconsole.scrollTop = theigconsole.scrollHeight;   
