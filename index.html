@@ -44,12 +44,24 @@ The game also has a beta tester server so if you want to be invited just ask.
     <div class=logobox></div>
     <div class=fogroll></div>
 <button class=beginstart type=button onclick="starterupper();">Begin</button>
-<!--<p class=ohno>notes at bottom right of title screen</p>-->
+<p class=ohno>Join the Discord server <a href="https://discord.gg/gAk3Rnu">here</a></p>
 </div>
 
 <style>
     body {
 overflow:hidden;
+}
+    a:link {
+color:aqua;
+}
+    a:visited {
+color:lime;
+}
+    a:hover {
+color:white;
+}
+    a:active {
+color:darkturquoise;
 }
     .switchhover {
 height:5vh;
@@ -100,7 +112,7 @@ left:-3px;
 padding:0px;
 margin:0px;
 color:lime;
-font-family:Candara;
+font-family:monospace;
 border:2px;
 text-shadow: 0 0 3px lime;
 font-size:1em;
@@ -488,7 +500,7 @@ left: 0px;
 bottom: 0px;
 right: 0px;
 overflow: auto;
-filter:opacity(5%);
+filter:opacity(10%);
 animation: rollingcut 10s linear infinite;
 pointer-events: none;
 }
@@ -496,7 +508,7 @@ pointer-events: none;
     @keyframes rollingcut {
         0% {left:0%; filter:opacity(0%);}
         10% {left:0%; filter:opacity(0%);}
-        20% {left:0%; filter:opacity(5%);}
+        20% {filter:opacity(10%);}
         100% {left:-135%; filter:opacity(0%);}
 }
 
@@ -549,7 +561,7 @@ else   if (event.key.toLowerCase()=="d") {
 optionrun("D");
 }
     }
-    }
+    };
 function consreboot() {
 document.getElementById("igconsole").style.color = "lime";
 document.getElementById("igconsole").style.textShadow = "0 0 3px lime";
@@ -605,7 +617,7 @@ upperupper="Saturday";
 break;
 }
 //Aquacons values
-var charname = "Annabell Laxil"
+var charname = "Annabell Laxil";
 var daycount = "1";
 //Charging
 var chargingphone = 0;
@@ -672,7 +684,7 @@ if (hasphone==1&&phonebatt<100) {igconsolelog("Note : The more time you spend on
 igconsolelog("A : Gun Game");
 igconsolelog("B : Rock Paper Scissors");
 igconsolelog("C : Back");
-if (hasphone==1) {chargingphone=1};
+if (hasphone==1) {chargingphone=1;}
 break;
 
 //PATH AAC
@@ -721,6 +733,7 @@ igconsolelog("B : Block");
 igconsolelog("C : Reload");
 igconsolelog("D : End game"); igconsolelog("Path : " + pathstring); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
 else if (ggcons==2) {igconsolelog("Cons : Block"); pathstring="AAA"; reloadplyr=1; rerollfix=0;}
+//I planted beans and then the beans from that bean plant and then I had too many beans but they kept producing more beans
 else if (ggcons==3) {igconsolelog("Cons : Reload"); igconsolelog("YOU WIN"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog("A : Shoot");
 igconsolelog("B : Block");
 igconsolelog("C : Reload");
@@ -1069,10 +1082,59 @@ igconsolelog("You step outside and cool air rushes over your face. Even if you d
 if (CheatDeathCount>0) {
 igconsolelog("You step outside. To your left is the sidewalk, in front of you is the road, and to your right is more sidewalk. It's later in the morning and everybody has gone to work, so there aren't any cars.");
 }
-igconsolelog("A : Walk left (🔒 Locked for development)");
+igconsolelog("A : Walk left");
 igconsolelog("B : Walk forwards");
-igconsolelog("C : Walk right (🔒 Locked for development)");
+igconsolelog("C : Walk right");
 igconsolelog("D : Walk up");
+break;
+
+//why am I doing these anymore (Right)
+
+    case "EAC":
+igconsolelog("You walk right. To your left is the road, in front of you is more sidewalk, and to your right is an alley.");
+igconsolelog("A : Walk left");
+igconsolelog("B : Walk forwards");
+igconsolelog("C : Walk right");
+break;
+
+//PATH EAA (Left)
+
+    case "EAA":
+var FourthDEasterEgg = Math.floor(Math.random() * 100) + 1;
+switch (FourthDEasterEgg) {
+    case 100:
+igconsolelog("You walk left. To your left is somebody's house, in front of you is more sidewalk, and to your right is the road. Through the fourth dimension there is.. uh, I'm not sure.");
+igconsolelog("A : Walk left");
+igconsolelog("B : Walk forwards");
+igconsolelog("C : Walk right");
+igconsolelog("D : Wₐₗₖ 𝆑ₒᵣwₐᵣdₛ ₜₕᵣₒᵤgₕ ₜₕₑ 𝆑ₒᵤᵣₜₕ dᵢₘₑₙₛᵢₒₙ");
+break;
+    default:
+igconsolelog("You walk left. To your left is somebody's house, in front of you is more sidewalk, and to your right is the road.");
+igconsolelog("A : Walk left");
+igconsolelog("B : Walk forwards");
+igconsolelog("C : Walk right");
+break;
+}
+break;
+
+//PATH EAAD (Nothing/Fourth Dimension)
+
+    case "EAAD":
+switch (FourthDEasterEgg) {
+    case 100:
+igconsolelog("You shift through the fourth dimension. Everything is slowly changing around you, some things disappearing and some things appearing. For a brief moment you see a gun of some sort, then it is gone.");
+igconsolelog("A : Go back for it");
+igconsolelog("B : Leave it");
+break;
+    default:
+pathstring="EAA";
+igconsolelog("You walk left. To your left is somebody's house, in front of you is more sidewalk, and to your right is the road.");
+igconsolelog("A : Walk left");
+igconsolelog("B : Walk forwards");
+igconsolelog("C : Walk right");
+break;
+}
 break;
 
 //PATH EAB (Step into road)
@@ -1089,14 +1151,74 @@ igconsolelog("You step into the road. You hear frantic honking and the screechin
 setTimeout(function() {consreboot();}, 15000);
 break;
     case 2:
-igconsolelog("You run across the road to the other side of the sidewalk. You're getting honked at.");
+igconsolelog("You run across the road to the other side of the sidewalk. You're getting honked at. The sidewalk is to your left and right. In front of you is a store.");
 pathstring="F";
+igconsolelog("A : Honk back");
+igconsolelog("B : Walk left");
+igconsolelog("C : Walk forwards");
+igconsolelog("D : Walk right");
 break;
 }
 }
+break;
+    case "FA":
+igconsolelog("You get very confused. Why did you try to honk? You're not in a car and you aren't a car. What is existence? You decide that having an existential crisis is a waste of time and forget about it.");
+pathstring="F";
+igconsolelog("The sidewalk is to your left and right. In front of you is a store.");
+igconsolelog("A : Continue having an existential crisis");
+igconsolelog("B : Walk left");
+igconsolelog("C : Walk forwards");
+igconsolelog("D : Walk right");
+break;
+    case "FC":
+igconsolelog("You walk into the store. Instead of a bell on the door there is a speaker, and every time the door is opened it shouts DING DING BELL NOISE. The person at the counter looks at you.");
+igconsolelog("??? : Hey. What are you looking for?");
+igconsolelog("A : I'm not sure.");
+igconsolelog("B : A friend.");
+igconsolelog("C : A watermelon sticker.");
+igconsolelog("D : What do you have?");
+break;
+    case "FCA":
+igconsolelog("??? : Hey. What are you looking for?");
+igconsolelog("You : I\'m not sure.");
+igconsolelog("??? : Take a look around, come back to me when you've found something.");
+igconsolelog("(🔒 Locked for development)");
+break;
+    case "FCB":
+igconsolelog("??? : Hey. What are you looking for?");
+igconsolelog("You : A friend.");
+igconsolelog("??? : I\'m down. It gets lonely here.");
+igconsolelog("(🔒 Locked for development)");
+break;
+    case "FCC":
+igconsolelog("??? : Hey. What are you looking for?");
+igconsolelog("You : A watermelon sticker.");
+igconsolelog("??? : I heard the yogurt shop gives those out. From here take a right and you should see it on the other side of the road. Anything else?");
+igconsolelog("(🔒 Locked for development)");
+break;
+    case "FCD":
+igconsolelog("??? : Hey. What are you looking for?");
+igconsolelog("You : What do you have?");
+igconsolelog("??? : Fire Berry, bread, notebooks, fountain pens, a lot of random things.");
+igconsolelog("A : What is Fire Berry?");
+igconsolelog("B : I'll take bread.");
+igconsolelog("C : I'll take a notebook and a fountain pen.");
+igconsolelog("D : A pebble.");
+break;
+    case "FCDD":
+igconsolelog("??? : Hey. What are you looking for?");
+igconsolelog("You : What do you have?");
+igconsolelog("??? : Fire Berry, bread, notebooks, fountain pens, a lot of random things.");
+igconsolelog("You : A pebble.");
+igconsolelog("??? : A pebble?");
+igconsolelog("He laughs, visibly confused");
+igconsolelog("??? : You can get one from by the door.");
+igconsolelog("(🔒 Locked for development)");
+break;
 if (CheatDeathCount>0) {
 igconsolelog("You walk into the road. Now what?");
 pathstring="G";
+igconsolelog("(🔒 Locked for development)");
 }
 break;
 
@@ -1239,13 +1361,6 @@ igconsolelog("B : Stay in bed");
 igconsolelog("C : Grab your phone");
 igconsolelog("D : Check your inventory");
 break;
-//I don't know what this is but I'm guessing it starts the game after the console clears
-igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
-igconsolelog("What do you do now?");
-igconsolelog("A : Get up");
-igconsolelog("B : Stay in bed");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");
 
 //PATH ..D.. (CHECK INVENTORY)
 
@@ -1288,7 +1403,6 @@ default:
 igconsolelog("Unknown Path");
 break;
 
-scrolligconsole();
 if (chargingphone==1) {igconsolelog("Phone Battery : " + phonebatt);}
 }
 }
