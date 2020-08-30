@@ -1,9 +1,10 @@
 <head>
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Pug189/Pug189.github.io/logo/Mind_Exchange_Logo.png" sizes="64x64">
 </head>
-<title>Mind Exchange 2.2.5</title>
+<title>Mind Exchange</title>
 <!--
 This is the code for Mind Exchange. You can contact me, the creator, on Discord. (I'm Pug#8082)
+The game also has a beta tester server so if you want to be invited just ask.
 -->
 <div class=aquacons id=aquacons><br>Awaiting Input</div>
 <div class=switchhover id=switchhover>View Stats</div>
@@ -120,6 +121,7 @@ text-align:center;
 cursor:crosshair;
 border-left:white;
 border-style:solid;
+background-repeat:no-repeat;
 }
 
 .cantsee {
@@ -517,13 +519,10 @@ pointer-events: none;
 <script>
 //Deaths
 function deathimage(url) {
-document.getElementById("deathpanel").style.backgroundImage = "url(\"" + url + "\")";
-}
-function deathshow() {
-document.getElementById("deathpanel").style.filter = "opacity(50%)";
+document.getElementById("igconsole").style.backgroundImage = "url(\"" + url + "\")";
 }
 function deathhide() {
-document.getElementById("deathpanel").style.filter = "opacity(0%)";
+document.getElementById("igconsole").style.background = "black";
 }
 //Startup
 function starterupper() {
@@ -536,7 +535,7 @@ document.getElementById('containload').remove();
 document.getElementById('cantsee').remove();
 document.getElementById('switchhover').style.filter = "opacity(100%)";
 document.getElementById('switchhover').style.pointerEvents = "all";
-}, 8000);
+}, 1000);
 }
 //Color change on death
 function conscolor() {
@@ -642,6 +641,7 @@ var hasphone = 0;
 var CheatDeathCount = 0;
 var actionresponse = 0;
 var Bdeathity = 0;
+var BottleDodge = 0;
 //Achievements
 var ThaWasQui = 0;
 var CheatDeath = 0;
@@ -1090,10 +1090,83 @@ break;
 //why am I doing these anymore (Right)
 
     case "EAC":
-igconsolelog("You walk right. To your left is the road, in front of you is more sidewalk, and to your right is an alley.");
-igconsolelog("A : Walk left");
-igconsolelog("B : Walk forwards");
-igconsolelog("C : Walk right");
+igconsolelog("You walk right. In front of you is more sidewalk, and to your right is an alley.");
+igconsolelog("A : Walk forwards");
+igconsolelog("B : Walk right");
+break;
+    case "EACC":
+igconsolelog("You walk right. In front of you is more sidewalk, and to your right is an alley.");
+igconsolelog("A : Walk forwards");
+igconsolelog("B : Walk right");
+pathstring="EAC";
+break;
+    case "EACD":
+igconsolelog("You walk right. In front of you is more sidewalk, and to your right is an alley.");
+igconsolelog("A : Walk forwards");
+igconsolelog("B : Walk right");
+pathstring="EAC";
+break;
+    case "EACB":
+BottleDodge = Math.floor(Math.random() * 2) + 1;
+switch (BottleDodge) {
+    case 1:
+igconsolelog("You walk into the alley, it\'s noticeably colder.");
+igconsolelog("A : Stop and listen");
+break;
+    case 2:
+igconsolelog("You walk into the alley, it\'s noticeably colder. Something doesn\'t feel right.");
+igconsolelog("A : Stop and listen");
+igconsolelog("B : \"You need something?\"");
+break;
+}
+break;
+    
+    case "EACBC":
+switch (BottleDodge) {
+    case 1:
+igconsolelog("You walk into the alley, it\'s noticeably colder.");
+igconsolelog("A : Stop and listen");
+break;
+    case 2:
+igconsolelog("You walk into the alley, it\'s noticeably colder. Something doesn\'t feel right.");
+igconsolelog("A : Stop and listen");
+igconsolelog("B : \"You need something?\"");
+break;
+}
+pathstring="EACB";
+break;
+    case "EACBB":
+switch (BottleDodge) {
+    case 1:
+igconsolelog("You walk into the alley, it\'s noticeably colder.");
+igconsolelog("A : Stop and listen");
+pathstring="EACB";
+break;
+    case 2:
+igconsolelog("You call out into the darkness in front of you. Dead silence.");
+igconsolelog("A : Walk out of the alley");
+break;
+}
+break;
+    case "EACBBA":
+igconsolelog("You turn around to walk out of the alley and feel a sharp pain on your head accompanied by the sound of shattering glass. You fall to the ground and everything goes black.");
+conscolor();
+deathimage("https://raw.githubusercontent.com/Pug189/Pug189.github.io/deaths/bottledeath.gif");
+setTimeout(function() {consreboot();}, 15000);
+break;
+    case "EACBD":
+switch (BottleDodge) {
+    case 1:
+igconsolelog("You walk into the alley, it\'s noticeably colder.");
+igconsolelog("A : Stop and listen");
+break;
+    case 2:
+igconsolelog("You walk into the alley, it\'s noticeably colder. Something doesn\'t feel right.");
+igconsolelog("A : Stop and listen");
+igconsolelog("B : \"You need something?\"");
+break;
+}
+pathstring="EACB";
 break;
 
 //PATH EAA (Left)
@@ -1144,7 +1217,6 @@ var StepRoad = Math.floor(Math.random() * 2) + 1;
 switch (StepRoad) {
     case 1:
 conscolor();
-deathshow();
 deathimage("https://github.com/Pug189/Pug189.github.io/blob/deaths/cardeath.gif?raw=true");
 igconsolelog("You step into the road. You hear frantic honking and the screeching of tires as the person driving towards you attempts to stop. The last thing they see is you smiling before you get hit.");
 setTimeout(function() {consreboot();}, 15000);
@@ -1286,7 +1358,6 @@ break;
 var literallyB = Math.floor(Math.random() * 2) + 1;
 if (literallyB==1) {
 conscolor();
-deathshow();
 deathimage("https://github.com/Pug189/Pug189.github.io/blob/deaths/pillowstick.png?raw=true");
 if (Bdeathity==0) {
 igconsolelog("Well, you died.");
