@@ -1,0 +1,86 @@
+<div id=portals></div>
+<div id=counter></div>
+<div id=pixel></div>
+
+<style>
+    body {
+overflow:hidden;
+background:radial-gradient(#AFAFAF, #161616);
+}
+    #portals::after {
+position:absolute;
+height:150px;
+width:400px;
+background:black;
+top:-70px;
+left:-40px;
+transform:rotate(-20deg);
+border-radius:50%;
+border:cyan solid 10px;
+content:'';
+animation:portalcyan 1s infinite alternate;
+filter:blur(3px) saturate(500%);
+}
+    #portals::before {
+position:absolute;
+height:150px;
+width:400px;
+background:black;
+bottom:-70px;
+border-radius:50%;
+right:-40px;
+transform:rotate(-20deg);
+border:orange solid 10px;
+content:'';
+animation:portalorange 1s infinite alternate;
+filter:blur(3px) saturate(500%);
+}
+    #pixel {
+height:10px;
+width:10px;
+background:black;
+position:absolute;
+top:-100px;
+left:-100px;
+box-shadow:0px 10px 0px black, 10px 10px 0px black, 20px 10px 0px black, 20px 0px 0px black, 40px 0px 0px black, 50px 10px 0px black, 60px 0px 0px black, 70px 10px 0px black, 80px 0px 0px black, 100px 0px 0px black, 100px 10px 0px black, 110px 10px 0px black, 120px 10px 0px black, 120px 0px 0px black;
+animation:wonk 1.5s infinite cubic-bezier(0,1,1,-0.11);
+}
+    #counter {
+height:400px;
+width:1600px;
+top:calc(50% - 200px);
+left:calc(50% - 800px);
+font-family:monospace;
+font-size:20em;
+position:absolute;
+text-align:center;
+filter:opacity(20%);
+animation:fadenum 0.75s infinite alternate;
+}
+    @keyframes wonk {
+        0% {transform:rotate(-180deg); left:-100px; top:-100px;}
+        100% {transform:rotate(180deg); left:700px; top:700px;}
+}
+    @keyframes portalcyan {
+        0% {left:-50px; top:-90px;}
+        100% {left:-50px; top:-80px;}
+}
+    @keyframes portalorange {
+        0% {right:-50px; bottom:-90px;}
+        100% {right:-50px; bottom:-80px;}
+}
+    @keyframes fadenum {
+        0% {filter:opacity(0%);}
+        90% {filter:opacity(0%);}
+        100% {filter:opacity(20%);}
+}
+</style>
+<script>
+var x = 0;
+setInterval(
+function() {
+x++;
+document.getElementById("counter").innerHTML = x;
+}, 1500
+);
+</script>
