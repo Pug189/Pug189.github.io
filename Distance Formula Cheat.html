@@ -1,0 +1,61 @@
+<div>Distance Formula Cheat<br>By Pug#8082</div>
+<input type=text placeholder="x1" id=x1>
+<input type=text placeholder="y1" id=y1>
+<input type=text placeholder="x2" id=x2>
+<input type=text placeholder="y2" id=y2>
+<button type=button onclick="distform();" id=output>Awaiting Input</button>
+<style>
+    body {
+padding:0;
+margin:0;
+}
+    div {
+height:10%;
+width:50%;
+background:black;
+font-family:monospace;
+color:white;
+text-align:center;
+font-size:2em;
+}
+    input {
+width:50%;
+height:22.5%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+}
+    button {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    ::placeholder {
+color:white;
+}
+</style>
+<script>
+function distform() {
+var x1 = parseInt(document.getElementById("x1").value);
+var x2 = parseInt(document.getElementById("x2").value);
+var y1 = parseInt(document.getElementById("y1").value);
+var y2 = parseInt(document.getElementById("y2").value);
+var xstep = x2 - x1;
+var ystep = y2 - y1;
+var nextx = xstep * xstep;
+var nexty = ystep * ystep;
+var almost = nextx + nexty;
+var distance = Math.sqrt(almost);
+document.getElementById("output").innerHTML = distance;
+}
+</script>
