@@ -1,0 +1,205 @@
+<head>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Pug189/Pug189.github.io/master/key.ico" sizes="64x64">
+<title>D.O.G. Encryption Key Database</title>
+<meta content="This is the official database for encryption keys regarding the D.O.G. substitution cipher. Only authorized personnel and people who delete divs may enter." property="og:description">
+<meta content="https://github.com/Pug189/Pug189.github.io/blob/master/DogBanners.png?raw=true" property="og:image">
+</head>
+<button type=button id=headyboi onclick="clearthing();">D.O.G. Encryption Key Database</button>
+<div id=bar></div>
+<button id=category onclick="WOOF();">WOOF</button><button id=category onclick="WOof();">WOof</button><button id=category onclick="woOF();">woOF</button><button id=category onclick="woof();">woof</button>
+<div id=bar></div>
+<button id=category onclick="BARK();">BARK</button><button id=category onclick="BArk();">BArk</button><button id=category onclick="baRK();">baRK</button><button id=category onclick="bark();">bark</button>
+<div id=bar></div>
+<div id=bottompanel></div>
+<div id=cover><input type="text" id="coverinput" name="DOGencrypt"><button id=submitdog type=button onclick="dogsubmit();">Enter Key</button></div>
+<style>
+    body {
+        margin:0;
+        padding:0;
+}
+    #headyboi {
+        font-family:monospace;
+        text-align:center;
+        width:100%;
+        height:10vh;
+        background:#DDDDCC;
+        font-size:5vh;
+        border:none;
+}
+    #category {
+        width:25%;
+        height:10vh;
+        background:linear-gradient(90deg, gray 1%, #EEFEEF 2%, white, #EEFEEF 98%, gray 99%);
+        border:none;
+        font-family:sans-serif;
+        font-size:5vh;
+}
+    #category:hover {
+        font-weight:bold;
+}
+    #bar {
+        height:1vh;
+        width:100%;
+        background:gray;
+}
+    #bottompanel {
+        background:#FFFFEE;
+        height:67vh;
+        width:100%;
+        font-family:monospace;
+        font-size:4vh;
+        text-align:center;
+        line-height:5vh;
+        word-wrap: break-word;
+}
+    #cover {
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        background:radial-gradient(white, lightgray);
+}
+    #coverinput {
+        height:10vh;
+        width:calc(100% / 3);
+        position:absolute;
+        top:calc(50% - 6vh);
+        left:calc(100% / 3);
+        font-family:monospace;
+        font-size:4em;
+        text-align:center;
+}
+    #submitdog {
+        height:10vh;
+        width:calc(100% / 3);
+        position:absolute;
+        top:calc(50% + 6vh);
+        left:calc(100% / 3);
+        font-family:monospace;
+        font-size:3em;
+        text-align:center;
+}
+</style>
+<script>
+function WOOF() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+      PEOPLE<br>
+##################<br>
++ WOOF WOOF : Dog (General)<br>
++ WOOF WOof : Artemis<br>
++ WOOF woOF : Pug<br>
++ WOOF woof : Izrael<br>
++ WOOF BARK : Doge<br>
++ WOOF BArk : Jake<br>
++ WOOF baRK : Clyde<br>
++ WOOF bark : Ian
+`;
+}
+function WOof() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+      Things<br>
+##################<br>
++ WOof WOOF : Beet Tower<br>
++ WOof WOof : Farm<br>
++ WOof woOF : Important item<br>
++ WOof woof : Izrael's mountain home<br>
++ WOof BARK : Jake's shop<br>
++ WOof BArk : Secret base 001<br>
++ WOof baRK : Stolen item<br>
++ WOof bark : Food
+`;
+}
+function woOF() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+     Actions<br>
+##################<br>
++ woOF WOOF : Give<br>
++ woOF WOof : Go to<br>
++ woOF woOF : Steal<br>
++ woOF woof : Run<br>
++ woOF BARK : Ask<br>
++ woOF BArk : Wait<br>
++ woOF baRK : Confuse/Distract<br>
++ woOF bark : Past tense (woOF baRK woOF bark = Confused/Distracted)
+`;
+}
+function woof() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+     Numbers<br>
+##################<br>
++ woof WOOF : 0<br>
++ woof WOof : 1<br>
++ woof woOF : 2<br>
++ woof woof : 4<br>
++ woof BARK : 8<br>
++ woof BArk : 16<br>
++ woof baRK : Negative<br>
++ woof bark : Combine (add numbers, goes between numbers)
+`;
+}
+function BARK() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+   Descriptions<br>
+##################<br>
++ BARK WOOF : More<br>
++ BARK WOof : Less<br>
++ BARK woOF : Under<br>
++ BARK woof : Above<br>
++ BARK BARK : Invisible<br>
++ BARK BArk : Strong<br>
++ BARK baRK : Weak<br>
++ BARK bark : Flying
+`;
+}
+function BArk() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+   Yes No Maybe<br>
+##################<br>
++ BArk WOOF : Yes<br>
++ BArk WOof : No<br>
++ BArk woOF : Maybe<br>
++ BArk woof : Maybe (more towards yes)<br>
++ BArk BARK : Maybe (more towards no)<br>
++ BArk BArk : Don't know<br>
++ BArk baRK : Good<br>
++ BArk bark : Bad
+`;
+}
+function baRK() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+      Colors<br>
+##################<br>
++ baRK WOOF : Red (note that color mixing uses additive mixing so red+green=yellow)<br>
++ baRK WOof : Green<br>
++ baRK woOF : Blue<br>
++ baRK woof : White<br>
++ baRK BARK : Black<br>
++ baRK BArk : combine with (color mix)<br>
++ baRK baRK : Transparent<br>
++ baRk bark : Opaque (note that baRK baRK baRK BArk baRK bark = translucent)
+`;
+}
+function bark() {
+document.getElementById("bottompanel").innerHTML = `
+The <strong>bark</strong> set has not been created.
+`;
+}
+function clearthing() {
+document.getElementById("bottompanel").innerHTML = '';
+}
+function dogsubmit() {
+var inputcode = document.getElementById("coverinput").value;
+if (inputcode=="SKEEDOG") {
+document.getElementById("coverinput").remove();
+document.getElementById("cover").remove();
+}
+}
+</script>
