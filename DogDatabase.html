@@ -11,7 +11,7 @@
 <button id=category onclick="BARK();">BARK</button><button id=category onclick="BArk();">BArk</button><button id=category onclick="baRK();">baRK</button><button id=category onclick="bark();">bark</button>
 <div id=bar></div>
 <div id=bottompanel></div>
-<div id=cover><input type="text" id="coverinput" name="DOGencrypt"><button id=submitdog type=button onclick="dogsubmit();">Enter Key</button></div>
+<div id=cover><div id=placedogbanner><img src="https://github.com/Pug189/Pug189.github.io/blob/master/DOG.png?raw=true" id=DOGBANNER></div><input type="text" id="coverinput" name="DOGencrypt"><button id=submitdog type=button onclick="dogsubmit();">Enter Key</button></div>
 <style>
     body {
         margin:0;
@@ -79,6 +79,20 @@
         font-family:monospace;
         font-size:3em;
         text-align:center;
+}
+    #DOGBANNER {
+justify-content:center;
+width:100%;
+
+}
+    #placedogbanner {
+position:absolute;
+height:30vh;
+width:75vw;
+top:5vh;
+left:calc(50% - 37.5vw);
+background:transparent;
+display:flex;
 }
 </style>
 <script>
