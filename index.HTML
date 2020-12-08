@@ -1,0 +1,178 @@
+<h1></h1>
+<div id=allcontain>
+    <div id=gatewaydetail></div>
+    <div id=gatewaycontain>
+        <a href="https://pug189.github.io/MindExchange"><div id=target>
+            <div id=MEtext class=cardtexts></div>
+            <div id=card>
+                <div id=front></div>
+                <div id=backME></div>
+            </div>
+        </div></a>
+        <div id=target>
+            <div id=Voidtext class=cardtexts></div>
+            <div id=card>
+                <div id=front></div>
+                <div id=back>There's nothing here.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+background:black;
+margin:0;
+padding:0;
+}
+    #allcontain {
+background:white;
+position:absolute;
+width:80vw;
+height:60vh;
+left:calc(50% - 40vw);
+top:calc(50% - 30vh);
+border-radius:50%/10%;
+}
+        #gatewaycontain {
+width:70vw;
+height:50vh;
+background:black;
+position:absolute;
+left:calc(50% - 35vw);
+top:calc(50% - 25vh);
+border-radius:50%/10%;
+display:flex;
+justify-content:space-around;
+}
+        #gatewaydetail {
+width:72vw;
+height:52vh;
+background:radial-gradient(#646464 60%, black);
+position:absolute;
+left:calc(50% - 36vw);
+top:calc(50% - 26vh);
+border-radius:50%/10%;
+display:flex;
+}
+    h1 {
+width:100%;
+height:10vh;
+color:white;
+font-size:7.5vh;
+font-family:monospace;
+text-align:center;
+animation:intro 12s 1 linear forwards;
+position:absolute;
+top:1vh;
+}
+    .cardtexts {
+width:100%;
+height:10vh;
+color:white;
+font-size:7.5vh;
+font-family:monospace;
+text-align:center;
+position:fixed;
+left:0;
+bottom:1vh;
+pointer-events:none;
+}
+    h1::after {
+content:'';
+width:100%;
+height:100%;
+color:white;
+animation:intro 8s 1 linear forwards;
+}
+    @keyframes intro {
+        0% {color:white; content:'Hey.';}
+        25% {color:white; content:'Hey.';}
+        32% {color:black; content:'Hey.';}
+        33% {color:black; content:'Welcome to the gateway.';}
+        55% {color:white; content:'Welcome to the gateway.';}
+        65% {color:black; content:'Welcome to the gateway.';}
+        66% {color:black; content:'Pick a card.';}
+        100% {color:white; content:'Pick a card.';}
+}
+    @keyframes shake {
+        0% {left:-0.1vw;}
+        100% {left:0.1vw;}
+}
+    #target {
+height:40vh;
+width:25vw;
+position:relative;
+top:calc(50% - 20vh);
+justify-content:space-around;
+}
+    #card {
+height:100%;
+width:100%;
+position:relative;
+left:-2vw;
+top:-2vh;
+transition:all 0.25s;
+transform-style:preserve-3d;
+pointer-events:none;
+}
+    #front {
+height:100%;
+width:100%;
+background:linear-gradient(45deg, #323232, gray, #323232);
+border-radius:10%;
+position: absolute;
+height: 100%;
+width: 100%;
+backface-visibility: hidden;
+border:white 2vw solid;
+}
+    #backME {
+height:100%;
+width:100%;
+background:url("https://github.com/Pug189/Pug189.github.io/blob/logo/animlogo.gif?raw=true")  no-repeat center center;
+background-size:cover;
+border-radius:10%;
+position:absolute;
+height:100%;
+width:100%;
+backface-visibility: hidden;
+transform:rotateY(180deg);
+border:crimson 2vw solid;
+}
+    #back {
+height:100%;
+width:100%;
+background:linear-gradient(45deg, #323232, black, #323232);
+background-size:contain;
+border-radius:10%;
+position:absolute;
+height:100%;
+width:100%;
+backface-visibility:hidden;
+transform:rotateY(180deg);
+border:gray 2vw solid;
+color:white;
+font-size:2vw;
+font-family:monospace;
+text-align:center;
+line-height:40vh;
+}
+    #target:hover > #card {
+transform:rotateY(180deg) rotate(5deg);
+left:5vw;
+}
+    #target:hover > #MEtext::after {
+content:'Mind Exchange';
+color:red;
+filter:drop-shadow(0px 0px 1px red) drop-shadow(0px 0px 1px red) drop-shadow(0px 0px 5px crimson);
+}
+    #target:hover > #Voidtext::after {
+content:'V o i d .';
+font-family:sans-serif;
+color:indigo;
+filter:drop-shadow(0px 0px 1px indigo) drop-shadow(0px 0px 1px indigo) drop-shadow(0px 0px 5px #640064);
+}
+    #target:hover > #Voidtext {
+animation:shake 0.01s infinite alternate linear;
+}
+</style>
