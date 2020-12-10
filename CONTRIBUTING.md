@@ -1,0 +1,1 @@
+To keep it short, the best way to contribute to Mind Exchange is to leave your ideas and suggestions in the [discord server](https://discord.gg/gAk3Rnu). It is the place I check the most often, and as a result you'll get a response faster.
