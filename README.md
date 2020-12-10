@@ -4,7 +4,7 @@ Mind Exchange is a choose your adventure game that takes place in a console.
 
 ## Playing
 
-You can download and open `index.html` in your browser or just go to [here](https://pug189.github.io/MindExchange)
+Go [here](https://pug189.github.io/MindExchange) to access Mind Exchange
 
 Click the begin button and use your A, B, C, and D keys to make choices. Mobile support is planned.
 
