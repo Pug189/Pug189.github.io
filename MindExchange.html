@@ -11,33 +11,10 @@ The game also has a beta tester server so if you want to join just click the lin
 -->
 <div class=aquacons id=aquacons><br>Awaiting Input</div>
 <div class=switchhover id=switchhover>View Stats</div>
-<div class=igconsole id=igconsole></div>
+<div id=deathfix></div>
 <div class=deathpanel id=deathpanel></div>
+<div class=igconsole id=igconsole></div>
 <div class=cantsee id=cantsee><span class=disclaim>⚠️ Disclaimers ⚠️</span><br><br>This version is experimental<br>Not all features are implemented<br>Some paths are broken<br>Mind Exchange is designed for Chrome<br>It is recommended to refresh at least once to load all death screens</div>
-<div class=containload id=containload>
-    <div class=slopeone></div>
-    <div class=slopetwo></div>
-    <div class=hidesquare></div>
-    <div class=hidedouble></div>
-    <div class=firsthalf>
-        <div class=spinload>
-            <div class=moveallfirst>
-                <div class=onethree></div>
-                <div class=onetwo></div>
-                <div class=oneone></div>
-            </div>
-        </div>
-    </div>
-    <div class=secondhalf>
-        <div class=secondspinload>
-            <div class=moveallsecond>
-                <div class=twothree></div>
-                <div class=twotwo></div>
-                <div class=twoone></div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class=zoomp></div>
 <div class=linescrollcons></div>
 <div class=linescrollconssecond></div>
@@ -95,7 +72,11 @@ animation-fill-mode: forwards;
         0% {color:lime;}
         100% {color:aqua;}
 }
-    .switchhover:hover + .igconsole {
+    .switchhover:hover ~ .igconsole {
+width:50%;
+left:50%;
+}
+    .switchhover:hover ~ #deathfix {
 width:50%;
 left:50%;
 }
@@ -138,17 +119,27 @@ overflow: hidden;
 background: black;
 text-shadow: 10px 5px 0px #161616, 20px 10px 0px #080808;
 }
+#deathfix {
+position: absolute;
+top: 0px;
+left: 0px;
+overflow: hidden;
+background: black;
+height:100%;
+width:100%;
+pointer-events:none;
+}
     .disclaim {font-size:3em;}
     .deathpanel {
 overflow:hidden;
-position: fixed;
+background-image:url("");
+position: absolute;
 top: 0px;
-left: 0px;
+left: calc(50% - 50vh);
 bottom: 0px;
 right: 0px;
-background-image:url("");
-filter:opacity(50%);
-background-repeat: no-repeat;
+background-repeat:no-repeat;
+background-size:contain;
 pointer-events:none;
 }
 .aquacons {
@@ -318,10 +309,14 @@ pointer-events: none;
 <script>
 //Deaths
 function deathimage(url) {
-document.getElementById("igconsole").style.backgroundImage = "url(\"" + url + "\")";
+document.getElementById("deathpanel").style.backgroundImage = "url(\"" + url + "\")";
+document.getElementById("igconsole").style.background = "transparent";
+ChoiceLock=1;
 }
 function deathhide() {
 document.getElementById("igconsole").style.background = "black";
+document.getElementById("deathpanel").style.backgroundImage = "";
+ChoiceLock=0;
 }
 //Startup
 function starterupper() {
@@ -330,7 +325,6 @@ setTimeout(
 function () {
 ChoiceLock=0;
 deathhide();
-document.getElementById('containload').remove();
 document.getElementById('cantsee').remove();
 document.getElementById('switchhover').style.filter = "opacity(100%)";
 document.getElementById('switchhover').style.pointerEvents = "all";
@@ -365,20 +359,29 @@ document.getElementById("igconsole").style.textShadow = "0 0 3px lime";
 document.getElementById("igconsole").innerHTML = "";
 deathhide();
 pathstring="";
+var startrand = Math.floor(Math.random() * 20) + 1;
+if (startrand==9) {pathstring="X";}
 CheatDeathCount = 0;
 actionresponse = 0;
+ChoiceLock = 0;
 wafflers = 0;
 bowlkeep = 0;
 spoonkeep = 0;
 banapple = 0;
 chargingphone = 0;
 Bdeathity = 0;
+if (pathstring=="X") {
+conscolor();
+igconsolelog("You don't wake up, it's dark all around you. You don't understand what is going on.")
+}
+else {
 igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
 igconsolelog("What do you do now?");
 igconsolelog("A : Get up");
 igconsolelog("B : Stay in bed");
 igconsolelog("C : Grab your phone");
 igconsolelog("D : Check your inventory");
+}
 }
 consreboot();
 //Functions can't call themselves so I need to make another function that I call which runs the function that called it being the option thing
@@ -451,7 +454,7 @@ var GoinUp = 0;
 function optionrun(choice) {
 var totalach = ThaWasQui + CheatDeath + SonBean + Timeloop + GoinUp;
 setTimeout(function () {
-document.getElementById("aquacons").innerHTML = "STATISTICS<br>(Updates on key press)<br>Character : " + charname + "<br>Day : " + daycount + "<br>Path : " + pathstring + "<br>Achievements : " + totalach + "/5";
+document.getElementById("aquacons").innerHTML = "DEBUG<br>(Updates on key press)<br>Character : " + charname + "<br>Day : " + daycount + "<br>Path : " + pathstring + "<br>Achievements : " + totalach + "/5";
 }, 5);
 if (chargingphone==1&&phonebatt<100) {phonebatt++;}
 document.getElementById('igconsole').innerHTML = "";
@@ -1149,6 +1152,26 @@ igconsolelog("A : Play on computer");
 igconsolelog("B : Get cereal");
 igconsolelog("C : Grab your phone");
 igconsolelog("D : Check your inventory");
+break;
+
+//PATH REALITY BREAK
+
+    case "XA":
+igconsolelog("You see a light in the distance flash. You don\'t know what color it was. Was it a light? There was a light, right? What was I saying?");
+break;
+
+    case "XB":
+igconsolelog("You hear a sound from your left. Was it your left? Wait, no it was from your right. Wait, which direction was it? What was I talking about?");
+break;
+
+    case "XC":
+igconsolelog("For half a second the air around you chills rapidly and you feel like you\'re falling. You feel extremely overwhelmed, by what you don't know. In the next moment you\'re gone. No senses, consciousness, just void. Not nothing, but the absence of anything.");
+break;
+
+    case "XD":
+igconsolelog("You see a familiar face in front of you. You try to wave but realize you can\'t. You can\'t move your body at all. You hear something swing quickly, and the last thing you see is an axe heading straight for you as the figure dissipates to just a cloak on the ground and a cloud of smoke.");
+deathimage("https://raw.githubusercontent.com/Pug189/Pug189.github.io/master/axedeath.gif");
+setTimeout(function() {consreboot();}, 15000);
 break;
 
 //PATH B (SLEEP)
