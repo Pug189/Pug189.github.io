@@ -6,7 +6,7 @@ Mind Exchange is a choose your adventure game that takes place in a console.
 
 Go [here](https://pug189.github.io/MindExchange) to access Mind Exchange
 
-Click the begin button and use your A, B, C, and D keys to make choices. Mobile support is planned.
+Click the begin button and use your A, B, C, and D keys to make choices. There is mobile support.
 
 ## Contributing
 You can leave feedback and ideas in the [Discord server](https://discord.gg/gAk3Rnu)
