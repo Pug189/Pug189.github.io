@@ -1,20 +1,22 @@
 <head>
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Pug189/Pug189.github.io/logo/Mind_Exchange_Logo.png" sizes="64x64">
-  <meta content="Mind Exchange 2.2.7 by Pug#8082" property="og:description">
+  <meta content="Mind Exchange 2.3 by Pug#8082" property="og:description">
   <meta content="https://raw.githubusercontent.com/Pug189/Pug189.github.io/logo/Mind_Exchange_Logo.png" property="og:image">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<title>Mind Exchange 2.2.7</title>
+<title>Mind Exchange 2.3</title>
 <!--
 This is the code for Mind Exchange. You can contact me, the creator, on Discord. (I'm Pug#8082)
 The game also has a beta tester server so if you want to join just click the link in the bottom right.
 -->
 <div class=aquacons id=aquacons><br>Awaiting Input</div>
-<div class=switchhover id=switchhover>View Debug</div>
+<div class=switchhover id=switchhover>View Stats</div>
+<div id=toggctrls></div>
 <div id=deathfix></div>
 <div class=deathpanel id=deathpanel></div>
 <div class=igconsole id=igconsole></div>
 <div class=cantsee id=cantsee><span class=disclaim>⚠️ Disclaimers ⚠️</span><br><br>This version is experimental<br>Not all features are implemented<br>Some paths are broken<br>Mind Exchange is designed for Chrome<br>It is recommended to refresh at least once to load all death screens</div>
+<button id=settingsbox onclick="settingsstart();"></button>
 <div class=zoomp></div>
 <div class=linescrollcons></div>
 <div class=linescrollconssecond></div>
@@ -35,6 +37,7 @@ The game also has a beta tester server so if you want to join just click the lin
 </div>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
     body {
 overflow:hidden;
 }
@@ -100,6 +103,7 @@ align-content: center;
 width:100%;
 filter:drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
 border:white;
+font-family:Audiowide;
 border-style:double;
 border-radius:2%;
 }
@@ -116,7 +120,7 @@ left:-3px;
 padding:0px;
 margin:0px;
 color:lime;
-font-family:monospace;
+font-family:Audiowide;
 border:2px;
 text-shadow: 0 0 3px lime;
 font-size:1em;
@@ -164,6 +168,21 @@ right: 0px;
 background-repeat:no-repeat;
 background-size:contain;
 pointer-events:none;
+}
+    #settingsbox {
+height:5vh;
+width:5vh;
+background:url("https://raw.githubusercontent.com/Pug189/Pug189.github.io/master/settings.gif");
+background-repeat:no-repeat;
+background-size:contain;
+position:absolute;
+border:#323232 2px solid;
+top:0;
+right:0;
+z-index:1;
+}
+    #settingsbox:hover {
+filter:hue-rotate(180deg) saturate(200%);
 }
 .aquacons {
 background:black;
@@ -266,7 +285,9 @@ pointer-events:none;
         0% {top:-5%;}
         100% {top:105%;}
 }
-
+    #ms {
+pointer-events:none;
+}
     .zoomp {
 left:0px;
 top:0px;
@@ -311,6 +332,7 @@ left:0px;
 top:calc(50% - 10vh);
 height:10vh;
 font-size:5vh;
+font-family:Audiowide;
 align-content: center;
 width:100%;
 filter:drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
@@ -371,6 +393,37 @@ pointer-events: none;
 
 </style>
 <script>
+var choiceonebutton = "a";
+var choicetwobutton = "b";
+var choicethreebutton = "c";
+var choicefourbutton = "d";
+var cobtex = choiceonebutton.toUpperCase();
+var ctbtex = choicetwobutton.toUpperCase();
+var cthbtex = choicethreebutton.toUpperCase(); 
+var cfbtex = choicefourbutton.toUpperCase();
+var cobtext = cobtex.toString();
+var ctbtext = ctbtex.toString();
+var cthbtext = cthbtex.toString();
+var cfbtext = cfbtex.toString();
+function controls() {
+cobtex = choiceonebutton.toUpperCase();
+ctbtex = choicetwobutton.toUpperCase();
+cthbtex = choicethreebutton.toUpperCase(); 
+cfbtex = choicefourbutton.toUpperCase();
+cobtext = cobtex.toString();
+ctbtext = ctbtex.toString();
+cthbtext = cthbtex.toString();
+cfbtext = cfbtex.toString();
+cobtex = choiceonebutton.toUpperCase();
+ctbtex = choicetwobutton.toUpperCase();
+cthbtex = choicethreebutton.toUpperCase(); 
+cfbtex = choicefourbutton.toUpperCase();
+cobtext = cobtex.toString();
+ctbtext = ctbtex.toString();
+cthbtext = cthbtex.toString();
+cfbtext = cfbtex.toString();
+}
+controls();
 //Deaths
 function deathimage(url) {
 document.getElementById("deathpanel").style.backgroundImage = "url(\"" + url + "\")";
@@ -384,6 +437,7 @@ ChoiceLock=0;
 }
 //Startup
 function tutstart() {
+controls();
 pathstring="T";
 document.getElementById('gamecover').remove();
 ChoiceLock=0;
@@ -400,15 +454,51 @@ igconsolelog("Press A, B, C, and D to make choices.");
 igconsolelog("If you're on mobile then the top left corner is A, top right is B, bottom left is C, and bottom right is D.");
 igconsolelog("Same order as if you were reading a book with the letters AB on one line and CD on the next.");
 igconsolelog("Read left to right, top to bottom.");
-igconsolelog("If you prefer the mobile controls but you're on a computer then don't worry.");
-igconsolelog("They're still there, just invisible.");
+igconsolelog("Turn on mobile support in settings if you want it.");
 igconsolelog("Got it?");
-igconsolelog("A : Yep");
-igconsolelog("B : Kind of but I can get used to it");
-igconsolelog("C : Not really");
-igconsolelog("D : bruh what I can\'t read");
+igconsolelog(cobtext + " : Yep");
+igconsolelog(ctbtext + " : Kind of but I can get used to it");
+igconsolelog(cthbtext + " : Not really");
+igconsolelog(cfbtext + " : bruh what I can\'t read");
+}
+function settingsstart() {
+controls();
+clearTimeout(msa);
+clearTimeout(msb);
+clearTimeout(msc);
+clearTimeout(msd);
+clearTimeout(mse);
+insettings=1;
+pathstring="SETT";
+if (stillthere==1) {
+document.getElementById('gamecover').style.pointerEvents = "none";
+document.getElementById('gamecover').style.filter = "opacity(0%)";
+}
+ChoiceLock=0;
+deathhide();
+document.getElementById("igconsole").style.color = "white";
+document.getElementById("igconsole").style.textShadow = "0 0 3px white";
+document.getElementById('cantsee').style.pointerEvents = "none";
+document.getElementById('cantsee').style.filter = "opacity(0%)";
+document.getElementById('switchhover').style.filter = "opacity(100%)";
+document.getElementById('switchhover').style.pointerEvents = "all";
+document.getElementById("igconsole").innerHTML = "";
+igconsolelog("Hey, what do you need?");
+igconsolelog("I bet you were expecting a settings menu. This is a settings menu if you think about it.");
+igconsolelog("Alright, what can I help you with?");
+igconsolelog("If you want mobile support but you're on mobile then wait 30 seconds and I'll turn mobile support on for you. Check out the tutorial to learn how to use that.");
+igconsolelog(cobtext + " : Custom console color");
+igconsolelog(ctbtext + " : Mobile support");
+igconsolelog(cthbtext + " : Custom choice controls");
+igconsolelog(cfbtext + " : Go to path");
+var msa = setTimeout(function() {if (insettings==1) {igconsolelog("Uh.. hello? Are you on mobile?");}}, 15000);
+var msb = setTimeout(function() {if (insettings==1) {igconsolelog("Yes..?");}}, 20000);
+var msc = setTimeout(function() {if (insettings==1) {igconsolelog("Well put. I really like the wording you used there.");}}, 23000);
+var msd = setTimeout(function() {if (insettings==1) {igconsolelog("Jokes aside, here. *click*");}}, 30000);
+var mse = setTimeout(function() {if (insettings==1) {optionrun("B");}}, 32000);
 }
 function starterupper() {
+stillthere = 0;
 document.getElementById('gamecover').remove();
 setTimeout(
 function () {
@@ -425,19 +515,20 @@ document.getElementById("igconsole").style.color = "red";
 document.getElementById("igconsole").style.textShadow = "0 0 3px red";
 }
 //Path stuff and choice detection
+var stillthere = 1;
 var pathstring = "";
     document.onkeypress = function(event){
 if (ChoiceLock==0) {
-  if (event.key.toLowerCase()=="a") {
+  if (event.key.toLowerCase()==choiceonebutton.toLowerCase()) {
 optionrun("A");
 }
-else   if (event.key.toLowerCase()=="b") {
+else   if (event.key.toLowerCase()==choicetwobutton.toLowerCase()) {
 optionrun("B");
 }
-else   if (event.key.toLowerCase()=="c") {
+else   if (event.key.toLowerCase()==choicethreebutton.toLowerCase()) {
 optionrun("C");
 }
-else   if (event.key.toLowerCase()=="d") {
+else   if (event.key.toLowerCase()==choicefourbutton.toLowerCase()) {
 optionrun("D");
 }
     }
@@ -447,6 +538,7 @@ document.getElementById("igconsole").style.color = "lime";
 document.getElementById("igconsole").style.textShadow = "0 0 3px lime";
 document.getElementById("igconsole").innerHTML = "";
 deathhide();
+controls();
 pathstring="";
 var startrand = Math.floor(Math.random() * 20) + 1;
 if (startrand==9) {pathstring="X";}
@@ -466,10 +558,10 @@ igconsolelog("You don't wake up, it's dark all around you. You don't understand 
 else {
 igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
 igconsolelog("What do you do now?");
-igconsolelog("A : Get up");
-igconsolelog("B : Stay in bed");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");
+igconsolelog(cobtext + " : Get up");
+igconsolelog(ctbtext + " : Stay in bed");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");
 }
 }
 consreboot();
@@ -515,6 +607,7 @@ var rerollfix = 0;
 var reloadplyr = 1;
 var reloadcons = 1;
 //Fixes
+var insettings = 0;
 //gungame
 function fixgg() {
 var rerollfix = 0;
@@ -555,10 +648,10 @@ switch(pathstring) {
     case "A":
 igconsolelog("New day, new you. Not yet, but you'll see what I mean soon.");
 igconsolelog("Make your choice, it isn't mine to decide yet.");
-igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");
+igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");
 break;
 
 //PATH AA (COMPUTER)
@@ -568,26 +661,26 @@ if (hasphone==1&&phonebatt>99) {igconsolelog("You set your phone down on the des
 if (hasphone==1&&phonebatt<100) {igconsolelog("You plug your phone into a charger and sit in your chair, starting up your PC.");}
 if (hasphone==0) {igconsolelog("You sit in your chair and start up your PC.");}
 if (hasphone==1&&phonebatt<100) {igconsolelog("Note : The more time you spend on your computer the more your phone charges.");}
-igconsolelog("A : Gun Game");
-igconsolelog("B : Rock Paper Scissors");
-igconsolelog("C : Back");
+igconsolelog(cobtext + " : Gun Game");
+igconsolelog(ctbtext + " : Rock Paper Scissors");
+igconsolelog(cthbtext + " : Back");
 if (hasphone==1) {chargingphone=1;}
 break;
 
 //PATH AAC
 
     case "AAC":
-pathstring="A"; igconsolelog("Welcome back."); igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory"); chargingphone=0;
+pathstring="A"; igconsolelog("Welcome back."); igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory"); chargingphone=0;
 break;
 //PATH AAD (no)
 
     case "AAD":
-pathstring="AA"; igconsolelog("A : Gun Game");
-igconsolelog("B : Rock Paper Scissors");
-igconsolelog("C : Back");
+pathstring="AA"; igconsolelog(cobtext + " : Gun Game");
+igconsolelog(ctbtext + " : Rock Paper Scissors");
+igconsolelog(cthbtext + " : Back");
 break;
 
 //PATH AAA (GUN GAME) (TRIPLE A BATTERIES)
@@ -595,10 +688,10 @@ break;
     case "AAA":
 igconsolelog("Note : If the console knew your move and reacted to it then you would always lose so it is randomized for the sake of your hubris");
 igconsolelog("Another note : If you reload, keep blocking until the console shoots, then shoot you win 100% of the time. Don't be a trashbag the console has feelings too.");
-igconsolelog("A : Shoot");
-igconsolelog("B : Block");
-igconsolelog("C : Reload");
-igconsolelog("D : End game");
+igconsolelog(cobtext + " : Shoot");
+igconsolelog(ctbtext + " : Block");
+igconsolelog(cthbtext + " : Reload");
+igconsolelog(cfbtext + " : End game");
 break;
 
 //PATH AAAA (GUN GAME SHOOT) (REALLY NICE BATTERIES)
@@ -615,16 +708,16 @@ var ggcons = Math.floor(Math.random() * 2) + 1;
 if (reloadcons==1) {
 var ggcons = Math.floor(Math.random() * 3) + 1;
 }
-if (ggcons==1&&reloadcons==0) {igconsolelog("Cons : Shoot"); igconsolelog("DRAW"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog("A : Shoot");
-igconsolelog("B : Block");
-igconsolelog("C : Reload");
-igconsolelog("D : End game"); igconsolelog("Path : " + pathstring); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
+if (ggcons==1&&reloadcons==0) {igconsolelog("Cons : Shoot"); igconsolelog("DRAW"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog(cobtext + " : Shoot");
+igconsolelog(ctbtext + " : Block");
+igconsolelog(cthbtext + " : Reload");
+igconsolelog(cfbtext + " : End game"); igconsolelog("Path : " + pathstring); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
 else if (ggcons==2) {igconsolelog("Cons : Block"); pathstring="AAA"; reloadplyr=1; rerollfix=0;}
 //I planted beans and then the beans from that bean plant and then I had too many beans but they kept producing more beans
-else if (ggcons==3) {igconsolelog("Cons : Reload"); igconsolelog("YOU WIN"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog("A : Shoot");
-igconsolelog("B : Block");
-igconsolelog("C : Reload");
-igconsolelog("D : End game"); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
+else if (ggcons==3) {igconsolelog("Cons : Reload"); igconsolelog("YOU WIN"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog(cobtext + " : Shoot");
+igconsolelog(ctbtext + " : Block");
+igconsolelog(cthbtext + " : Reload");
+igconsolelog(cfbtext + " : End game"); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
 else {shootggreroll(); rerollfix=1;}
 }
 function shootggreroll() {
@@ -632,10 +725,10 @@ shootgg();
 }
 }
 //Can't shoot
-if (reloadplyr==1&&rerollfix==0) {igconsolelog("You can't shoot, you either block or reload."); pathstring="AAA"; igconsolelog("A : Shoot");
-igconsolelog("B : Block");
-igconsolelog("C : Reload");
-igconsolelog("D : End game");}
+if (reloadplyr==1&&rerollfix==0) {igconsolelog("You can't shoot, you either block or reload."); pathstring="AAA"; igconsolelog(cobtext + " : Shoot");
+igconsolelog(ctbtext + " : Block");
+igconsolelog(cthbtext + " : Reload");
+igconsolelog(cfbtext + " : End game");}
 break;
 //PATH AAAB (GUN GAME BLOCK) (HEIGHT:GYM)
 
@@ -672,10 +765,10 @@ var ggcons = Math.floor(Math.random() * 2) + 1;
 if (reloadcons==1) {
 var ggcons = Math.floor(Math.random() * 3) + 1;
 }
-if (ggcons==1&&reloadcons==0) {igconsolelog("Cons : Shoot"); igconsolelog("YOU LOSE"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog("A : Shoot");
-igconsolelog("B : Block");
-igconsolelog("C : Reload");
-igconsolelog("D : End game"); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
+if (ggcons==1&&reloadcons==0) {igconsolelog("Cons : Shoot"); igconsolelog("YOU LOSE"); setTimeout(function() {document.getElementById("igconsole").innerHTML = ""; pathstring="AAA"; igconsolelog(cobtext + " : Shoot");
+igconsolelog(ctbtext + " : Block");
+igconsolelog(cthbtext + " : Reload");
+igconsolelog(cfbtext + " : End game"); rerollfix=0; reloadplyr = 1; reloadcons = 1;}, 5000);}
 else if (ggcons==2&&reloadplyr==0) {igconsolelog("Cons : Block"); pathstring="AAA"; rerollfix=0;}
 else if (ggcons==3) {igconsolelog("Cons : Reload"); pathstring="AAA"; reloadcons=0; rerollfix=0; reloadplyr=0;}
 else {reloadggreroll(); rerollfix=1;}
@@ -686,19 +779,19 @@ reloadgg();
 }
 }
 //Can't reload
-if (reloadplyr==0&&rerollfix==0) {igconsolelog("A : Shoot");
-igconsolelog("B : Block");
-igconsolelog("C : Reload");
-igconsolelog("D : End game");
+if (reloadplyr==0&&rerollfix==0) {igconsolelog(cobtext + " : Shoot");
+igconsolelog(ctbtext + " : Block");
+igconsolelog(cthbtext + " : Reload");
+igconsolelog(cfbtext + " : End game");
 igconsolelog("You've already reloaded. Shoot or block."); pathstring="AAA";
 }
 break;
 //PATH AAAD (END GAME)
 
     case "AAAD":
-pathstring="AA"; igconsolelog("A : Gun Game");
-igconsolelog("B : Rock Paper Scissors");
-igconsolelog("C : Back");
+pathstring="AA"; igconsolelog(cobtext + " : Gun Game");
+igconsolelog(ctbtext + " : Rock Paper Scissors");
+igconsolelog(cthbtext + " : Back");
 break;
 //PATH AAB (RPS)
 
@@ -706,10 +799,10 @@ break;
 igconsolelog("Note : If the console knew your move and reacted to it then you would always lose so it is randomized for the sake of your hubris");
 igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors");
-igconsolelog("D : Back");
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors");
+igconsolelog(cfbtext + " : Back");
 break;
 
 //PATH AABA (Rock)
@@ -722,27 +815,27 @@ igconsolelog("Cons : Rock");
 igconsolelog("Tie");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 if (rpscons==2) {
 igconsolelog("Cons : Paper");
 igconsolelog("You lose");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 if (rpscons==3) {
 igconsolelog("Cons : Scissors");
 igconsolelog("You win");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 break;
 
@@ -756,27 +849,27 @@ igconsolelog("Cons : Rock");
 igconsolelog("You win");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 if (rpscons==2) {
 igconsolelog("Cons : Paper");//chimkemnunget
 igconsolelog("Tie");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 if (rpscons==3) {
 igconsolelog("Cons : Scissors");
 igconsolelog("You lose");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 break;
 
@@ -790,27 +883,27 @@ igconsolelog("Cons : Rock");
 igconsolelog("You lose");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 if (rpscons==2) {
 igconsolelog("Cons : Paper");
 igconsolelog("You win");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 if (rpscons==3) {
 igconsolelog("Cons : Scissors"); //Armadillo groceries
 igconsolelog("Tie");
 setTimeout(function() {pathstring="AAB"; document.getElementById("igconsole").innerHTML = ""; igconsolelog("ROCK PAPER SCISSORS");
 igconsolelog("");
-igconsolelog("A : Rock");
-igconsolelog("B : Paper");
-igconsolelog("C : Scissors"); igconsolelog("D : Back");}, 5000);
+igconsolelog(cobtext + " : Rock");
+igconsolelog(ctbtext + " : Paper");
+igconsolelog(cthbtext + " : Scissors"); igconsolelog(cfbtext + " : Back");}, 5000);
 }
 break;
 
@@ -818,17 +911,17 @@ break;
 
     case "AABD":
 pathstring="AA";
-igconsolelog("A : Gun Game");
-igconsolelog("B : Rock Paper Scissors");
-igconsolelog("C : Back");
+igconsolelog(cobtext + " : Gun Game");
+igconsolelog(ctbtext + " : Rock Paper Scissors");
+igconsolelog(cthbtext + " : Back");
 break;
 
 //PATH AB (Get Cereal)
 
     case "AB":
 igconsolelog("What kind of cereal do you want?");
-igconsolelog("A : Banapple O's");
-igconsolelog("B : Wafflers");
+igconsolelog(cobtext + " : Banapple O's");
+igconsolelog(ctbtext + " : Wafflers");
 break;
 
 //PATH ABA (Banapple O's)
@@ -925,16 +1018,16 @@ break;
     case "ABC":
 pathstring="AB";
 igconsolelog("What kind of cereal do you want?");
-igconsolelog("A : Banapple O's");
-igconsolelog("B : Wafflers");
+igconsolelog(cobtext + " : Banapple O's");
+igconsolelog(ctbtext + " : Wafflers");
 break;
 //PATH ABD (Not a choice)
 
     case "ABD":
 pathstring="AB";
 igconsolelog("What kind of cereal do you want?");
-igconsolelog("A : Banapple O's");
-igconsolelog("B : Wafflers");
+igconsolelog(cobtext + " : Banapple O's");
+igconsolelog(ctbtext + " : Wafflers");
 break;
 
 //PATH EA (eXpEnSiVe)
@@ -946,29 +1039,29 @@ igconsolelog("You step outside and cool air rushes over your face. Even if you d
 if (CheatDeathCount>0) {
 igconsolelog("You step outside. To your left is the sidewalk, in front of you is the road, and to your right is more sidewalk. It's later in the morning and everybody has gone to work, so there aren't any cars.");
 }
-igconsolelog("A : Walk left");
-igconsolelog("B : Walk forwards");
-igconsolelog("C : Walk right");
-igconsolelog("D : Walk up");
+igconsolelog(cobtext + " : Walk left");
+igconsolelog(ctbtext + " : Walk forwards");
+igconsolelog(cthbtext + " : Walk right");
+igconsolelog(cfbtext + " : Walk up");
 break;
 
 //why am I doing these anymore (Right)
 
     case "EAC":
 igconsolelog("You walk right. In front of you is more sidewalk, and to your right is an alley.");
-igconsolelog("A : Walk forwards");
-igconsolelog("B : Walk right");
+igconsolelog(cobtext + " : Walk forwards");
+igconsolelog(ctbtext + " : Walk right");
 break;
     case "EACC":
 igconsolelog("You walk right. In front of you is more sidewalk, and to your right is an alley.");
-igconsolelog("A : Walk forwards");
-igconsolelog("B : Walk right");
+igconsolelog(cobtext + " : Walk forwards");
+igconsolelog(ctbtext + " : Walk right");
 pathstring="EAC";
 break;
     case "EACD":
 igconsolelog("You walk right. In front of you is more sidewalk, and to your right is an alley.");
-igconsolelog("A : Walk forwards");
-igconsolelog("B : Walk right");
+igconsolelog(cobtext + " : Walk forwards");
+igconsolelog(ctbtext + " : Walk right");
 pathstring="EAC";
 break;
     case "EACB":
@@ -976,12 +1069,12 @@ BottleDodge = Math.floor(Math.random() * 2) + 1;
 switch (BottleDodge) {
     case 1:
 igconsolelog("You walk into the alley, it\'s noticeably colder.");
-igconsolelog("A : Stop and listen");
+igconsolelog(cobtext + " : Stop and listen");
 break;
     case 2:
 igconsolelog("You walk into the alley, it\'s noticeably colder. Something doesn\'t feel right.");
-igconsolelog("A : Stop and listen");
-igconsolelog("B : \"You need something?\"");
+igconsolelog(cobtext + " : Stop and listen");
+igconsolelog(ctbtext + " : \"You need something?\"");
 break;
 }
 break;
@@ -993,12 +1086,12 @@ break;
 switch (BottleDodge) {
     case 1:
 igconsolelog("You walk into the alley, it\'s noticeably colder.");
-igconsolelog("A : Stop and listen");
+igconsolelog(cobtext + " : Stop and listen");
 break;
     case 2:
 igconsolelog("You walk into the alley, it\'s noticeably colder. Something doesn\'t feel right.");
-igconsolelog("A : Stop and listen");
-igconsolelog("B : \"You need something?\"");
+igconsolelog(cobtext + " : Stop and listen");
+igconsolelog(ctbtext + " : \"You need something?\"");
 break;
 }
 pathstring="EACB";
@@ -1007,12 +1100,12 @@ break;
 switch (BottleDodge) {
     case 1:
 igconsolelog("You walk into the alley, it\'s noticeably colder.");
-igconsolelog("A : Stop and listen");
+igconsolelog(cobtext + " : Stop and listen");
 pathstring="EACB";
 break;
     case 2:
 igconsolelog("You call out into the darkness in front of you. Dead silence.");
-igconsolelog("A : Walk out of the alley");
+igconsolelog(cobtext + " : Walk out of the alley");
 break;
 }
 break;
@@ -1026,12 +1119,12 @@ break;
 switch (BottleDodge) {
     case 1:
 igconsolelog("You walk into the alley, it\'s noticeably colder.");
-igconsolelog("A : Stop and listen");
+igconsolelog(cobtext + " : Stop and listen");
 break;
     case 2:
 igconsolelog("You walk into the alley, it\'s noticeably colder. Something doesn\'t feel right.");
-igconsolelog("A : Stop and listen");
-igconsolelog("B : \"You need something?\"");
+igconsolelog(cobtext + " : Stop and listen");
+igconsolelog(ctbtext + " : \"You need something?\"");
 break;
 }
 pathstring="EACB";
@@ -1044,16 +1137,16 @@ var FourthDEasterEgg = Math.floor(Math.random() * 100) + 1;
 switch (FourthDEasterEgg) {
     case 100:
 igconsolelog("You walk left. To your left is somebody's house, in front of you is more sidewalk, and to your right is the road. Through the fourth dimension there is.. uh, I'm not sure.");
-igconsolelog("A : Walk left");
-igconsolelog("B : Walk forwards");
-igconsolelog("C : Walk right");
-igconsolelog("D : Wₐₗₖ 𝆑ₒᵣwₐᵣdₛ ₜₕᵣₒᵤgₕ ₜₕₑ 𝆑ₒᵤᵣₜₕ dᵢₘₑₙₛᵢₒₙ");
+igconsolelog(cobtext + " : Walk left");
+igconsolelog(ctbtext + " : Walk forwards");
+igconsolelog(cthbtext + " : Walk right");
+igconsolelog(cfbtext + " : Wₐₗₖ 𝆑ₒᵣwₐᵣdₛ ₜₕᵣₒᵤgₕ ₜₕₑ 𝆑ₒᵤᵣₜₕ dᵢₘₑₙₛᵢₒₙ");
 break;
     default:
 igconsolelog("You walk left. To your left is somebody's house, in front of you is more sidewalk, and to your right is the road.");
-igconsolelog("A : Walk left");
-igconsolelog("B : Walk forwards");
-igconsolelog("C : Walk right");
+igconsolelog(cobtext + " : Walk left");
+igconsolelog(ctbtext + " : Walk forwards");
+igconsolelog(cthbtext + " : Walk right");
 break;
 }
 break;
@@ -1064,15 +1157,15 @@ break;
 switch (FourthDEasterEgg) {
     case 100:
 igconsolelog("You shift through the fourth dimension. Everything is slowly changing around you, some things disappearing and some things appearing. For a brief moment you see a gun of some sort, then it is gone.");
-igconsolelog("A : Go back for it");
-igconsolelog("B : Leave it");
+igconsolelog(cobtext + " : Go back for it");
+igconsolelog(ctbtext + " : Leave it");
 break;
     default:
 pathstring="EAA";
 igconsolelog("You walk left. To your left is somebody's house, in front of you is more sidewalk, and to your right is the road.");
-igconsolelog("A : Walk left");
-igconsolelog("B : Walk forwards");
-igconsolelog("C : Walk right");
+igconsolelog(cobtext + " : Walk left");
+igconsolelog(ctbtext + " : Walk forwards");
+igconsolelog(cthbtext + " : Walk right");
 break;
 }
 break;
@@ -1092,10 +1185,10 @@ break;
     case 2:
 igconsolelog("You run across the road to the other side of the sidewalk. You're getting honked at. The sidewalk is to your left and right. In front of you is a store.");
 pathstring="F";
-igconsolelog("A : Honk back");
-igconsolelog("B : Walk left");
-igconsolelog("C : Walk forwards");
-igconsolelog("D : Walk right");
+igconsolelog(cobtext + " : Honk back");
+igconsolelog(ctbtext + " : Walk left");
+igconsolelog(cthbtext + " : Walk forwards");
+igconsolelog(cfbtext + " : Walk right");
 break;
 }
 }
@@ -1104,18 +1197,18 @@ break;
 igconsolelog("You get very confused. Why did you try to honk? You're not in a car and you aren't a car. What is existence? You decide that having an existential crisis is a waste of time and forget about it.");
 pathstring="F";
 igconsolelog("The sidewalk is to your left and right. In front of you is a store.");
-igconsolelog("A : Continue having an existential crisis");
-igconsolelog("B : Walk left");
-igconsolelog("C : Walk forwards");
-igconsolelog("D : Walk right");
+igconsolelog(cobtext + " : Continue having an existential crisis");
+igconsolelog(ctbtext + " : Walk left");
+igconsolelog(cthbtext + " : Walk forwards");
+igconsolelog(cfbtext + " : Walk right");
 break;
     case "FC":
 igconsolelog("You walk into the store. Instead of a bell on the door there is a speaker, and every time the door is opened it shouts DING DING BELL NOISE. The person at the counter looks at you.");
 igconsolelog("??? : Hey. What are you looking for?");
-igconsolelog("A : I'm not sure.");
-igconsolelog("B : A friend.");
-igconsolelog("C : A watermelon sticker.");
-igconsolelog("D : What do you have?");
+igconsolelog(cobtext + " : I'm not sure.");
+igconsolelog(ctbtext + " : A friend.");
+igconsolelog(cthbtext + " : A watermelon sticker.");
+igconsolelog(cfbtext + " : What do you have?");
 break;
     case "FCA":
 igconsolelog("??? : Hey. What are you looking for?");
@@ -1139,10 +1232,10 @@ break;
 igconsolelog("??? : Hey. What are you looking for?");
 igconsolelog("You : What do you have?");
 igconsolelog("??? : Fire Berry, bread, notebooks, fountain pens, a lot of random things.");
-igconsolelog("A : What is Fire Berry?");
-igconsolelog("B : I'll take bread.");
-igconsolelog("C : I'll take a notebook and a fountain pen.");
-igconsolelog("D : A pebble.");
+igconsolelog(cobtext + " : What is Fire Berry?");
+igconsolelog(ctbtext + " : I'll take bread.");
+igconsolelog(cthbtext + " : I'll take a notebook and a fountain pen.");
+igconsolelog(cfbtext + " : A pebble.");
 break;
     case "FCDD":
 igconsolelog("??? : Hey. What are you looking for?");
@@ -1165,10 +1258,10 @@ break;
 
     case "EAD":
 igconsolelog("You wish.");
-igconsolelog("A : Walk left");
-igconsolelog("B : Walk forwards");
-igconsolelog("C : Walk right");
-igconsolelog("D : Walk up");
+igconsolelog(cobtext + " : Walk left");
+igconsolelog(ctbtext + " : Walk forwards");
+igconsolelog(cthbtext + " : Walk right");
+igconsolelog(cfbtext + " : Walk up");
 if (GoinUp==0) {
 GoinUp++;
 igconsolelog("Achievement : Goin up on a " + upperupper + " [Walk up]");
@@ -1214,10 +1307,10 @@ pathstring = "A";
 }
 igconsolelog("New day, new you. Not yet, but you'll see what I mean soon.");
 igconsolelog("Make your choice, it isn't mine to decide yet.");
-igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");
+igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");
 break;
 
 //PATH REALITY BREAK
@@ -1328,6 +1421,98 @@ ChoiceLock=1;
 setTimeout(function() {location.reload();}, 10000);
 break;
 
+//Settings
+
+    case "SETTA":
+var colornotyet = prompt("Enter color or hex code, hex codes must have the #", "");
+var colorofchoice = colornotyet.toString();
+setInterval(function() {document.getElementById("igconsole").style.color = colorofchoice;
+document.getElementById("igconsole").style.textShadow = "0 0 3px " + colorofchoice;}, 1000);
+igconsolelog("Custom console color " + colorofchoice + " activated, returning to title screen in 5 seconds.");
+ChoiceLock=1;
+insettings=0;
+setTimeout(function() {
+if (stillthere==1) {
+document.getElementById('gamecover').style.pointerEvents = "all";
+document.getElementById('gamecover').style.filter = "opacity(100%)";
+}
+document.getElementById('cantsee').style.pointerEvents = "all";
+document.getElementById('cantsee').style.filter = "opacity(100%)";
+document.getElementById('switchhover').style.filter = "opacity(0%)";
+document.getElementById('switchhover').style.pointerEvents = "none";
+ChoiceLock=0;
+pathstring="";
+consreboot();
+}, 5000);
+break;
+
+    case "SETTB":
+document.getElementById("ms").style.pointerEvents = "all";
+igconsolelog("Mobile support activated, returning to title screen in 5 seconds.");
+ChoiceLock=1;
+insettings=0;
+setTimeout(function() {
+if (stillthere==1) {
+document.getElementById('gamecover').style.pointerEvents = "all";
+document.getElementById('gamecover').style.filter = "opacity(100%)";
+}
+document.getElementById('cantsee').style.pointerEvents = "all";
+document.getElementById('cantsee').style.filter = "opacity(100%)";
+document.getElementById('switchhover').style.filter = "opacity(0%)";
+document.getElementById('switchhover').style.pointerEvents = "none";
+ChoiceLock=0;
+pathstring="";
+consreboot();
+}, 5000);
+break;
+
+    case "SETTC":
+var abutton = prompt("What key do you want choice 1 to be?", "");
+var bbutton = prompt("What key do you want choice 2 to be?", "");
+var cbutton = prompt("What key do you want choice 3 to be?", "");
+var dbutton = prompt("What key do you want choice 4 to be?", "");
+choiceonebutton = abutton;
+choicetwobutton = bbutton;
+choicethreebutton = cbutton;
+choicefourbutton = dbutton;
+igconsolelog("Choice controls rebound, returning to title screen in 5 seconds.");
+ChoiceLock=1;
+insettings=0;
+setTimeout(function() {
+if (stillthere==1) {
+document.getElementById('gamecover').style.pointerEvents = "all";
+document.getElementById('gamecover').style.filter = "opacity(100%)";
+}
+document.getElementById('cantsee').style.pointerEvents = "all";
+document.getElementById('cantsee').style.filter = "opacity(100%)";
+document.getElementById('switchhover').style.filter = "opacity(0%)";
+document.getElementById('switchhover').style.pointerEvents = "none";
+ChoiceLock=0;
+pathstring="";
+consreboot();
+}, 5000);
+break;
+
+    case "SETTD":
+var wheretogo = prompt("Enter a path", "").toUpperCase();
+var lengthofwhere = wheretogo.length;
+var onepartofit = wheretogo.slice(0, (lengthofwhere-1));
+var secondpartofit = wheretogo.slice((lengthofwhere-1), lengthofwhere);
+console.log(onepartofit);
+console.log(secondpartofit);
+pathstring = onepartofit;
+optionrun(secondpartofit);
+if (stillthere==1) {
+document.getElementById('gamecover').style.pointerEvents = "all";
+document.getElementById('gamecover').style.filter = "opacity(100%)";
+}
+document.getElementById('cantsee').style.pointerEvents = "all";
+document.getElementById('cantsee').style.filter = "opacity(100%)";
+document.getElementById('switchhover').style.filter = "opacity(0%)";
+document.getElementById('switchhover').style.pointerEvents = "none";
+insettings=0;
+break;
+
 //PATH B (SLEEP)
 
     case "B":
@@ -1354,10 +1539,10 @@ setTimeout(function() {consreboot();}, 5000);
 }
 }
 else if (literallyB==2) {igconsolelog("You mind-exchanged with yourself. Next time be a bit more careful sleeping when nobody else is. You could get yourself killed."); Bdeathity=1; CheatDeathCount++; pathstring=""; igconsolelog("You wake up again. The sun isn't coming through your shutters anymore. It's probably around noon.");
-igconsolelog("A : Get up");
-igconsolelog("B : Stay in bed (again)");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");
+igconsolelog(cobtext + " : Get up");
+igconsolelog(ctbtext + " : Stay in bed (again)");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");
 }
 //CheatDeath
 if (CheatDeathCount==3&&CheatDeath==0) {CheatDeath=1; igconsolelog("Achievement : Cheat Death [Survive the first sleep option three times in a row]");}
@@ -1402,46 +1587,46 @@ else if (hasphone==1) {
 igconsolelog("What is there to pick up? You already have your phone.");
 pathstring = "";
 }
-igconsolelog("A : Get up");
-igconsolelog("B : Stay in bed");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");
+igconsolelog(cobtext + " : Get up");
+igconsolelog(ctbtext + " : Stay in bed");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");
 break;
 
 //PATH ..D.. (CHECK INVENTORY)
 
 //NOTHING
     case "D":
-if (hasphone==0) {igconsolelog("You have nothing."); pathstring=""; actionresponse=1; igconsolelog("A : Get up");
-igconsolelog("B : Stay in bed");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");}
-if (hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring=""; actionresponse=2; igconsolelog("A : Get up");
-igconsolelog("B : Stay in bed");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");}
+if (hasphone==0) {igconsolelog("You have nothing."); pathstring=""; actionresponse=1; igconsolelog(cobtext + " : Get up");
+igconsolelog(ctbtext + " : Stay in bed");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");}
+if (hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring=""; actionresponse=2; igconsolelog(cobtext + " : Get up");
+igconsolelog(ctbtext + " : Stay in bed");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");}
 break;
     case "AD":
-if (actionresponse==0&&hasphone==0) {igconsolelog("You have nothing."); pathstring="A"; igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");}
-if (actionresponse==1&&hasphone==0) {igconsolelog("You just did this, you still have nothing. Did you expect anything different? Did you expect to magically find some change? No. You're just as broke as you were five seconds ago."); pathstring="A"; igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");}
-if (actionresponse==0&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A"; igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");}
-if (actionresponse==1&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A"; igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");}
-if (actionresponse==2&&hasphone==1) {igconsolelog("I said you have a phone from Centauri."); pathstring="A"; igconsolelog("A : Play on computer");
-igconsolelog("B : Get cereal");
-igconsolelog("C : Grab your phone");
-igconsolelog("D : Check your inventory");}
+if (actionresponse==0&&hasphone==0) {igconsolelog("You have nothing."); pathstring="A"; igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");}
+if (actionresponse==1&&hasphone==0) {igconsolelog("You just did this, you still have nothing. Did you expect anything different? Did you expect to magically find some change? No. You're just as broke as you were five seconds ago."); pathstring="A"; igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");}
+if (actionresponse==0&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A"; igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");}
+if (actionresponse==1&&hasphone==1) {igconsolelog("You have a phone from Centauri."); pathstring="A"; igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");}
+if (actionresponse==2&&hasphone==1) {igconsolelog("I said you have a phone from Centauri."); pathstring="A"; igconsolelog(cobtext + " : Play on computer");
+igconsolelog(ctbtext + " : Get cereal");
+igconsolelog(cthbtext + " : Grab your phone");
+igconsolelog(cfbtext + " : Check your inventory");}
 
 break;
 
@@ -1462,10 +1647,10 @@ var igconsolehtml = document.getElementById('igconsole').innerHTML;
 document.getElementById('igconsole').innerHTML = igconsolehtml + "<br>" + msg.toString() + "<br>";
 }
 function EEE() {
-igconsolelog("A : Go outside");
-igconsolelog("B : Check your phone");
-igconsolelog("C : Keep the spoon for some reason (broken path don\'t pick)");
-igconsolelog("D : Keep the bowl for some reason (broken path don\'t pick)");
+igconsolelog(cobtext + " : Go outside");
+igconsolelog(ctbtext + " : Check your phone");
+igconsolelog(cthbtext + " : Keep the spoon for some reason (broken path don\'t pick)");
+igconsolelog(cfbtext + " : Keep the bowl for some reason (broken path don\'t pick)");
 }
 //.TaserPhone {
 //Height : Gym;
