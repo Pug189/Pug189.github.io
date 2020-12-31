@@ -104,7 +104,7 @@ width:100%;
 filter:drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
 border:white;
 font-family:Audiowide;
-border-style:double;
+border-style:solid;
 border-radius:2%;
 }
 .igconsole {
@@ -337,7 +337,7 @@ align-content: center;
 width:100%;
 filter:drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
 border:white;
-border-style:double;
+border-style:solid;
 border-radius:2%;
 }
 
@@ -1080,7 +1080,6 @@ break;
 break;
     case "T":
 starterupper();
-igconsolelog("WOOOOOOOOOOOOOOO");
 break;
     case "EACBC":
 switch (BottleDodge) {
@@ -1502,14 +1501,6 @@ console.log(onepartofit);
 console.log(secondpartofit);
 pathstring = onepartofit;
 optionrun(secondpartofit);
-if (stillthere==1) {
-document.getElementById('gamecover').style.pointerEvents = "all";
-document.getElementById('gamecover').style.filter = "opacity(100%)";
-}
-document.getElementById('cantsee').style.pointerEvents = "all";
-document.getElementById('cantsee').style.filter = "opacity(100%)";
-document.getElementById('switchhover').style.filter = "opacity(0%)";
-document.getElementById('switchhover').style.pointerEvents = "none";
 insettings=0;
 break;
 
