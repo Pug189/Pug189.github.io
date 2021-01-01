@@ -55,32 +55,27 @@ color:darkturquoise;
 }
     .switchhover {
 height:5vh;
-width:100%;
+width:100vw;
 position:absolute;
+line-height:5vh;
 top:95vh;
 left:0px;
 padding:0px;
 margin:0px;
 border:0px;
 overflow:hidden;
-background:linear-gradient(90deg, aqua, black, black, #161616, black, black, lime);
+background:linear-gradient(90deg, aqua, navy, black, black, black, darkgreen, lime);
 text-align:center;
 color:lime;
 filter:opacity(0%);
 pointer-events:none;
 cursor:crosshair;
-font-family:Candara;
+font-family:Audiowide;
 z-index:10;
-vertical-align:middle;
+transition:1s;
 }
     .switchhover:hover {
-animation:hoverani 1s 1 alternate ease-in-out;
-animation-fill-mode: forwards;
-}
-
-    @keyframes hoverani {
-        0% {color:lime;}
-        100% {color:aqua;}
+color:aqua;
 }
     .switchhover:hover ~ .igconsole {
 width:50%;
