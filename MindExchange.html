@@ -424,6 +424,8 @@ function deathimage(url) {
 document.getElementById("deathpanel").style.backgroundImage = "url(\"" + url + "\")";
 document.getElementById("igconsole").style.background = "transparent";
 ChoiceLock=1;
+document.getElementById('settingsbox').style.pointerEvents = "none";
+document.getElementById('settingsbox').style.filter = "opacity(0%)";
 }
 function deathhide() {
 document.getElementById("igconsole").style.background = "black";
@@ -458,13 +460,10 @@ igconsolelog(cfbtext + " : bruh what I can\'t read");
 }
 function settingsstart() {
 controls();
-clearTimeout(msa);
-clearTimeout(msb);
-clearTimeout(msc);
-clearTimeout(msd);
-clearTimeout(mse);
 insettings=1;
 pathstring="SETT";
+document.getElementById('settingsbox').style.pointerEvents = "none";
+document.getElementById('settingsbox').style.filter = "opacity(0%)";
 if (stillthere==1) {
 document.getElementById('gamecover').style.pointerEvents = "none";
 document.getElementById('gamecover').style.filter = "opacity(0%)";
@@ -473,8 +472,10 @@ ChoiceLock=0;
 deathhide();
 document.getElementById("igconsole").style.color = "white";
 document.getElementById("igconsole").style.textShadow = "0 0 3px white";
+if (stillthere==1) {
 document.getElementById('cantsee').style.pointerEvents = "none";
 document.getElementById('cantsee').style.filter = "opacity(0%)";
+}
 document.getElementById('switchhover').style.filter = "opacity(100%)";
 document.getElementById('switchhover').style.pointerEvents = "all";
 document.getElementById("igconsole").innerHTML = "";
@@ -529,6 +530,8 @@ optionrun("D");
     }
     };
 function consreboot() {
+document.getElementById('settingsbox').style.pointerEvents = "all";
+document.getElementById('settingsbox').style.filter = "opacity(100%)";
 document.getElementById("igconsole").style.color = "lime";
 document.getElementById("igconsole").style.textShadow = "0 0 3px lime";
 document.getElementById("igconsole").innerHTML = "";
@@ -1437,6 +1440,8 @@ document.getElementById('switchhover').style.pointerEvents = "none";
 ChoiceLock=0;
 pathstring="";
 consreboot();
+document.getElementById('settingsbox').style.pointerEvents = "all";
+document.getElementById('settingsbox').style.filter = "opacity(100%)";
 }, 5000);
 break;
 
@@ -1457,6 +1462,8 @@ document.getElementById('switchhover').style.pointerEvents = "none";
 ChoiceLock=0;
 pathstring="";
 consreboot();
+document.getElementById('settingsbox').style.pointerEvents = "all";
+document.getElementById('settingsbox').style.filter = "opacity(100%)";
 }, 5000);
 break;
 
@@ -1484,6 +1491,8 @@ document.getElementById('switchhover').style.pointerEvents = "none";
 ChoiceLock=0;
 pathstring="";
 consreboot();
+document.getElementById('settingsbox').style.pointerEvents = "all";
+document.getElementById('settingsbox').style.filter = "opacity(100%)";
 }, 5000);
 break;
 
@@ -1497,6 +1506,8 @@ console.log(secondpartofit);
 pathstring = onepartofit;
 optionrun(secondpartofit);
 insettings=0;
+document.getElementById('settingsbox').style.pointerEvents = "all";
+document.getElementById('settingsbox').style.filter = "opacity(100%)";
 break;
 
 //PATH B (SLEEP)
