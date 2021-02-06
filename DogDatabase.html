@@ -6,13 +6,15 @@
 </head>
 <button type=button id=headyboi onclick="clearthing();">D.O.G. Encryption Key Database</button>
 <div id=bar></div>
-<button id=category onclick="WOOF();">WOOF</button><button id=category onclick="WOof();">WOof</button><button id=category onclick="woOF();">woOF</button><button id=category onclick="woof();">woof</button>
+<button id=category onclick="WOOF();">WOOF</button><button id=category onclick="WOof();">WOof</button><button id=category onclick="woOF();">woOF</button><button id=category onclick="woof();">woof</button><button id=compression onclick="WooF();">WooF</button><button id=compression onclick="wOOf();">wOOf</button>
 <div id=bar></div>
-<button id=category onclick="BARK();">BARK</button><button id=category onclick="BArk();">BArk</button><button id=category onclick="baRK();">baRK</button><button id=category onclick="bark();">bark</button>
+<button id=category onclick="BARK();">BARK</button><button id=category onclick="BArk();">BArk</button><button id=category onclick="baRK();">baRK</button><button id=category onclick="bark();">bark</button><button id=compression onclick="BarK();">BarK</button><button id=compression onclick="bARk();">bARk</button>
 <div id=bar></div>
 <div id=bottompanel></div>
 <div id=cover><div id=placedogbanner><img src="https://github.com/Pug189/Pug189.github.io/blob/master/DOG.png?raw=true" id=DOGBANNER></div><input type="text" id="coverinput" name="DOGencrypt"><button id=submitdog type=button onclick="dogsubmit();">Enter Key</button></div>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
     body {
         margin:0;
         padding:0;
@@ -27,15 +29,15 @@
         border:none;
 }
     #category {
-        width:25%;
+        width:16.6666%;
         height:10vh;
         background:linear-gradient(90deg, gray 1%, #EEFEEF 2%, white, #EEFEEF 98%, gray 99%);
         border:none;
-        font-family:sans-serif;
-        font-size:5vh;
+        font-family:"Orbitron";
+        font-size:4vw;
 }
     #category:hover {
-        font-weight:bold;
+        filter:invert(1);
 }
     #bar {
         height:1vh;
@@ -44,7 +46,7 @@
 }
     #bottompanel {
         background:#FFFFEE;
-        height:67vh;
+        height:100%;
         width:100%;
         font-family:monospace;
         font-size:4vh;
@@ -79,6 +81,15 @@
         font-family:monospace;
         font-size:3em;
         text-align:center;
+}
+    #compression {
+background:black;
+color:crimson;
+width:16.6666%;
+height:10vh;
+border:none;
+font-family:"Orbitron";
+font-size:4vw;
 }
     #DOGBANNER {
 justify-content:center;
@@ -131,6 +142,7 @@ document.getElementById("bottompanel").innerHTML = `
 ##################<br>
      Actions<br>
 ##################<br>
+(NOTE : woOF baRK woOF bark = Confused/Distracted)<br>
 + woOF WOOF : Give<br>
 + woOF WOof : Go to<br>
 + woOF woOF : Steal<br>
@@ -138,7 +150,7 @@ document.getElementById("bottompanel").innerHTML = `
 + woOF BARK : Ask<br>
 + woOF BArk : Wait<br>
 + woOF baRK : Confuse/Distract<br>
-+ woOF bark : Past tense (woOF baRK woOF bark = Confused/Distracted)
++ woOF bark : Past tense
 `;
 }
 function woof() {
@@ -191,14 +203,16 @@ document.getElementById("bottompanel").innerHTML = `
 ##################<br>
       Colors<br>
 ##################<br>
-+ baRK WOOF : Red (note that color mixing uses additive mixing so red+green=yellow)<br>
+(NOTE : color mixing uses additive mixing so red+green=yellow)<br>
+(NOTE : baRK baRK baRK BArk baRK bark = translucent)<br>
++ baRK WOOF : Red<br>
 + baRK WOof : Green<br>
 + baRK woOF : Blue<br>
 + baRK woof : White<br>
 + baRK BARK : Black<br>
 + baRK BArk : combine with (color mix)<br>
 + baRK baRK : Transparent<br>
-+ baRk bark : Opaque (note that baRK baRK baRK BArk baRK bark = translucent)
++ baRk bark : Opaque
 `;
 }
 function bark() {
@@ -214,6 +228,48 @@ Extras<br>
 + bark BArk : Creative mode<br>
 + bark baRK : Survival mode<br>
 + bark bark : Spectator mode
+`;
+}
+function WooF() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+New People<br>
+##################<br>
+(NOTE : Assign identities to people, reference them as WooF NUMBER once assigned. For example Identity 8 would be WooF woof BARK.)<br>
++ WooF WOOF : Identity 0<br>
++ WooF WOof : Identity 1<br>
++ WooF woOF : Identity 2<br>
++ WooF woof : Identity 4<br>
++ WooF BARK : Identity 8<br>
++ WooF BArk : Identity 16<br>
++ WooF baRK : Identity 32<br>
++ WooF bark : Identity 64
+`;
+}
+function wOOf() {
+document.getElementById("bottompanel").innerHTML = `
+##################<br>
+New Places<br>
+##################<br>
+(NOTE : Assign wOOfs to coordinates, reference them as their coord number once assigned. For example Coord 8 would be wOOf woof BARK.)
++ wOOf WOOF : Coord 0<br>
++ wOOf WOof : Coord 1<br>
++ wOOf woOF : Coord 2<br>
++ wOOf woof : Coord 4<br>
++ wOOf BARK : Coord 8<br>
++ wOOf BArk : Coord 16<br>
++ wOOf baRK : Coord 32<br>
++ wOOf bark : Coord 64
+`;
+}
+function BarK() {
+document.getElementById("bottompanel").innerHTML = `
+Shatter Path not assigned
+`;
+}
+function bARk() {
+document.getElementById("bottompanel").innerHTML = `
+Shatter Path not assigned
 `;
 }
 function clearthing() {
