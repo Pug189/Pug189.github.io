@@ -18,7 +18,7 @@
 </div>
 <div id="bar"></div>
 <div id="bottompanel"></div>
-<div id="cover"><div id="placedogbanner"><img src="./D.O.G. Encryption Key Database_files/DOG.png" id="DOGBANNER"></div><input type="text" id="coverinput" name="DOGencrypt"><button id="submitdog" type="button" onclick="dogsubmit();">Enter Key</button></div>
+<!--<div id="cover"><div id="placedogbanner"><img src="./D.O.G. Encryption Key Database_files/DOG.png" id="DOGBANNER"></div><input type="text" id="coverinput" name="DOGencrypt"><button id="submitdog" type="button" onclick="dogsubmit();">Enter Key</button></div>-->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
@@ -33,7 +33,7 @@
         width:100%;
         height:10vh;
         background:#DDDDCC;
-        font-size:5vh;
+        font-size:300%;
         border:none;
 }
     #category {
@@ -54,13 +54,15 @@
 }
     #bottompanel {
         background:#FFFFEE;
-        height:100%;
+        height:66vh;
         width:100%;
         font-family:monospace;
-        font-size:4vh;
+        font-size:3vh;
         text-align:center;
-        line-height:5vh;
+        line-height:4vh;
         word-wrap: break-word;
+        position:absolute;
+        top:33vh;
 }
     #cover {
         height:100%;
@@ -90,9 +92,19 @@
         font-size:3em;
         text-align:center;
 }
+    #onetab {
+filter:opacity(100%);
+pointer-events:all;
+position:absolute;
+top:12vh;
+width:100%;
+}
     #twotab {
 filter:opacity(0%);
 pointer-events:none;
+position:absolute;
+top:12vh;
+width:100%;
 }
     #compression {
 background:black;
@@ -486,20 +498,19 @@ document.getElementById("bottompanel").innerHTML = `
 }
 var togg = 0;
 function clearthing() {
-document.getElementById("bottompanel").innerHTML = '';
 if (togg==0) {
 togg=1;
 document.getElementById("onetab").style.filter = 'opacity(0%)';
 document.getElementById("onetab").style.pointerEvents = 'none';
 document.getElementById("twotab").style.filter = 'opacity(100%)';
-document.getElementById("onetab").style.pointerEvents = 'all';
+document.getElementById("twotab").style.pointerEvents = 'all';
 }
-if (togg==1) {
+else if (togg==1) {
 togg=0;
 document.getElementById("onetab").style.filter = 'opacity(100%)';
 document.getElementById("onetab").style.pointerEvents = 'all';
 document.getElementById("twotab").style.filter = 'opacity(0%)';
-document.getElementById("onetab").style.pointerEvents = 'none';
+document.getElementById("twotab").style.pointerEvents = 'none';
 }
 }
 var zz = "KEDGKQW";
