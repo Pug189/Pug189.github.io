@@ -538,6 +538,8 @@ document.getElementById("igconsole").innerHTML = "";
 deathhide();
 controls();
 pathstring="";
+var newbeginnings = Math.floor(Math.random() * 3) + 1;
+if (newbeginnings==3) {pathstring="OM";}
 var startrand = Math.floor(Math.random() * 20) + 1;
 if (startrand==9) {pathstring="X";}
 CheatDeathCount = 0;
@@ -552,6 +554,14 @@ Bdeathity = 0;
 if (pathstring=="X") {
 conscolor();
 igconsolelog("You don't wake up, it's dark all around you. You don't understand what is going on.")
+}
+if (pathstring=="OM") {
+igconsolelog("You\'re jolted awake by thunder. The rain isn't stopping, but at least you have the convenience store's roof overhang to help. Someone is putting more gas in their car, but they\'re spilling quite a bit.")
+igconsolelog("It\'s getting cold, you shouldn't be out here. You don't really have any other options though.");
+igconsolelog(cobtext + " : Try to fall back asleep");
+igconsolelog(ctbtext + " : Light a cigarette");
+igconsolelog(cthbtext + " : Check your inventory");
+igconsolelog(cfbtext + " : Succumb to the cold");
 }
 else {
 igconsolelog("You wake up, warm sunlight shining through your half open shutters onto the floor beside your bed.");
@@ -624,15 +634,17 @@ var CheatDeathCount = 0;
 var actionresponse = 0;
 var Bdeathity = 0;
 var BottleDodge = 0;
+var CallOut = 0;
 //Achievements
 var ThaWasQui = 0;
 var CheatDeath = 0;
 var SonBean = 0;
 var Timeloop = 0;
 var GoinUp = 0;
+var PaintRed = 0;
 //Path function
 function optionrun(choice) {
-var totalach = ThaWasQui + CheatDeath + SonBean + Timeloop + GoinUp;
+var totalach = ThaWasQui + CheatDeath + SonBean + Timeloop + GoinUp + PaintRed;
 if (chargingphone==1&&phonebatt<100) {phonebatt++;}
 document.getElementById('igconsole').innerHTML = "";
 if (chargingphone==1&&phonebatt==100) {igconsolelog("100% battery reached, charging has stopped");}
@@ -1626,24 +1638,141 @@ igconsolelog(cthbtext + " : Grab your phone");
 igconsolelog(cfbtext + " : Check your inventory");}
 
 break;
+//I do not the don't
+    case "OMC":
+igconsolelog("You have nothing. That\'s the problem.");
+pathstring="OM";
+igconsolelog(cobtext + " : Try to fall back asleep");
+igconsolelog(ctbtext + " : Light a cigarette");
+igconsolelog(cthbtext + " : Check your inventory");
+igconsolelog(cfbtext + " : Succumb to the cold");
+break;
 
     case "EXCHANGE":
+
 conscolor();
+
 deathimage("https://raw.githubusercontent.com/Pug189/Pug189.github.io/master/Exchange.gif");
-setTimeout(function() {consreboot();}, 8192);
+
+setTimeout(
+
+function() {
+
+consreboot();
+
+}, 8192);
+
 break;
 
-    case "THIS WORLD":
+    case "OMB":
+igconsolelog("The lighter clicks a few times, then a waving flame appears. Its vibrant colors are comforting. After staring at it for a some time you wiggle a cigarette loose from the pack and hold it to the flame. All may be lost, but at least you'll go out content with what you got.");
+igconsolelog(cobtext + " : Fiddle with the lighter");
+igconsolelog(ctbtext + " : Break into the store");
+igconsolelog(cthbtext + " : Go to the gas pumps");
+igconsolelog(cfbtext + " : Throw the lighter");
+break;
+
+    case "OMBA":
+igconsolelog("You spin the lighter between your fingers. Every so often the flame snaps at your fingers, but that's alright.");
+break;
+        
+    case "OMBB":
+igconsolelog("You stare at the glass doors for a while. What is there to lose? You won't have to worry about food or shelter whether you succeed or not.");
+break;
+        
+    case "OMBC":
 conscolor();
-deathimage("https://raw.githubusercontent.com/Pug189/Pug189.github.io/master/THIS%20WORLD.png");
-setTimeout(function() {consreboot();}, 8192);
+igconsolelog("You get up and start walking to the gas pumps. Your joints crack, most likely because of how long you've been sitting. Suddenly the cold rain becomes a blazing storm and you're blown to pieces.");
+if (PaintRed==0) {PaintRed=1; igconsolelog("Achievement : Paint The Town Red [Die in a gas explosion]");}
+setTimeout(
+
+function() {
+
+consreboot();
+
+}, 15000);
+break;
+        
+    case "OMBD":
+igconsolelog("You throw the lighter. It bounces a few times before coming into contact with the gasoline and exploding, spitting flames everywhere. You stare wide-eyed, your mouth ajar. You have a feeling somebody heard that.");
+igconsolelog(cobtext + " : Start running");
+igconsolelog(ctbtext + " : Break into the store");
+igconsolelog(cthbtext + " : Stand your ground");
+igconsolelog(cfbtext + " : Walk away");
 break;
 
-default:
+    case "OMBDA":
+igconsolelog("You start running, the icy air strangely refreshing after the heat of the blast. You hear someone yell, but you don't hear what they said. You keep running.");
+igconsolelog(cobtext + " : ");
+igconsolelog(ctbtext + " : ");
+igconsolelog(cthbtext + " : ");
+igconsolelog(cfbtext + " : ");
+break;
+
+    case "OMBDB":
+igconsolelog("You kick the door and shatter it. You\'re in.");
+igconsolelog(cobtext + " : Search towards the cashier\'s desk");
+igconsolelog(ctbtext + " : Search towards the slushie machines");
+igconsolelog(cthbtext + " : Search towards the candy section");
+igconsolelog(cfbtext + " : Beg to the gods");
+break;
+
+    case "OMBDBD":
+var beggods = Math.floor(Math.random() * 20) + 1;
+CallOut++;
+var againagain = " : Beg to the gods";
+for (var i = CallOut;i>0;i--) {againagain = againagain + " (again)"}
+igconsolelog("You call out into the dark sky.");
+if (beggods==15) {igconsolelog("The void calls back. A neon crimson object hurls towards you with an audible whistle as it slices through the air. You jump out of the trajectory and the object embeds itself in the ground, vibrating and cracking the tiles. You look up and a trident presents itself to you.");}
+else {igconsolelog("Nobody responds."); pathstring="OMBDB";
+igconsolelog(cobtext + " : Search towards the cashier\'s desk");
+igconsolelog(ctbtext + " : Search towards the slushie machines");
+igconsolelog(cthbtext + " : Search towards the candy section");
+igconsolelog(cfbtext + againagain);}
+break;
+
+    case "OMBDC":
+igconsolelog("");
+igconsolelog(cobtext + " : ");
+igconsolelog(ctbtext + " : ");
+igconsolelog(cthbtext + " : ");
+igconsolelog(cfbtext + " : ");
+break;
+
+    case "OMBDD":
+igconsolelog("");
+igconsolelog(cobtext + " : ");
+igconsolelog(ctbtext + " : ");
+igconsolelog(cthbtext + " : ");
+igconsolelog(cfbtext + " : ");
+break;
+
+    case "OMD":
+
+igconsolelog("Your body goes numb. It\'s finally over. You\'re out of the cold. No longer are you living on the streets, but rather the clouds.");
+
+conscolor();
+
+deathimage("https://raw.githubusercontent.com/Pug189/Pug189.github.io/master/Exchange.gif");
+
+setTimeout(
+
+function() {
+
+consreboot();
+
+}, 8192);
+
+break;
+
+
+    default:
 igconsolelog("Unknown Path");
 break;
 
-if (chargingphone==1) {igconsolelog("Phone Battery : " + phonebatt);}
+if (chargingphone==1) {
+igconsolelog("Phone Battery : " + phonebatt);
+}
 }
 document.getElementById("aquacons").innerHTML = "DEBUG<br>(Don't worry about this)<br>" + charname + "<br>" + daycount + "<br>" + pathstring + "<br>" + totalach + "/5";
 }
@@ -1653,7 +1782,10 @@ function scrolligconsole() {
 }
 function igconsolelog(msg) {
 var igconsolehtml = document.getElementById('igconsole').innerHTML;
+if (igconsolehtml == "") {document.getElementById('igconsole').innerHTML = "<br><br><br><br>" + msg.toString() + "<br>";}
+else {
 document.getElementById('igconsole').innerHTML = igconsolehtml + "<br>" + msg.toString() + "<br>";
+}
 }
 function EEE() {
 igconsolelog(cobtext + " : Go outside");
