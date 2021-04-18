@@ -32,7 +32,7 @@
     <div id=tab>Volume</div>
 
     <button type="button" id=tabpan onclick="showpanel('spvpanel');">Sphere</button>
-    <button type="button" id=tabpan onclick="showpanel('bvpanel');">Box</button>
+    <button type="button" id=tabpan onclick="showpanel('boxpanel');">Box</button>
     <button type="button" id=tabpan onclick="showpanel('tvpanel');">Square Pyramid</button>
     <button type="button" id=tabpan onclick="showpanel('tvpanel');">Triangular Pyramid</button>
 
@@ -53,6 +53,12 @@
     <button type="button" id=tabpan onclick="showpanel('sohpanel');">Sin</button>
     <button type="button" id=tabpan onclick="showpanel('cahpanel');">Cos</button>
     <button type="button" id=tabpan onclick="showpanel('toapanel');">Tan</button>
+</div>
+<div id=boxpanel class=panel>
+    <input type="text" placeholder="Height" id="box" class="box">
+    <input type="text" placeholder="Width" id="boxtwo" class="box">
+    <input type="text" placeholder="Length" id="boxthree" class="box">
+    <button type="button" onclick="box();" id="outputbox" class="boxbutton">Awaiting Input (Click/Tap)</button>
 </div>
 <div id=ptpanel class=panel>
     <input type="text" placeholder="a" id="pt" class="pt">
@@ -211,6 +217,62 @@ text-align:center;
 font-size:200%;
 left:0;
 }
+    .rsapbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .box {
+height:calc(100% / 3);
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .boxtwo {
+height:calc(100% / 3);
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .boxthree {
+height:calc(100% / 3);
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .boxbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
     .ptbutton {
 width:50%;
 height:100%;
@@ -236,7 +298,7 @@ left:0;
 }
     .pttwo /*pttwo I spit on you*/ {
 width:50%;
-height:100%;
+height:50%;
 background:black;
 border:white 2px solid;
 color:white;
@@ -357,6 +419,7 @@ border-radius:10%;
 border:#161616 solid 2px;
 text-align:center;
 line-height:10vh;
+user-select: none;
 }
     .numkey:active {
 color:cyan;
@@ -421,12 +484,12 @@ position:absolute;
 left:calc(80% - 5vw);
 top:70%;
 }
-    #times {
+    #exp {
 position:absolute;
 left:calc(35% - 5vw);
 top:80%;
 }
-    #divide {
+    #sqr {
 position:absolute;
 left:calc(50% - 5vw);
 top:80%;
@@ -464,12 +527,12 @@ left:calc(10% - 5vw);
 top:50%;
 width:17vw;
 }
-    #exp {
+    #times {
 position:absolute;
 left:calc(65% - 5vw);
 top:80%;
 }
-    #sqr {
+    #divide {
 position:absolute;
 left:calc(80% - 5vw);
 top:80%;
@@ -607,5 +670,12 @@ var a = parseInt(document.getElementById("pt").value);
 var b = parseInt(document.getElementById("pttwo").value);
 var c = Math.sqrt((a*a)+(b*b));
 document.getElementById("outputpt").innerHTML = "c : " + c;
+}
+function box() {
+var height = parseInt(document.getElementById("box").value);
+var width = parseInt(document.getElementById("boxtwo").value);
+var length = parseInt(document.getElementById("boxthree").value);
+var boxvol = height * width * length;
+document.getElementById("outputbox").innerHTML = boxvol;
 }
 </script>
