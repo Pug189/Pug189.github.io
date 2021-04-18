@@ -1,0 +1,739 @@
+<div id=mainpanel></div>
+<div id=maincalc class=panel>
+    <div id=displaycalcmain></div>
+    <button type="button" id=nine class=numkey accesskey="9" onclick="calc('9');">9</button>
+    <button type="button" id=eight class=numkey accesskey="8" onclick="calc('8');">8</button>
+    <button type="button" id=seven class=numkey accesskey="7" onclick="calc('7');">7</button>
+    <button type="button" id=six class=numkey accesskey="6" onclick="calc('6');">6</button>
+    <button type="button" id=five class=numkey accesskey="5" onclick="calc('5');">5</button>
+    <button type="button" id=four class=numkey accesskey="4" onclick="calc('4');">4</button>
+    <button type="button" id=three class=numkey accesskey="3" onclick="calc('3');">3</button>
+    <button type="button" id=two class=numkey accesskey="2" onclick="calc('2');">2</button>
+    <button type="button" id=one class=numkey accesskey="1" onclick="calc('1');">1</button>
+    <button type="button" id=zero class=numkey accesskey="0" onclick="calc('0');">0</button>
+    <button type="button" id=plus class=numkey accesskey="+" onclick="calc('+');">+</button>
+    <button type="button" id=minus class=numkey accesskey="-" onclick="calc('-');">-</button>
+    <button type="button" id=times class=numkey accesskey="*" onclick="calc('*');">*</button>
+    <button type="button" id=times class=numkey accesskey="x" onclick="calc('*');">*</button>
+    <button type="button" id=divide class=numkey accesskey="/" onclick="calc('/');">÷</button>
+    <button type="button" id=equals class=numkey accesskey="=" onclick="calc('=');">=</button>
+    <button type="button" id=equals class=numkey accesskey="enter" onclick="calc('=');">=</button>
+    <button type="button" id=clear class=numkey accesskey="c" onclick="calc('c');">AC</button>
+    <button type="button" id=back class=numkey accesskey="backspace" onclick="calc('b');"><</button>
+    <button type="button" id=point class=numkey accesskey="." onclick="calc('.');">.</button>
+    <button type="button" id=memset class=numkey accesskey="M" onclick="calc('m');">M+</button>
+    <button type="button" id=memread class=numkey accesskey="R" onclick="calc('r');">MR</button>
+    <button type="button" id=exp class=numkey accesskey="^" onclick="calc('^');">^</button>
+    <button type="button" id=sqr class=numkey accesskey="s" onclick="calc('s');">√</button>
+</div>
+<div id=functionpanel>
+    <button type="button" id=tabpan onclick="showpanel('maincalc');">Home</button>
+
+    <div id=tab>Volume</div>
+
+    <button type="button" id=tabpan onclick="showpanel('spherepanel');">Sphere</button>
+    <button type="button" id=tabpan onclick="showpanel('boxpanel');">Box</button>
+    <button type="button" id=tabpan onclick="showpanel('squpyrpanel');">Square Pyramid</button>
+
+    <div id=tab>Formulas/Theorems</div>
+
+    <button type="button" id=tabpan onclick="showpanel('dfpanel');">Distance</button>
+    <button type="button" id=tabpan onclick="showpanel('mppanel');">Midpoint</button>
+    <button type="button" id=tabpan onclick="showpanel('ptpanel');">Pythagorean</button>
+
+    <div id=tab>Area/Perimeter</div>
+
+    <button type="button" id=tabpan onclick="showpanel('cappanel');">Circle</button>
+    <button type="button" id=tabpan onclick="showpanel('rappanel');">Rectangle/Square</button>
+    <button type="button" id=tabpan onclick="showpanel('tappanel');">Triangle</button>
+
+</div>
+<div id=squpyrpanel class=panel>
+    <input type="text" placeholder="Base edge" id="squpyr" class="squpyr">
+    <input type="text" placeholder="Height" id="squpyrtwo" class="squpyr">
+    <button type="button" onclick="squpyr();" id="outputsqupyr" class="squpyrbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=spherepanel class=panel>
+    <input type="text" placeholder="Radius" id="sphere" class="sphere">
+    <button type="button" onclick="sphere();" id="outputsphere" class="spherebutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=boxpanel class=panel>
+    <input type="text" placeholder="Height" id="box" class="box">
+    <input type="text" placeholder="Width" id="boxtwo" class="box">
+    <input type="text" placeholder="Length" id="boxthree" class="box">
+    <button type="button" onclick="box();" id="outputbox" class="boxbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=ptpanel class=panel>
+    <input type="text" placeholder="a" id="pt" class="pt">
+    <input type="text" placeholder="b" id="pttwo" class="pt">
+    <button type="button" onclick="pytheorem();" id="outputpt" class="ptbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=mppanel class=panel>
+    <input type="text" placeholder="x1" id="x1mp" class="mpin">
+    <input type="text" placeholder="y1" id="y1mp" class="mpin">
+    <input type="text" placeholder="x2" id="x2mp" class="mpin">
+    <input type="text" placeholder="y2" id="y2mp" class="mpin">
+    <button type="button" onclick="mipoform();" id="outputmp" class="mpbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=tappanel class=panel>
+    <input type="text" placeholder="Height" id="tap" class="tap">
+    <input type="text" placeholder="Base" id="taptwo" class="tap">
+    <button type="button" onclick="tap();" id="outputtap" class="tapbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=rappanel class=panel>
+    <input type="text" placeholder="Height" id="rsap" class="rsap">
+    <input type="text" placeholder="Width" id="rsaptwo" class="rsap">
+    <button type="button" onclick="rsap();" id="outputrsap" class="rsapbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=cappanel class=panel>
+    <input type="text" placeholder="Radius" id="radap" class="capin">
+    <button type="button" onclick="radap();" id="outputcap" class="capbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id=dfpanel class=panel>
+    <input type="text" placeholder="x1" id="x1" class="dfin">
+    <input type="text" placeholder="y1" id="y1" class="dfin">
+    <input type="text" placeholder="x2" id="x2" class="dfin">
+    <input type="text" placeholder="y2" id="y2" class="dfin">
+    <button type="button" onclick="distform();" id="output" class="dfbutton">Awaiting Input (Click/Tap)</button>
+</div>
+
+<button type="button"></button>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+    body {
+margin:0;
+padding:0;
+border:0;
+font-family: 'Roboto', sans-serif;
+}
+    #mainpanel {
+width:70%;
+height:100%;
+background:black;
+position:absolute;
+left:30%;
+top:0;
+}
+    #functionpanel {
+width:30%;
+height:100%;
+background:#323232;
+left:0;
+top:0;
+position:absolute;
+}
+    #tab {
+width:100%;
+height:5%;
+background:#646464;
+color:white;
+text-align:center;
+line-height:5vh;
+font-size:2vh;
+}
+    #tabpan {
+width:100%;
+height:5%;
+background:#323232;
+color:white;
+text-align:center;
+line-height:5vh;
+font-size:2vh;
+border:#161616 solid 2px;
+}
+    #tabpan:active {
+color:cyan;
+}
+    .dfin {
+width:50%;
+height:25%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .mpin {
+width:50%;
+height:25%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .capin /*sussus amogus*/ {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .capbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .rsap {
+width:50%;
+height:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .rsaptwo {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .rsapbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .box {
+height:calc(100% / 3);
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .boxtwo {
+height:calc(100% / 3);
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .boxthree {
+height:calc(100% / 3);
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .boxbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .sphere {
+height:100%;
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .spherebutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .squpyr {
+height:50%;
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .squpyrtwo {
+height:50%;
+width:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .squpyrbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .ptbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .pt {
+width:50%;
+height:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .pttwo /*pttwo I spit on you*/ {
+width:50%;
+height:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .ptbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .tapbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .mpbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    .tap {
+width:50%;
+height:50%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .taptwo {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+left:0;
+}
+    .dfbutton {
+width:50%;
+height:100%;
+background:black;
+border:white 2px solid;
+color:white;
+text-align:center;
+font-size:200%;
+position:absolute;
+right:0;
+top:0;
+font-family:monospace;
+}
+    ::placeholder {
+color:white;
+}
+    .panel {
+width:70%;
+height:100%;
+position:absolute;
+left:30%;
+top:0;
+}
+    #displaycalcmain {
+height:20%;
+width:80%;
+background:black;
+border:white solid 2px;
+color:white;
+left:10%;
+top:10%;
+position:absolute;
+border-radius:2%;
+line-height:20vh;
+font-size:2em;
+text-align:center;
+}
+    #maincalc {
+width:70%;
+height:100%;
+position:absolute;
+left:30%;
+top:0;
+}
+    .numkey {
+height:10vh;
+width:10vw;
+background:#323232;
+color:white;
+font-size:10vh;
+border-radius:10%;
+border:#161616 solid 2px;
+text-align:center;
+line-height:10vh;
+user-select: none;
+}
+    .numkey:active {
+color:cyan;
+}
+    #zero {
+position:absolute;
+left:calc(35% - 5vw);
+top:70%;
+}
+    #one {
+position:absolute;
+left:calc(35% - 5vw);
+top:60%;
+}
+    #two {
+position:absolute;
+left:calc(50% - 5vw);
+top:60%;
+}
+    #three {
+position:absolute;
+left:calc(65% - 5vw);
+top:60%;
+}
+    #four {
+position:absolute;
+left:calc(35% - 5vw);
+top:50%;
+}
+    #five {
+position:absolute;
+left:calc(50% - 5vw);
+top:50%;
+}
+    #six {
+position:absolute;
+left:calc(65% - 5vw);
+top:50%;
+}
+    #seven {
+position:absolute;
+left:calc(35% - 5vw);
+top:40%;
+}
+    #eight {
+position:absolute;
+left:calc(50% - 5vw);
+top:40%;
+}
+    #nine {
+position:absolute;
+left:calc(65% - 5vw);
+top:40%;
+}
+    #plus {
+position:absolute;
+left:calc(80% - 5vw);
+top:60%;
+}
+    #minus {
+position:absolute;
+left:calc(80% - 5vw);
+top:70%;
+}
+    #exp {
+position:absolute;
+left:calc(35% - 5vw);
+top:80%;
+}
+    #sqr {
+position:absolute;
+left:calc(50% - 5vw);
+top:80%;
+}
+    #equals {
+position:absolute;
+left:calc(65% - 5vw);
+top:70%;
+}
+    #clear {
+position:absolute;
+left:calc(80% - 5vw);
+top:50%;
+width:16vw;
+}
+    #back {
+position:absolute;
+left:calc(80% - 5vw);
+top:40%;
+}
+    #point {
+position:absolute;
+left:calc(50% - 5vw);
+top:70%;
+}
+    #memset {
+position:absolute;
+left:calc(10% - 5vw);
+top:40%;
+width:17vw;
+}
+    #memread {
+position:absolute;
+left:calc(10% - 5vw);
+top:50%;
+width:17vw;
+}
+    #times {
+position:absolute;
+left:calc(65% - 5vw);
+top:80%;
+}
+    #divide {
+position:absolute;
+left:calc(80% - 5vw);
+top:80%;
+}
+</style>
+<script>
+var specialcase = 0;
+var memory = "";
+function calc(deed) {
+if (deed != "=" && deed != "c" && deed != "b" && deed != "m" && deed != "r" && deed != "s") {
+displayon(deed);
+}
+if (deed == "=" && specialcase == 0) {
+var current = document.getElementById("displaycalcmain").innerHTML;
+var result = eval(current);
+displayover(result);
+}
+if (deed == "c") {
+displayover("");
+specialcase=0;
+}
+if (deed == "b") {
+var current = document.getElementById("displaycalcmain").innerHTML;
+var result = current.slice(0, current.length - 1); /*Credit to https://stackoverflow.com/questions/952924/javascript-chop-slice-trim-off-last-character-in-string*/
+displayover(result);
+}
+if (deed == "m") {
+memory = document.getElementById("displaycalcmain").innerHTML;
+}
+if (deed == "r") {
+displayon(memory);
+}
+if (deed == "^") {
+specialcase = 1;
+}
+if (deed == "=" && specialcase == 1) {
+var current = document.getElementById("displaycalcmain").innerHTML;
+var exp = getSecondPart(current);
+var tobe = getFirstPart(current);
+document.getElementById("displaycalcmain").innerHTML = Math.pow(tobe, exp);
+specialcase = 0;
+}
+if (deed == "s") {
+specialcase = 2;
+displayon("√");
+}
+if (deed == "=" && specialcase == 2) {
+var current = document.getElementById("displaycalcmain").innerHTML;
+var sqr = getSecondPartSqr(current);
+displayover(Math.sqrt(sqr));
+specialcase = 0;
+}
+}
+
+var indexcalc = 0;
+showpanel("maincalc");
+
+function getSecondPart(str) {/*Credit to https://stackoverflow.com/questions/573145/get-everything-after-the-dash-in-a-string-in-javascript/35236900*/
+    return str.split('^')[1];
+}
+function getSecondPartSqr(str) {
+    return str.split('√')[1];
+}
+function getFirstPart(str) {
+    return str.split('^')[0];
+}
+
+function displayon(string) {
+var current = document.getElementById("displaycalcmain").innerHTML;
+document.getElementById("displaycalcmain").innerHTML = current + string;
+}
+
+function displayover(string) {
+document.getElementById("displaycalcmain").innerHTML = string;
+}
+
+function showpanel(id) {
+toggle("panel", "none");
+document.getElementById(id).style.display = "block";
+}
+
+/*Credit to https://stackoverflow.com/questions/11254429/hiding-all-elements-with-the-same-class-name*/
+function toggle(className, displayState){
+    var elements = document.getElementsByClassName(className)
+
+    for (var i = 0; i < elements.length; i++){
+        elements[i].style.display = displayState;
+    }
+}
+
+function distform() {
+var x1 = parseInt(document.getElementById("x1").value);
+var x2 = parseInt(document.getElementById("x2").value);
+var y1 = parseInt(document.getElementById("y1").value);
+var y2 = parseInt(document.getElementById("y2").value);
+var xstep = x2 - x1;
+var ystep = y2 - y1;
+var nextx = xstep * xstep;
+var nexty = ystep * ystep;
+var almost = nextx + nexty;
+var distance = Math.sqrt(almost);
+document.getElementById("output").innerHTML = distance;
+}
+function radap() {
+var radap = parseInt(document.getElementById("radap").value);
+var area = Math.PI * (Math.pow(radap, 2));
+var circumference = 2 * Math.PI * radap;
+document.getElementById("outputcap").innerHTML = "AREA : " + area + "<br>CIRC : " + circumference;
+}
+function rsap() {
+var rsap = parseInt(document.getElementById("rsap").value);
+var rsaptwo = parseInt(document.getElementById("rsaptwo").value);
+var area = rsap * rsaptwo;
+var perimeter = (rsap * 2) + (rsaptwo * 2);
+document.getElementById("outputrsap").innerHTML = "AREA : " + area + "<br>PERIM : " + perimeter;
+}
+function tap() {
+var tap = parseInt(document.getElementById("tap").value);
+var taptwo = parseInt(document.getElementById("taptwo").value);
+var doubled = tap * taptwo;
+var fixed = doubled * 0.5;
+document.getElementById("outputtap").innerHTML = "AREA : " + fixed + "<br>PERIM : Height and Base aren't enough to be accurate";
+}
+function mipoform() {
+var x1mp = parseInt(document.getElementById("x1mp").value);
+var x2mp = parseInt(document.getElementById("x2mp").value);
+var y1mp = parseInt(document.getElementById("y1mp").value);
+var y2mp = parseInt(document.getElementById("y2mp").value);
+var midpointx = (x1mp + x2mp)/2;
+var midpointy = (y1mp + y2mp)/2;
+document.getElementById("outputmp").innerHTML = "(" + midpointx + ", " + midpointy + ")";
+}
+function pytheorem() {
+var a = parseInt(document.getElementById("pt").value);
+var b = parseInt(document.getElementById("pttwo").value);
+var c = Math.sqrt((a*a)+(b*b));
+document.getElementById("outputpt").innerHTML = "c : " + c;
+}
+function box() {
+var height = parseInt(document.getElementById("box").value);
+var width = parseInt(document.getElementById("boxtwo").value);
+var length = parseInt(document.getElementById("boxthree").value);
+var boxvol = height * width * length;
+document.getElementById("outputbox").innerHTML = boxvol;
+}
+function sphere() {
+var kindarad = parseInt(document.getElementById("sphere").value);
+var fot = 4/3;
+var finalsphere = fot * Math.PI * (Math.pow(kindarad, 3));
+document.getElementById("outputsphere").innerHTML = finalsphere;
+}
+function squpyr() {
+var baseedge = parseInt(document.getElementById("squpyr").value);
+var height = parseInt(document.getElementById("squpyrtwo").value);
+var resulting = (baseedge * baseedge) * (height/3);
+document.getElementById("outputsqupyr").innerHTML = resulting;
+}
+</script>
