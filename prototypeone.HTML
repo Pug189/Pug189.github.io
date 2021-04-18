@@ -29,49 +29,14 @@
 <div id=functionpanel>
     <button type="button" id=tabpan onclick="showpanel('maincalc');">Home</button>
 
-    <div id=tab>Volume</div>
-
-    <button type="button" id=tabpan onclick="showpanel('spvpanel');">Sphere</button>
-    <button type="button" id=tabpan onclick="showpanel('boxpanel');">Box</button>
-    <button type="button" id=tabpan onclick="showpanel('tvpanel');">Square Pyramid</button>
-    <button type="button" id=tabpan onclick="showpanel('tvpanel');">Triangular Pyramid</button>
-
-    <div id=tab>Formulas/Theorems</div>
-
-    <button type="button" id=tabpan onclick="showpanel('dfpanel');">Distance</button>
-    <button type="button" id=tabpan onclick="showpanel('mppanel');">Midpoint</button>
-    <button type="button" id=tabpan onclick="showpanel('ptpanel');">Pythagorean</button>
-
     <div id=tab>Area/Perimeter</div>
 
     <button type="button" id=tabpan onclick="showpanel('cappanel');">Circle</button>
     <button type="button" id=tabpan onclick="showpanel('rappanel');">Rectangle/Square</button>
     <button type="button" id=tabpan onclick="showpanel('tappanel');">Triangle</button>
 
-    <div id=tab>Trigonometry</div>
+</div>
 
-    <button type="button" id=tabpan onclick="showpanel('sohpanel');">Sin</button>
-    <button type="button" id=tabpan onclick="showpanel('cahpanel');">Cos</button>
-    <button type="button" id=tabpan onclick="showpanel('toapanel');">Tan</button>
-</div>
-<div id=boxpanel class=panel>
-    <input type="text" placeholder="Height" id="box" class="box">
-    <input type="text" placeholder="Width" id="boxtwo" class="box">
-    <input type="text" placeholder="Length" id="boxthree" class="box">
-    <button type="button" onclick="box();" id="outputbox" class="boxbutton">Awaiting Input (Click/Tap)</button>
-</div>
-<div id=ptpanel class=panel>
-    <input type="text" placeholder="a" id="pt" class="pt">
-    <input type="text" placeholder="b" id="pttwo" class="pt">
-    <button type="button" onclick="pytheorem();" id="outputpt" class="ptbutton">Awaiting Input (Click/Tap)</button>
-</div>
-<div id=mppanel class=panel>
-    <input type="text" placeholder="x1" id="x1mp" class="mpin">
-    <input type="text" placeholder="y1" id="y1mp" class="mpin">
-    <input type="text" placeholder="x2" id="x2mp" class="mpin">
-    <input type="text" placeholder="y2" id="y2mp" class="mpin">
-    <button type="button" onclick="mipoform();" id="outputmp" class="mpbutton">Awaiting Input (Click/Tap)</button>
-</div>
 <div id=tappanel class=panel>
     <input type="text" placeholder="Height" id="tap" class="tap">
     <input type="text" placeholder="Base" id="taptwo" class="tap">
@@ -85,13 +50,6 @@
 <div id=cappanel class=panel>
     <input type="text" placeholder="Radius" id="radap" class="capin">
     <button type="button" onclick="radap();" id="outputcap" class="capbutton">Awaiting Input (Click/Tap)</button>
-</div>
-<div id=dfpanel class=panel>
-    <input type="text" placeholder="x1" id="x1" class="dfin">
-    <input type="text" placeholder="y1" id="y1" class="dfin">
-    <input type="text" placeholder="x2" id="x2" class="dfin">
-    <input type="text" placeholder="y2" id="y2" class="dfin">
-    <button type="button" onclick="distform();" id="output" class="dfbutton">Awaiting Input (Click/Tap)</button>
 </div>
 
 <button type="button"></button>
@@ -118,84 +76,6 @@ background:#323232;
 left:0;
 top:0;
 position:absolute;
-}
-    #tab {
-width:100%;
-height:5%;
-background:#646464;
-color:white;
-text-align:center;
-line-height:5vh;
-font-size:2vh;
-}
-    #tabpan {
-width:100%;
-height:5%;
-background:#323232;
-color:white;
-text-align:center;
-line-height:5vh;
-font-size:2vh;
-border:#161616 solid 2px;
-}
-    #tabpan:active {
-color:cyan;
-}
-    .dfin {
-width:50%;
-height:25%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-left:0;
-}
-    .mpin {
-width:50%;
-height:25%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-left:0;
-}
-    .capin /*sussus amogus*/ {
-width:50%;
-height:100%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-left:0;
-}
-    .capbutton {
-width:50%;
-height:100%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-position:absolute;
-right:0;
-top:0;
-font-family:monospace;
-}
-    .rsapbutton {
-width:50%;
-height:100%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-position:absolute;
-right:0;
-top:0;
-font-family:monospace;
 }
     .rsap {
 width:50%;
@@ -230,37 +110,29 @@ right:0;
 top:0;
 font-family:monospace;
 }
-    .box {
-height:calc(100% / 3);
-width:50%;
-background:black;
-border:white 2px solid;
+    #tab {
+width:100%;
+height:5%;
+background:#646464;
 color:white;
 text-align:center;
-font-size:200%;
-left:0;
+line-height:5vh;
+font-size:2vh;
 }
-    .boxtwo {
-height:calc(100% / 3);
-width:50%;
-background:black;
-border:white 2px solid;
+    #tabpan {
+width:100%;
+height:5%;
+background:#323232;
 color:white;
 text-align:center;
-font-size:200%;
-left:0;
+line-height:5vh;
+font-size:2vh;
+border:#161616 solid 2px;
 }
-    .boxthree {
-height:calc(100% / 3);
-width:50%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-left:0;
+    #tabpan:active {
+color:cyan;
 }
-    .boxbutton {
+    .capin /*sussus amogus*/ {
 width:50%;
 height:100%;
 background:black;
@@ -268,45 +140,9 @@ border:white 2px solid;
 color:white;
 text-align:center;
 font-size:200%;
-position:absolute;
-right:0;
-top:0;
-font-family:monospace;
-}
-    .ptbutton {
-width:50%;
-height:100%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-position:absolute;
-right:0;
-top:0;
-font-family:monospace;
-}
-    .pt {
-width:50%;
-height:50%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
 left:0;
 }
-    .pttwo /*pttwo I spit on you*/ {
-width:50%;
-height:50%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-left:0;
-}
-    .ptbutton {
+    .capbutton {
 width:50%;
 height:100%;
 background:black;
@@ -320,19 +156,6 @@ top:0;
 font-family:monospace;
 }
     .tapbutton {
-width:50%;
-height:100%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-position:absolute;
-right:0;
-top:0;
-font-family:monospace;
-}
-    .mpbutton {
 width:50%;
 height:100%;
 background:black;
@@ -364,19 +187,6 @@ color:white;
 text-align:center;
 font-size:200%;
 left:0;
-}
-    .dfbutton {
-width:50%;
-height:100%;
-background:black;
-border:white 2px solid;
-color:white;
-text-align:center;
-font-size:200%;
-position:absolute;
-right:0;
-top:0;
-font-family:monospace;
 }
     ::placeholder {
 color:white;
@@ -623,19 +433,6 @@ function toggle(className, displayState){
     }
 }
 
-function distform() {
-var x1 = parseInt(document.getElementById("x1").value);
-var x2 = parseInt(document.getElementById("x2").value);
-var y1 = parseInt(document.getElementById("y1").value);
-var y2 = parseInt(document.getElementById("y2").value);
-var xstep = x2 - x1;
-var ystep = y2 - y1;
-var nextx = xstep * xstep;
-var nexty = ystep * ystep;
-var almost = nextx + nexty;
-var distance = Math.sqrt(almost);
-document.getElementById("output").innerHTML = distance;
-}
 function radap() {
 var radap = parseInt(document.getElementById("radap").value);
 var area = Math.PI * (Math.pow(radap, 2));
@@ -655,27 +452,5 @@ var taptwo = parseInt(document.getElementById("taptwo").value);
 var doubled = tap * taptwo;
 var fixed = doubled * 0.5;
 document.getElementById("outputtap").innerHTML = "AREA : " + fixed + "<br>PERIM : Height and Base aren't enough to be accurate";
-}
-function mipoform() {
-var x1mp = parseInt(document.getElementById("x1mp").value);
-var x2mp = parseInt(document.getElementById("x2mp").value);
-var y1mp = parseInt(document.getElementById("y1mp").value);
-var y2mp = parseInt(document.getElementById("y2mp").value);
-var midpointx = (x1mp + x2mp)/2;
-var midpointy = (y1mp + y2mp)/2;
-document.getElementById("outputmp").innerHTML = "(" + midpointx + ", " + midpointy + ")";
-}
-function pytheorem() {
-var a = parseInt(document.getElementById("pt").value);
-var b = parseInt(document.getElementById("pttwo").value);
-var c = Math.sqrt((a*a)+(b*b));
-document.getElementById("outputpt").innerHTML = "c : " + c;
-}
-function box() {
-var height = parseInt(document.getElementById("box").value);
-var width = parseInt(document.getElementById("boxtwo").value);
-var length = parseInt(document.getElementById("boxthree").value);
-var boxvol = height * width * length;
-document.getElementById("outputbox").innerHTML = boxvol;
 }
 </script>
