@@ -482,10 +482,10 @@ function toggle(className, displayState){
 }
 
 function distform() {
-var x1 = parseInt(document.getElementById("x1").value);
-var x2 = parseInt(document.getElementById("x2").value);
-var y1 = parseInt(document.getElementById("y1").value);
-var y2 = parseInt(document.getElementById("y2").value);
+var x1 = document.getElementById("x1").value;
+var x2 = document.getElementById("x2").value;
+var y1 = document.getElementById("y1").value;
+var y2 = document.getElementById("y2").value;
 var xstep = x2 - x1;
 var ystep = y2 - y1;
 var nextx = xstep * xstep;
@@ -495,59 +495,59 @@ var distance = Math.sqrt(almost);
 document.getElementById("output").innerHTML = distance;
 }
 function radap() {
-var radap = parseInt(document.getElementById("radap").value);
+var radap = document.getElementById("radap").value;
 var area = skeepi * (Math.pow(radap, 2));
 var circumference = 2 * skeepi * radap;
 document.getElementById("outputcap").innerHTML = "AREA : " + area + "<br>CIRC : " + circumference;
 }
 function rsap() {
-var rsap = parseInt(document.getElementById("rsap").value);
-var rsaptwo = parseInt(document.getElementById("rsaptwo").value);
+var rsap = document.getElementById("rsap").value;
+var rsaptwo = document.getElementById("rsaptwo").value;
 var area = rsap * rsaptwo;
 var perimeter = (rsap * 2) + (rsaptwo * 2);
 document.getElementById("outputrsap").innerHTML = "AREA : " + area + "<br>PERIM : " + perimeter;
 }
 function tap() {
-var tap = parseInt(document.getElementById("tap").value);
-var taptwo = parseInt(document.getElementById("taptwo").value);
+var tap = document.getElementById("tap").value;
+var taptwo = document.getElementById("taptwo").value;
 var doubled = tap * taptwo;
 var fixed = doubled * 0.5;
 document.getElementById("outputtap").innerHTML = "AREA : " + fixed + "<br>PERIM : Height and Base aren't enough to be accurate";
 }
 function mipoform() {
-var x1mp = parseInt(document.getElementById("x1mp").value);
-var x2mp = parseInt(document.getElementById("x2mp").value);
-var y1mp = parseInt(document.getElementById("y1mp").value);
-var y2mp = parseInt(document.getElementById("y2mp").value);
+var x1mp = document.getElementById("x1mp").value;
+var x2mp = document.getElementById("x2mp").value;
+var y1mp = document.getElementById("y1mp").value;
+var y2mp = document.getElementById("y2mp").value;
 var midpointx = (x1mp + x2mp)/2;
 var midpointy = (y1mp + y2mp)/2;
 document.getElementById("outputmp").innerHTML = "(" + midpointx + ", " + midpointy + ")";
 }
 function pytheorem() {
-var a = parseInt(document.getElementById("pt").value);
-var b = parseInt(document.getElementById("pttwo").value);
+var a = document.getElementById("pt").value;
+var b = document.getElementById("pttwo").value;
 var c = Math.sqrt((a*a)+(b*b));
 document.getElementById("outputpt").innerHTML = "c : " + c;
 }
 function box() {
-var height = parseInt(document.getElementById("box").value);
-var width = parseInt(document.getElementById("boxtwo").value);
-var length = parseInt(document.getElementById("boxthree").value);
+var height = document.getElementById("box").value;
+var width = document.getElementById("boxtwo").value;
+var length = document.getElementById("boxthree").value;
 var boxvol = height * width * length;
 var surfacearea = ((width * length) + (height * width) + (height * length)) * 2;
 var latarea = ((width * height) + (height * length)) * 2;
 document.getElementById("outputbox").innerHTML = "VOL : " + boxvol + "<br>SA : " + surfacearea + "<br>LA : " + latarea;
 }
 function sphere() {
-var kindarad = parseInt(document.getElementById("sphere").value);
+var kindarad = document.getElementById("sphere").value;
 var fot = 4 / 3;
 var finalsphere = fot * skeepi * (Math.pow(kindarad, 3));
 var wompy = 4 * skeepi * (kindarad * kindarad);
 document.getElementById("outputsphere").innerHTML = "VOL : " + finalsphere + "<br>SA : " + wompy;
 }
 function squpyr() {
-var baseedge = parseInt(document.getElementById("squpyr").value);
-var height = parseInt(document.getElementById("squpyrtwo").value);
+var baseedge = document.getElementById("squpyr").value;
+var height = document.getElementById("squpyrtwo").value;
 var resulting = (baseedge * baseedge) * (height/3);
 //solve thingy
 var halfedge = baseedge / 2;
@@ -558,7 +558,7 @@ var fullsurface = (baseedge * baseedge) + allsides;
 document.getElementById("outputsqupyr").innerHTML = "VOL : " + resulting + "<br>SA : " + fullsurface + "<br>LA : " + allsides;
 }
 function vtrap() {
-var basevol = parseInt(document.getElementById("vtrap").value);
+var basevol = document.getElementById("vtrap").value;
 var fouroverthree = 4/3;
 var almostabout = basevol / fouroverthree;
 var resultclose = almostabout / skeepi;
@@ -566,36 +566,40 @@ var resulting = Math.cbrt(resultclose);
 document.getElementById("outputvtrap").innerHTML = resulting;
 }
 function ctor() {
-var basevol = parseInt(document.getElementById("ctor").value);
+var basevol = document.getElementById("ctor").value;
 var final = (basevol / skeepi) / 2;
 document.getElementById("outputctor").innerHTML = final;
 }
 function ctof() {
-var celcistore = parseInt(document.getElementById("ctof").value);
-var fahrenstore = parseInt(document.getElementById("ctoftwo").value);
+var celcistore = document.getElementById("ctof").value;
+var fahrenstore = document.getElementById("ctoftwo").value;
 var qqqcf = (celcistore * (9 / 5)) + 32;
 var qqqfc = (fahrenstore - 32) / (9 / 5);
 document.getElementById("outputctof").innerHTML = "C to F : " + qqqcf + "<br>F to C : " + qqqfc;
 }
 function sth() {
-var slant = parseInt(document.getElementById("sth").value);
-var height = parseInt(document.getElementById("sthtwo").value);
-var basedge = parseInt(document.getElementById("sththree").value);
+var slantX = document.getElementById("sth").value;
+var heightX = document.getElementById("sthtwo").value;
+var basedgeX = document.getElementById("sththree").value;
+var slant = slantX * 10000;
+var height = heightX * 10000;
+var basedge = basedgeX * 10000;
 
 var halfedge = basedge / 2;
-var htos = Math.sqrt((halfedge * halfedge) + (height * height));
-
+var htosX = Math.sqrt((halfedge * halfedge) + (height * height));
+var htos = htosX / 10000;
 var startslanter = slant * slant;
 var doublededggegdgedg = halfedge * halfedge;
 var nextonebud = startslanter - doublededggegdgedg;
-var stoh = Math.sqrt(nextonebud);
+var stohX = nextonebud/100000000;
+var stoh = Math.sqrt(stohX);
 
 document.getElementById("outputsth").innerHTML = "S to H : " + stoh + "<br>H to S : " + htos;
 
 }
 function cyli() {
-var radi = parseInt(document.getElementById("cyli").value);
-var height = parseInt(document.getElementById("cylitwo").value);
+var radi = document.getElementById("cyli").value;
+var height = document.getElementById("cylitwo").value;
 var circoooference = 2 * skeepi * radi;
 var laterace = circoooference * height;
 var basearea = skeepi * (radi * radi);
@@ -604,8 +608,8 @@ var fullsurface = basearea + basearea + laterace;
 document.getElementById("outputcyli").innerHTML = "VOL : " + vol + "<br>SA : " + fullsurface + "<br>LA : " + laterace;
 }
 function cone() {
-var rad = parseInt(document.getElementById("cone").value);
-var height = parseInt(document.getElementById("conetwo").value);
+var rad = document.getElementById("cone").value;
+var height = document.getElementById("conetwo").value;
 var heightdividedbythree = height / 3;
 var radiussquaredtimespi = skeepi * (rad * rad);
 var volumeofthecone = heightdividedbythree * radiussquaredtimespi;
