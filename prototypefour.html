@@ -1,4 +1,9 @@
-<head></head><body><div id="mainpanel"></div>
+<head>
+<meta content="For someone doing Geometry, by someone doing Geometry." property="og:description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="mainpanel"></div>
 <div id="maincalc" class="panel" style="display: none;">
     <div id="displaycalcmain"></div>
     <button type="button" id="nine" class="numkey" accesskey="9" onclick="calc('9');">9</button>
@@ -52,6 +57,11 @@
     <button type="button" id="tabpan" onclick="showpanel('ctofpanel');">Celcius <> Fahrenheit</button>
     <button type="button" id="tabpan" onclick="showpanel('circtoradpanel');">Circumference to Radius</button>
     <button type="button" id="tabpan" onclick="showpanel('vtrpanel');">Volume to Radius</button>
+
+    <div id="tab">Regular N-Gons</div>
+
+    <button type="button" id="tabpan" onclick="showpanel('ngonpanel');">Polygon</button>
+    <button type="button" id="tabpan" onclick="showpanel('ngonpyrapanel');">N-Pyramid</button>
 
 </div>
 <div id="squpyrpanel" class="panel" style="display: block;">
@@ -131,10 +141,58 @@
     <input type="text" placeholder="y2" id="y2" class="foreign">
     <button type="button" onclick="distform();" id="output" class="outputbutton">Awaiting Input (Click/Tap)</button>
 </div>
+<div id="ngonpanel" class="panel" style="display: none;">
+    <input type="text" placeholder="Apothem" id="ngonapothem" class="threein">
+    <input type="text" placeholder="Edge" id="ngonedge" class="threein">
+    <input type="text" placeholder="Sides" id="ngonsides" class="threein">
+    <button type="button" onclick="ngon();" id="outputngon" class="outputbutton">Awaiting Input (Click/Tap)</button>
+</div>
+<div id="ngonpyrapanel" class="panel" style="display: none;">
+    <input type="text" placeholder="Apothem" id="ngpa" class="foreign">
+    <input type="text" placeholder="Edge" id="ngpe" class="foreign">
+    <input type="text" placeholder="Height" id="ngph" class="foreign">
+    <input type="text" placeholder="Sides" id="ngps" class="foreign">
+    <button type="button" onclick="ngp();" id="outputngp" class="outputbutton">Awaiting Input (Click/Tap)</button>
+</div>
 
 <button type="button"></button>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #949494;
+  border: 0px none #ffffff;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #47d1ff;
+}
+::-webkit-scrollbar-track {
+  background: #242424;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #000000;
+}
+::-webkit-scrollbar-track:active {
+  background: #00495c;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
     body {
 margin:0;
 padding:0;
@@ -156,6 +214,7 @@ background:#323232;
 left:0;
 top:0;
 position:absolute;
+overflow-y:scroll;
 }
     #tab {
 width:100%;
@@ -186,7 +245,7 @@ background:black;
 border:white 2px solid;
 color:white;
 text-align:center;
-font-size:200%;
+font-size:3vw;
 left:0;
 }
     .threein {
@@ -196,7 +255,7 @@ background:black;
 border:white 2px solid;
 color:white;
 text-align:center;
-font-size:200%;
+font-size:3vw;
 left:0;
 }
     .twoin {
@@ -206,7 +265,7 @@ background:black;
 border:white 2px solid;
 color:white;
 text-align:center;
-font-size:200%;
+font-size:3vw;
 left:0;
 }
     .onein {
@@ -216,7 +275,7 @@ background:black;
 border:white 2px solid;
 color:white;
 text-align:center;
-font-size:200%;
+font-size:3vw;
 position:absolute;
 left:0;
 top:0;
@@ -229,7 +288,7 @@ background:black;
 border:white 2px solid;
 color:white;
 text-align:center;
-font-size:200%;
+font-size:3vw;
 position:absolute;
 right:0;
 top:0;
@@ -617,6 +676,30 @@ var surfaceareaofthecone = skeepi * rad * (rad + (Math.sqrt((height * height) + 
 var baseofcone = skeepi * (rad * rad);
 var lateralthing = surfaceareaofthecone - baseofcone;
 document.getElementById("outputcone").innerHTML = "VOL : " + volumeofthecone + "<br>SA : " + surfaceareaofthecone + "<br>LA : " + lateralthing;
+}
+function ngon() {
+var apothem = document.getElementById("ngonapothem").value;
+var edge = document.getElementById("ngonedge").value;
+var sides = document.getElementById("ngonsides").value;
+var onetriangle = apothem * edge * 0.5;
+var wholething = sides * onetriangle;
+var outer = edge * sides;
+document.getElementById("outputngon").innerHTML = "AREA : " + wholething + "<br>PERI : " +  outer;
+}
+function ngp() {
+var apothem = document.getElementById("ngpa").value;
+var edge = document.getElementById("ngpe").value;
+var height = document.getElementById("ngph").value;
+var sides = document.getElementById("ngps").value;
+var oneslicebase = apothem * edge * 0.5;
+var wholebase = sides * oneslicebase;
+var heightdividedbynotfive = height / 3;
+var volumeofngp = wholebase * heightdividedbynotfive;
+var slantinator = Math.sqrt((apothem * apothem) + (height * height));
+var sidetri = slantinator * edge;
+var allsidesides = sidetri * sides;
+var surfacengp = allsidesides + wholebase;
+document.getElementById("outputngp").innerHTML = "VOL : " + volumeofngp + "<br>SA : " + surfacengp + "<br>LA : " + allsidesides;
 }
 </script>
 </body>
