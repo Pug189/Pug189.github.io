@@ -2,8 +2,8 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/IanR1225/IanR1225.github.io/main/fullzoom.ico" sizes="64x64">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="https://github.com/IanR1225/IanR1225.github.io/blob/main/Altsiris.png?raw=true" property="og:image">
-<meta content="Recondite 1.0 by Pug#8082" property="og:description">
-<title>Recondite 1.0</title>
+<meta content="Recondite 1.1 by Pug#8082" property="og:description">
+<title>Recondite 1.1</title>
 </head>
 <div id=scrollline></div>
 <div id=scrolllinetwo></div>
@@ -26,6 +26,7 @@ Today has become too mundane for the gods.<br>They're bored of us, and there's o
 <button id=exit type=button onclick="showpanel('titlescreen'); ChoiceLock=1;">&lt; &lt; &lt;</button>
 <div class=textbox id=igconsole></div>
 </div>
+<button id=cookies type=button onclick="cookcept();">We use cookies.<br>Playing music also requires a click so this allows for title music.<br>Is that fine?<br>[Click to continue]</button>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 ::-webkit-scrollbar {
@@ -153,6 +154,13 @@ Today has become too mundane for the gods.<br>They're bored of us, and there's o
         width:100%;
         font-family: 'Orbitron', sans-serif;
         font-size:3vh;
+}
+    #cookies {
+        height:100%;
+        width:100%;
+        color:white;
+        background:black;
+        position:absolute;
 }
 </style>
 <script>
@@ -284,4 +292,45 @@ if (startrand==1) {optionrun("D");}
 if (startrand==2) {optionrun("U");}
 if (startrand==3) {optionrun("B");}
 
+//COOKIES
+
+function cookcept() {
+document.getElementById("cookies").style.display = "none";
+document.getElementById("cookies").style.pointerEvents = "none";
+document.cookie = `welcome=here`;
+setInterval(
+function () {
+new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/HERE.mp3?raw=true').play();
+}, 54000
+);
+new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/HERE.mp3?raw=true').play();
+}
+var nani = cookieSearch("welcome");
+if (nani == "welcome = here") {
+document.getElementById("cookies").style.display = "none";
+document.getElementById("cookies").style.pointerEvents = "none";
+document.getElementById("Start").innerHTML = "Start again";
+setInterval(
+function () {
+new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/AGAIN.mp3?raw=true').play();
+}, 118000
+);
+new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/AGAIN.mp3?raw=true').play();
+}
+
+//Thanks to https://www.developintelligence.com/blog/2017/01/cookies-with-javascript/
+
+//function to search for key and return value
+function cookieSearch(key) {
+  let c = document.cookie,
+    result;
+
+  if (c.includes(`${key}=`)) {
+    result = `${key} = ${c.split(`${key}=`)[1].split(`;`)[0]}`;
+  } else {
+    result = `<span style="color: red">Key not found in cookie.</span>`;
+  }
+  
+  return result;
+}
 </script>
