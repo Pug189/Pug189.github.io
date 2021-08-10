@@ -1,0 +1,287 @@
+<head>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/IanR1225/IanR1225.github.io/main/fullzoom.ico" sizes="64x64">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="https://github.com/IanR1225/IanR1225.github.io/blob/main/Altsiris.png?raw=true" property="og:image">
+<meta content="Recondite 1.0 by Pug#8082" property="og:description">
+<title>Recondite 1.0</title>
+</head>
+<div id=scrollline></div>
+<div id=scrolllinetwo></div>
+<div id=static></div>
+<div id=titlescreen class=panel>
+<div id=logo></div>
+<div id=ismellpennies>
+<button class=button type=button id=Start onclick="showpanel('game'); ChoiceLock=0; optionrun('');">Start</button>
+<button class=button type=button id=Settings onclick="cc();">Settings</button>
+<button class=button type=button id=Story onclick="showpanel('lore')">Story</button>
+</div>
+</div>
+<div id=lore class=panel>
+<button id=exit type=button onclick="showpanel('titlescreen')">&lt; &lt; &lt;</button>
+<div class=textbox>
+Today has become too mundane for the gods.<br>They're bored of us, and there's only one solution.<br>Why not stir up the pot?<br><br>Random individuals have been gifted powers, objects, and entities.<br>This creates three groups.<br><br><img src="https://github.com/IanR1225/IanR1225.github.io/blob/main/DOG.gif?raw=true"><br>First, the people trying to keep the law in place and update it to accommodate the current situation. The prior authority desperately trying to regain control.<br><br><img src="https://github.com/IanR1225/IanR1225.github.io/blob/main/Untouched.gif?raw=true"><br>Second, the people who remain unchanged trying to survive.<br><br><img src="https://github.com/IanR1225/IanR1225.github.io/blob/main/BOA.gif?raw=true"><br>Third, the people who exploit their gifts to create anarchy.<br><br>---
+</div>
+</div>
+<div id=game class=panel>
+<button id=exit type=button onclick="showpanel('titlescreen'); ChoiceLock=1;">&lt; &lt; &lt;</button>
+<div class=textbox id=igconsole></div>
+</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #8f8f8f;
+  border: 0px none #ffffff;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff0000;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #520000;
+}
+::-webkit-scrollbar-track {
+  background: #4a4a4a;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #242424;
+}
+::-webkit-scrollbar-track:active {
+  background: #000000;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+    body {
+        background:black;
+        overflow:hidden;
+        padding:0;
+        margin:0;
+}
+    #scrollline {
+        height:0.1rem;
+        width:100%;
+        position:absolute;
+        background:#161616;
+        animation:scroll 5s infinite linear;
+}
+    #scrolllinetwo {
+        height:0.1rem;
+        width:100%;
+        position:absolute;
+        background:#161616;
+        animation:scroll 11s infinite linear;
+}
+    @keyframes scroll {
+        0% {top:-1rem;}
+        100% {top:calc(100% + 1rem);}
+}
+    #static {
+        background-image:url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+        width:100%;
+        height:100%;
+        position:absolute;
+        transform:rotate(180deg);
+        background-size:contain;
+        filter:opacity(2%);
+        pointer-events:none;
+}
+    #logo {
+        background-image:url("Recondite.png");
+        width:100%;
+        background-position:center;
+        position:absolute;
+        height:20%;
+        background-repeat:no-repeat;
+        background-size:contain;
+}
+    button {
+        font-family: 'Orbitron', sans-serif;
+        text-align:center;
+        font-size:5vh;
+}
+    .button {
+        width:50%;
+        background:black;
+        color:white;
+        margin:1vh;
+        left:25%;
+        position:relative;
+}
+    #ismellpennies {
+        width:100%;
+        height:70%;
+        top:30%;
+        position:absolute;
+        justify-content: center;
+        display:flex;
+        flex-direction:column;
+}
+    #Start {
+        border:cyan 2px solid;
+        filter:drop-shadow(0px 0px 5px cyan);
+}
+    #Settings {
+        border:#336633 2px solid;
+}
+    #Story {
+        border:crimson 2px solid;
+        filter:drop-shadow(0px 0px 5px red);
+}
+    #exit {
+        width:100%;
+        color:white;
+        background:black;
+        border:none;
+}
+    .textbox {
+        text-align:center;
+        color:white;
+        position:absolute;
+        overflow-y:scroll;
+        height:90%;
+        top:10%;
+        width:100%;
+        font-family: 'Orbitron', sans-serif;
+        font-size:3vh;
+}
+</style>
+<script>
+
+//PAGES
+
+function showpanel(id) {
+toggle("panel", "none");
+document.getElementById(id).style.display = "block";
+}
+function toggle(className, displayState){
+    var elements = document.getElementsByClassName(className);
+
+    for (var i = 0; i < elements.length; i++){
+        elements[i].style.display = displayState;
+    }
+}
+showpanel("titlescreen");
+
+//PATHS
+
+var ChoiceLock = 1;
+var choiceonebutton = "A";
+var choicetwobutton = "B";
+var choicethreebutton = "C";
+var choicefourbutton = "D";
+function opone(msg) {
+    icl(""); icl(choiceonebutton + ": " + msg);
+}
+function optwo(msg) {
+    icl(choicetwobutton + ": " + msg);
+}
+function opthree(msg) {
+    icl(choicethreebutton + ": " + msg);
+}
+function opfour(msg) {
+    icl(choicefourbutton + ": " + msg);
+}
+function cc() {
+choiceonebutton = prompt("Enter first choice button", "ex: A");
+choicetwobutton = prompt("Enter second choice button", "ex: B");
+choicethreebutton = prompt("Enter third choice button", "ex: C");
+choicefourbutton = prompt("Enter fourth choice button", "ex: D");
+}
+
+    document.onkeypress = function(event){
+if (ChoiceLock==0) {
+  if (event.key.toLowerCase()==choiceonebutton.toLowerCase()) {
+optionrun("A");
+}
+else   if (event.key.toLowerCase()==choicetwobutton.toLowerCase()) {
+optionrun("B");
+}
+else   if (event.key.toLowerCase()==choicethreebutton.toLowerCase()) {
+optionrun("C");
+}
+else   if (event.key.toLowerCase()==choicefourbutton.toLowerCase()) {
+optionrun("D");
+}
+}
+};
+
+var pathstring = "";
+function ca(potionseller) {
+pathstring = pathstring + potionseller;
+}
+
+function optionrun(choice) {
+    document.getElementById('igconsole').innerHTML = "";
+    ca(choice);
+    switch (pathstring) {
+
+//BEGIN
+
+        case "D":
+icl("You\'re a part of the Defenders of the Globe. You go by the alias Q, and you can pass through things or make things pass through you. You awake in a cube-shaped room, your bed along the wall opposite the door. The other two walls have beds of their own, one empty and one not.");
+opone("Get up and go out the door");
+optwo("Wake the other person up");
+opthree("Stay in bed");
+opfour("Look around the room");
+break;
+        case "U":
+icl("You\'re a regular person. You wake up on the ground on the side of the road, someone nudging you and saying unintelligible things. You don\'t remember how you got here.");
+opone("\"Where am I?\"");
+optwo("\"Who are you?\"");
+opthree("\"Did I do something?\"");
+opfour("Look around");
+break;
+        case "UC":
+icl("They look a bit confused and bewildered, but you can tell they want to help. \"You ran out of your home and collapsed. You didn\'t do anything else that I saw.\"");
+opone("Run inside");
+optwo("\"Do you know what happened?\"");
+opthree("\"Sorry\"");
+opfour("Look around");
+break;
+        case "B":
+icl("You\'re a part of the Bringers of Anarchy. Your name is Lisa, and visually your arm movements are mirrored. Picking up an object that isn't directly in front of you looks like you are reaching in a different direction before the object starts moving on its own. Leaning against things is interesting. You\'re on a couch.");
+opone("Get up");
+optwo("Check your phone");
+opthree("Stay on the couch");
+opfour("Look around the room");
+break;
+
+//END
+
+        default:
+icl("Unknown Path " + pathstring);
+break;
+}
+}
+
+//CONSOLE
+    
+function scrolligconsole() {
+  var theigconsole = document.getElementById('igconsole');  
+  theigconsole.scrollTop = theigconsole.scrollHeight;   
+}
+
+function icl(msg) {
+var igconsolehtml = document.getElementById('igconsole').innerHTML;
+if (igconsolehtml == "") {document.getElementById('igconsole').innerHTML = "<br><br><br><br>" + msg.toString() + "<br>";}
+else {
+document.getElementById('igconsole').innerHTML = igconsolehtml + "<br>" + msg.toString() + "<br>";
+}
+}
+
+var startrand = Math.floor(Math.random() * 3) + 1;
+if (startrand==1) {optionrun("D");}
+if (startrand==2) {optionrun("U");}
+if (startrand==3) {optionrun("B");}
+
+</script>
