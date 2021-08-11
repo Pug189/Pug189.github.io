@@ -2,8 +2,8 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/IanR1225/IanR1225.github.io/main/fullzoom.ico" sizes="64x64">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="https://github.com/IanR1225/IanR1225.github.io/blob/main/Altsiris.png?raw=true" property="og:image">
-<meta content="Recondite 1.1 by Pug#8082" property="og:description">
-<title>Recondite 1.1</title>
+<meta content="Recondite 1.2 by Pug#8082" property="og:description">
+<title>Recondite 1.2</title>
 </head>
 <div id=scrollline></div>
 <div id=scrolllinetwo></div>
@@ -241,6 +241,28 @@ opone("Get up and go out the door");
 optwo("Wake the other person up");
 opthree("Stay in bed");
 opfour("Look around the room");
+break;
+        case "DB":
+icl("You get up and try to push the person, but your hand goes through them. It isn't colliding with them, but rather being transported to the opposite side of them. You can feel your hand under the bed, brushing against the wall. You pull your hand back.");
+opone("\"Umm\"");
+optwo("Go out the door");
+opthree("Try again");
+opfour("Stomp your foot on the ground");
+break;
+        case "DBD":
+icl("You try to stomp your foot on the ground, but it does exactly what your hand did. You don't know where your foot went, but it's significantly colder than the room. You start falling, finally being able to get a grip on something. You grab the weapon rack on the wall beside the person\'s bed, rattling it as you stop your fall. The person, Murtagh, jolts awake at the sound. \"Q you really need to figure this thing out.\" He helps you up until you get your foot to collide with the ground properly, then sighs and walks out.");
+opone("Follow him");
+optwo("Look at the weapon rack");
+opthree("Look at your leg");
+opfour("[X]");
+break;
+        case "DBDD":
+pathstring="DBD";
+icl("You try to stomp your foot on the ground, but it does exactly what your hand did. You don't know where your foot went, but it's significantly colder than the room. You start falling, finally being able to get a grip on something. You grab the weapon rack on the wall beside the person\'s bed, rattling it as you stop your fall. The person, Murtagh, jolts awake at the sound. \"Q you really need to figure this thing out.\" He helps you up until you get your foot to collide with the ground properly, then sighs and walks out.");
+opone("Follow him");
+optwo("Look at the weapon rack");
+opthree("Look at your leg");
+opfour("[X]");
 break;
         case "U":
 icl("You\'re a regular person. You wake up on the ground on the side of the road, someone nudging you and saying unintelligible things. You don\'t remember how you got here.");
