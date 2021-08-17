@@ -2,8 +2,8 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/IanR1225/IanR1225.github.io/main/fullzoom.ico" sizes="64x64">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="https://github.com/IanR1225/IanR1225.github.io/blob/main/Altsiris.png?raw=true" property="og:image">
-<meta content="Recondite 1.2 by Pug#8082" property="og:description">
-<title>Recondite 1.2</title>
+<meta content="Recondite 1.1 by Pug#8082" property="og:description">
+<title>Recondite 1.1</title>
 </head>
 <div id=scrollline></div>
 <div id=scrolllinetwo></div>
@@ -227,7 +227,10 @@ var pathstring = "";
 function ca(potionseller) {
 pathstring = pathstring + potionseller;
 }
-
+function nopath() {
+pathstring = pathstring.slice(0, -1);
+optionrun("");
+}
 function optionrun(choice) {
     document.getElementById('igconsole').innerHTML = "";
     ca(choice);
@@ -242,12 +245,35 @@ optwo("Wake the other person up");
 opthree("Stay in bed");
 opfour("Look around the room");
 break;
+        case "DA":
+icl("You walk out the door, careful not to wake the other person. You see someone with a black metal crown making food. They\'re Xenegynn and they can cause light to cease, winds to howl, distress signals to fail, and your legs to give out all in less than a second.");
+opone("\"What are you making?\"");
+optwo("\"Tell me a joke\"");
+opthree("Turn on the TV");
+opfour("[X]");
+break;
+        case "DAD": //father
+nopath();
+break;
         case "DB":
 icl("You get up and try to push the person, but your hand goes through them. It isn't colliding with them, but rather being transported to the opposite side of them. You can feel your hand under the bed, brushing against the wall. You pull your hand back.");
 opone("\"Umm\"");
 optwo("Go out the door");
 opthree("Try again");
 opfour("Stomp your foot on the ground");
+break;
+        case "DC":
+icl("You want to stay in bed, but you\'re also hungry and smell the food outside.");
+opone("Get up and eat");
+optwo("Go back to sleep and starve");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "DCC":
+nopath();
+break;
+        case "DCD":
+nopath();
 break;
         case "DBD":
 icl("You try to stomp your foot on the ground, but it does exactly what your hand did. You don't know where your foot went, but it's significantly colder than the room. You start falling, finally being able to get a grip on something. You grab the weapon rack on the wall beside the person\'s bed, rattling it as you stop your fall. The person, Murtagh, jolts awake at the sound. \"Q you really need to figure this thing out.\" He helps you up until you get your foot to collide with the ground properly, then sighs and walks out.");
@@ -257,12 +283,7 @@ opthree("Look at your leg");
 opfour("[X]");
 break;
         case "DBDD":
-pathstring="DBD";
-icl("You try to stomp your foot on the ground, but it does exactly what your hand did. You don't know where your foot went, but it's significantly colder than the room. You start falling, finally being able to get a grip on something. You grab the weapon rack on the wall beside the person\'s bed, rattling it as you stop your fall. The person, Murtagh, jolts awake at the sound. \"Q you really need to figure this thing out.\" He helps you up until you get your foot to collide with the ground properly, then sighs and walks out.");
-opone("Follow him");
-optwo("Look at the weapon rack");
-opthree("Look at your leg");
-opfour("[X]");
+nopath();
 break;
         case "U":
 icl("You\'re a regular person. You wake up on the ground on the side of the road, someone nudging you and saying unintelligible things. You don\'t remember how you got here.");
@@ -273,10 +294,17 @@ opfour("Look around");
 break;
         case "UC":
 icl("They look a bit confused and bewildered, but you can tell they want to help. \"You ran out of your home and collapsed. You didn\'t do anything else that I saw.\"");
-opone("Run inside");
-optwo("\"Do you know what happened?\"");
-opthree("\"Sorry\"");
+opone("Thank them and go back inside");
+optwo("\"Where am I?\"");
+opthree("\"Who are you?\"");
 opfour("Look around");
+break;
+        case "UB": //YUBI YUBI
+icl("I\'m from another block, but I was taking a walk and passing through here.");
+opone("Thank them and go back inside");
+optwo("\"Did I do something?\"");
+opthree("Look around");
+opfour("\"Where am I?\"");
 break;
         case "B":
 icl("You\'re a part of the Bringers of Anarchy. Your name is Lisa, and visually your arm movements are mirrored. Picking up an object that isn't directly in front of you looks like you are reaching in a different direction before the object starts moving on its own. Leaning against things is interesting. You\'re on a couch.");
