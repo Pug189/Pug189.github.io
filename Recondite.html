@@ -259,11 +259,51 @@ opthree("Stay in bed");
 opfour("Look around the room");
 break;
         case "DA":
-icl("You walk out the door, careful not to wake the other person. You see someone with a black metal crown making food. They\'re Xenegynn and they can cause light to cease, winds to howl, distress signals to fail, and your legs to give out all in less than a second.");
+icl("You walk out the door, careful not to wake the other person. You see someone with a black metal crown making food. They\'re Xenegynn and they can cause light to cease, winds to howl, distress signals to fail, and your legs to give out, all in less than a second.");
 opone("\"What are you making?\"");
 optwo("\"Tell me a joke\"");
 opthree("Turn on the TV");
 opfour("[X]");
+break;
+        case "DAA":
+nopath();
+icl("\"Eggs and beans. You either eat them or make your own food.\"");
+break;
+        case "DAB": //why
+nopath();
+icl("\"I would, but it would probably go right through your head.\"");
+break;
+        case "DAC":
+icl("You point the TV remote at the TV and press the ON button. Nothing happens.");
+opone("Press it again, but point the remote at the TV from a different angle");
+optwo("[X]");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "DACA":
+icl("The TV is still off.");
+opone("Press the ON button a third time, pointing the remote differently yet again.");
+optwo("[X]");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "DACAB": //DATRUCK
+nopath();
+break;
+        case "DACAC": //JUMPINTHECACC
+nopath();
+break;
+        case "DACAD": //P A L I N D R O M E
+nopath();
+break;
+        case "DACB":
+nopath();
+break;
+        case "DACC": //I like this
+nopath();
+break;
+        case "DACD":
+nopath();
 break;
         case "DAD": //father
 nopath();
