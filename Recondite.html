@@ -2,8 +2,8 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/IanR1225/IanR1225.github.io/main/fullzoom.ico" sizes="64x64">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="https://github.com/IanR1225/IanR1225.github.io/blob/main/Altsiris.png?raw=true" property="og:image">
-<meta content="Recondite 1.2 by Pug#8082" property="og:description">
-<title>Recondite 1.2</title>
+<meta content="Recondite 1.3 by Pug#8082" property="og:description">
+<title>Recondite 1.3</title>
 </head>
 <div id=scrollline></div>
 <div id=scrolllinetwo></div>
@@ -171,6 +171,17 @@ Today has become too mundane for the gods.<br>They're bored of us, and there's o
         font-family: 'Orbitron', sans-serif;
         font-size:3vh;
 }
+    p {
+        text-align:center;
+        color:white;
+        overflow-y:scroll;
+        font-family: 'Orbitron', sans-serif;
+        font-size:3vh;
+        margin:0;
+        padding:0;
+        border:0;
+        display:inline;
+}
     #cookies {
         height:100%;
         width:100%;
@@ -205,16 +216,16 @@ var choicetwobutton = "B";
 var choicethreebutton = "C";
 var choicefourbutton = "D";
 function opone(msg) {
-    icl(""); icl(choiceonebutton + ": " + msg);
+    icl(""); icl("<p onclick='optionrun(\"A\");'>" + choiceonebutton + ": " + msg + "</p>");
 }
 function optwo(msg) {
-    icl(choicetwobutton + ": " + msg);
+    icl("<p onclick='optionrun(\"B\");'>" + choicetwobutton + ": " + msg + "</p>");
 }
 function opthree(msg) {
-    icl(choicethreebutton + ": " + msg);
+    icl("<p onclick='optionrun(\"C\");'>" + choicethreebutton + ": " + msg + "</p>");
 }
 function opfour(msg) {
-    icl(choicefourbutton + ": " + msg);
+    icl("<p onclick='optionrun(\"D\");'>" + choicefourbutton + ": " + msg + "</p>");
 }
 function cc() {
 choiceonebutton = prompt("Enter first choice button", "ex: A");
