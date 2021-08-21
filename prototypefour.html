@@ -617,7 +617,7 @@ var fullsurface = (baseedge * baseedge) + allsides;
 document.getElementById("outputsqupyr").innerHTML = "VOL : " + resulting + "<br>SA : " + fullsurface + "<br>LA : " + allsides;
 }
 function vtrap() {
-var parseFloat(basevol = document.getElementById("vtrap").value);
+var basevol = parseFloat(document.getElementById("vtrap").value);
 var fouroverthree = 4/3;
 var almostabout = basevol / fouroverthree;
 var resultclose = almostabout / skeepi;
