@@ -1,12 +1,12 @@
-# Mind Exchange
+# Recondite
 
-Mind Exchange is a choose your adventure game that takes place in a console.
+Recondite is a choose your adventure game that takes place in a console.
 
 ## Playing
 
-Go [here](https://pug189.github.io/MindExchange) to access Mind Exchange
+Go [here](https://pug189.github.io/Recondite) to access Recondite
 
-Click the begin button and use your A, B, C, and D keys to make choices. There is mobile support.
+Click the start button and use your A, B, C, and D keys to make choices. You can change the controls or just click the options if you want.
 
 ## Contributing
 You can leave feedback and ideas in the [Discord server](https://discord.gg/gAk3Rnu)
