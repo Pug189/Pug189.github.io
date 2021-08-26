@@ -378,9 +378,25 @@ break;
         case "UB": //YUBI YUBI
 icl("I\'m from another block, but I was going somewhere and happened to pass through here.");
 opone("Thank them and go back inside");
-optwo("\"Did I do something?\"");
-opthree("Look around");
-opfour("\"Where am I?\"");
+optwo("\"Where am I?\"");
+opthree("\"Did I do something?\"");
+opfour("Look around");
+break;
+        case "UBB":
+pathstring="UA";
+icl("\"Just outside your house. I can help you back in if you\'d like.\"");
+opone("\"I\'ll be fine.\"");
+optwo("\"Sure.\"");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "UBC":
+pathstring="UC";
+icl("They look a bit confused and bewildered, but you can tell they want to help. \"You ran out of your home and collapsed. You didn\'t do anything else that I saw.\"");
+opone("Thank them and go back inside");
+optwo("\"Where am I?\"");
+opthree("\"Who are you?\"");
+opfour("Look around");
 break;
         case "UA":
 icl("\"Just outside your house. I can help you back in if you\'d like.\"");
@@ -388,6 +404,36 @@ opone("\"I\'ll be fine.\"");
 optwo("\"Sure.\"");
 opthree("[X]");
 opfour("[X]");
+break;
+        case "UCB":
+pathstring="UA";
+icl("\"Just outside your house. I can help you back in if you\'d like.\"");
+opone("\"I\'ll be fine.\"");
+optwo("\"Sure.\"");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "UCC":
+pathstring="UB";
+icl("I\'m from another block, but I was going somewhere and happened to pass through here.");
+opone("Thank them and go back inside");
+optwo("\"Where am I?\"");
+opthree("\"Did I do something?\"");
+opfour("Look around");
+break;
+        case "UCD":
+nopath();
+icl("The person towering over you seems a bit scared, but not of you. It\'s somewhere in the early morning, and judging by how the person is dressed you can assume they were on their way to work. You recognize the closest house as your own, with the front door wide open. It\'s still swinging, so it hasn\'t been long.");
+break;
+        case "UBD":
+nopath();
+icl("The person towering over you seems a bit scared, but not of you. It\'s somewhere in the early morning, and judging by how the person is dressed you can assume they were on their way to work. You recognize the closest house as your own, with the front door wide open. It\'s still swinging, so it hasn\'t been long.");
+break;
+        case "UAC":
+nopath();
+break;
+        case "UAD":
+nopath();
 break;
         case "B":
 icl("You\'re a part of the Bringers of Anarchy. Your name is Lisa, and visually your arm movements are mirrored. Picking up an object that isn't directly in front of you looks like you are reaching in a different direction before the object starts moving on its own. Leaning against things is interesting. You\'re on a couch.");
@@ -399,9 +445,149 @@ break;
         case "BA":
 icl("You stretch and jump up, your joints cracking as you move. For a few moments you\'re lightheaded because of how fast you got up, but after a few deep breaths you\'re fine again.");
 opone("Go see who is in the house");
-optwo("Turn on the lights");
+optwo("Flick the light switch");
 opthree("Lean against the wall");
 opfour("[X]");
+break;
+        case "BAB":
+nopath();
+lights();
+break;
+        case "BAA": //s h e e p
+icl("You first check Zenyr's room. It's empty. As you\'re walking away you hear the muffled sound of high-velocity gas and fire from the next room over.");
+opone("Go outside");
+optwo("Check the room");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAAB":
+icl("You knock on the door and are acknowledged with a stern \"What?\"");
+opone("\"Can I come in or will I be incinerated?\"");
+optwo("\"Bogos binted?\"");
+opthree("\"What\'s a skeleton\'s favorite snack?\"");
+opfour("[X]");
+break;
+        case "BAABB":
+icl("\"Absolutely. Come in.\" You step into the room, immediately noticing the several fans running, open windows, and smoky air. \"Figured I\'d mod this. The range is terrible.\"");
+pathstring="BAABA";
+opone("Point to the smaller tank \"What\'s in this?\"");
+optwo("Point to the larger tank \"What\'s in this?\"");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAABC":
+icl("\"I\'m not going to say it, and you better not either.\"");
+opone("\"Spare\"");
+optwo("[X]");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAABCB":
+nopath();
+break;
+        case "BAABCC":
+nopath();
+break;
+        case "BAABCD":
+nopath();
+break;
+        case "BAABCA":
+icl("\"Say another word and you\'re not allowed in this room.\"");
+opone("\"Ribs\"");
+optwo("[X]");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAABCAB":
+nopath();
+break;
+        case "BAABCAC":
+nopath();
+break;
+        case "BAABCAD":
+nopath();
+break;
+        case "BAABCAA":
+icl("You hear a loud noise as he presumably hits a table with his fist. \"Goddamnit. Can\'t stay mad at you though, come on in.\" You step into the room, immediately noticing the several fans running, open windows, and smoky air. \"Figured I\'d mod this. The range is terrible.\"");
+pathstring="BAABA";
+opone("Point to the smaller tank \"What\'s in this?\"");
+optwo("Point to the larger tank \"What\'s in this?\"");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAABA": //IS YOU
+icl("\"Depends on how my day\'s going. Come in.\" You step into the room, immediately noticing the several fans running, open windows, and smoky air. \"Figured I\'d mod this. The range is terrible.\"");
+opone("Point to the smaller tank \"What\'s in this?\"");
+optwo("Point to the larger tank \"What\'s in this?\"");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAABAA":
+icl("\"Fan blades and dust, what did you expect? Oh, wait, hand thing. Right. Sorry. Red oxygen, or Octaoxygen. You can figure out what it is from there.\"");
+opone("\"And the other tank?\"");
+optwo("[X]");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAABAB":
+icl("\"Fan blades and dust, what did you expect? Oh, wait, hand thing. Right. Sorry. Hydrogen sulfide. It burns blue.\"");
+opone("\"And the other tank?\"");
+optwo("[X]");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAABAAA":
+icl("\"Hydrogen sulfide. Burns blue.\"");
+pathstring="SpareRibs";
+opone("");
+optwo("");
+opthree("");
+opfour("");
+break;
+        case "BAABABA":
+icl("\"Red oxygen. Octaoxygen. Same thing.\"");
+pathstring="SpareRibs";
+opone("");
+optwo("");
+opthree("");
+opfour("");
+break;
+        case "BAABAAB":
+nopath();
+break;
+        case "BAABAAC":
+nopath();
+break;
+        case "BAABAAD":
+nopath();
+break;
+        case "BAABABB":
+nopath();
+break;
+        case "BAABABC":
+nopath();
+break;
+        case "BAABABD":
+nopath();
+break;
+        case "BAABAC":
+nopath();
+break;
+        case "BAABAD":
+nopath();
+break;
+        case "BAABD":
+nopath();
+break;
+        case "BAAC":
+nopath();
+break;
+        case "BAAD":
+nopath();
+break;
+        case "BAC":
+nopath();
+icl("You lean against the wall. It looks like you\'re magically balancing and holding your hand out away from the wall. Nothing happens.");
 break;
         case "BAD": //g o o d
 nopath();
@@ -447,6 +633,12 @@ if (startrand==1) {optionrun("D");}
 if (startrand==2) {optionrun("U");}
 if (startrand==3) {optionrun("B");}
 
+var lightoggle = 0;
+function lights() {
+if (lightoggle==0) {icl("The lights are on now. You have to squint, since your eyes are accustomed to the dark."); lightoggle=1;}
+if (lightoggle==1) {icl("The lights are off. You can't see anymore because your eyes have already started adjusting to bright lighting."); lightoggle=0;}
+}
+
 //COOKIES
 
 function cookcept() {
@@ -488,13 +680,4 @@ function cookieSearch(key) {
   
   return result;
 }
-/*
-        case "":
-icl("");
-opone("");
-optwo("");
-opthree("");
-opfour("");
-break;
-*/
 </script>
