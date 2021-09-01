@@ -1,0 +1,169 @@
+<head>
+  <link rel="icon" type="image/png" href="https://github.com/IanR1225/IanR1225.github.io/blob/main/asian.ico?raw=true" sizes="64x64">
+  <meta content="Scripts for Discord by Pug#8082" property="og:description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<title>Discord Scripts</title>
+<div id=sidebar>
+    <div id=logo></div>
+    <div id=fancyline></div>
+    <div id=sidetitle><strong>Discord<br>Scripts</strong></div>
+    <ul>
+        <a href="https://pug189.github.io/msgmaker"><button onclick=""><li>MSGmaker</li></button><br></a>
+<button onclick="showpanel('mnctyping');"><li>MNCtyping</li></button><br>
+</ul>
+</div>
+<div id=containpanels>
+    
+<div class=panel id=home>
+Discord Scripts<br>By Pug#8082<br><br>MSGmaker<br>Can generate messages and add indicators in any chat. Can be used for entertainment or malicious purposes, though the latter is not recommended. This gives you quite a lot of power, use it wisely.<br><br>MNCtyping<br>(Menacing Typing)<br>Notifies you that someone is typing a DM so you can start typing back before they send it to confuse them.
+</div>
+<div class=panel id=mnctyping>Menacing Typing<br>
+    By Pug#8082<br>
+    - - - - -<br>
+    <br>
+Menacing Typing is a script for Discord.<br>It notifies you when someone is typing so you can start typing back before they finish their message, or say things like "Type faster"<br><br>
+    All you need to do is run the script and go to the Friends screen or a DM so that the sidebar is visible.<br>
+    <br>If you want it to work elsewhere, run the script on the web version of Discord and keep that one on Friends.<br>You can then use the app like you usually would, but you'll still get typing notifications.<br>
+    Copy everything from the text box, go to Discord, CTRL+SHIFT+i, Console, slap everything in there, and then Enter. Then it works until Discord restarts.<br>
+    <br>
+    <input type=text value="var cooldown = 0;
+setInterval(
+function() {
+var typedots = document.getElementsByClassName(&quot;dots-3Bkt3k&quot;);
+if (typedots[0].innerHTML!=&quot;&quot;&amp;&amp;cooldown==0) {cooldown=1; var gettinguser = typedots[0].parentElement.parentElement.parentElement.ariaLabel; alert(gettinguser + &quot; is typing&quot;);}
+if (typedots[0]==undefined&amp;&amp;cooldown==1) {cooldown=0;}
+}, 500
+);"></div>
+</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+    #sidebar {
+height:100%;
+width:18rem;
+background:#23272A;
+position:absolute;
+left:0;
+top:0;
+display:flex;
+justify-content:center;
+}
+    #fancyline {
+height:0.1rem;
+width:16rem;
+background:white;
+left:1rem;
+top:15rem;
+position:absolute;
+}
+    #logo {
+background-image:url("https://github.com/IanR1225/IanR1225.github.io/blob/juno/you%20have%20been%20the%20don't.PNG?raw=true");
+height:6rem;
+width:4.5rem;
+background-size:cover;
+background-repeat:no-repeat;
+background-position:center;
+position:absolute;
+top:2rem;
+overflow:hidden;
+}
+    #sidetitle {
+height:5rem;
+width:8rem;
+color:white;
+position:absolute;
+top:9rem;
+left:5rem;
+text-align:center;
+font-size:2rem;
+font-family: 'Roboto', sans-serif;
+}
+    #containpanels {
+height:100%;
+width:calc(100% - 18rem);
+background:white;
+position:absolute;
+top:0;
+left:18rem;
+}
+    .panel {
+height:calc(100% - 2rem);
+width:calc(100% - 2rem);
+background:linear-gradient(90deg, #23272A, #36393E 20%);
+text-align:center;
+font-size:2rem;
+font-family: 'Roboto', sans-serif;
+color:white;
+padding:1rem;
+}
+    .thislineisgettingkindalongisntit {
+font-size:1.5rem;
+font-family:monospace;
+}
+    .notimportant {
+color:gray;
+}
+    img {
+position:absolute;
+top:40%;
+left:20%;
+}
+    button {
+border:0;
+background:#2C2F33;
+border-radius:10%;
+margin:0.5rem;
+padding:0.5rem;
+font-size:2rem;
+text-align:center;
+}
+    ul {
+position:absolute;
+top:17rem;
+list-style-type:none;
+}
+    li {
+color:white;
+font-family: 'Roboto', sans-serif;
+}
+    li:hover, a:visited, a:link, a:active {
+color:cyan;
+text-decoration:none;
+}
+    body {
+background:#36393E;
+}
+</style>
+<script>
+var startrand = Math.floor(Math.random() * 5) + 1;
+switch (startrand) {
+    case 5:
+        document.getElementById("logo").style.backgroundImage = "url('https://github.com/IanR1225/IanR1225.github.io/blob/juno/ahjnnjsbdyhgfeuyds.PNG?raw=true')";
+break;
+    case 4:
+        document.getElementById("logo").style.backgroundImage = "url('https://github.com/IanR1225/IanR1225.github.io/blob/juno/happ.PNG?raw=true')";
+break;
+    case 3:
+        document.getElementById("logo").style.backgroundImage = "url('https://github.com/IanR1225/IanR1225.github.io/blob/juno/hello%20I%20am%20here%20for%20my%20job%20interview%20I%20want%20to%20be%20a%20software%20engineer%20at%20the%20massechuggers%20institute%20of%20technonologongous.PNG?raw=true')";
+break;
+    case 2:
+        document.getElementById("logo").style.backgroundImage = "url('https://github.com/IanR1225/IanR1225.github.io/blob/juno/lick.png?raw=true')";
+break;
+    case 1:
+        document.getElementById("logo").style.backgroundImage = "url('https://github.com/IanR1225/IanR1225.github.io/blob/juno/you%20have%20been%20the%20don't.PNG?raw=true')";
+break;
+}
+//Bleeding magic
+function showpanel(id) {
+toggle("panel", "none");
+document.getElementById(id).style.display = "block";
+}
+function toggle(className, displayState){
+    var elements = document.getElementsByClassName(className);
+
+    for (var i = 0; i < elements.length; i++){
+        elements[i].style.display = displayState;
+    }
+}
+showpanel("home");
+</script>
