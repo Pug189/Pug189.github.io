@@ -5,7 +5,7 @@
 </head>
 <title>Discord Scripts</title>
 <div id=sidebar>
-    <div id=logo></div>
+    <button onclick="document.getElementById('logo').style.animation = 'spinjuno 1s infinite linear'" id=logo></button>
     <div id=fancyline></div>
     <div id=sidetitle><strong>Discord<br>Scripts</strong></div>
     <ul>
@@ -16,7 +16,7 @@
 <div id=containpanels>
     
 <div class=panel id=home>
-Discord Scripts<br>By Pug#8082<br><br>MSGmaker<br>Can generate/add clientside messages and indicators (bot tag, X is typing, ect) in any chat. Can be used for entertainment or malicious purposes, though the latter is not recommended. This gives you quite a lot of power, use it wisely.<br><br>MNCtyping<br>(Menacing Typing)<br>Notifies you that someone is typing a DM so you can start typing back before they send it to confuse them.
+Discord Scripts<br>By Pug#8082<br><br>MSGmaker<br>Can generate/add clientside messages and indicators (bot tags, X is typing, ect) in any chat. Can be used for entertainment or malicious purposes, though the latter is not recommended. This gives you quite a lot of power, use it wisely.<br><br>MNCtyping<br>(Menacing Typing)<br>Notifies you that someone is typing a DM so you can start typing back before they send it to confuse them.
 </div>
 <div class=panel id=mnctyping>Menacing Typing<br>
     By Pug#8082<br>
@@ -66,6 +66,7 @@ background-position:center;
 position:absolute;
 top:2rem;
 overflow:hidden;
+border:0;
 }
     #sidetitle {
 height:5rem;
@@ -133,6 +134,10 @@ text-decoration:none;
 }
     body {
 background:#36393E;
+}
+    @keyframes spinjuno {
+        0% {transform:rotate(1deg);}
+        100% {transform:rotate(360deg);}
 }
 </style>
 <script>
