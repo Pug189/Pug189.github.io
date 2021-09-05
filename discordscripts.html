@@ -11,6 +11,7 @@
     <ul>
         <a href="https://pug189.github.io/msgmaker"><button onclick=""><li>MSGmaker</li></button><br></a>
 <button onclick="showpanel('mnctyping');"><li>MNCtyping</li></button><br>
+<button onclick="showpanel('jawsm');"><li>JAWSM</li></button><br>
 </ul>
 </div>
 <div id=containpanels>
@@ -18,6 +19,7 @@
 <div class=panel id=home>
 Discord Scripts<br>By Pug#8082<br><br>MSGmaker<br>Can generate/add clientside messages and indicators (bot tags, X is typing, ect) in any chat. Can be used for entertainment or malicious purposes, though the latter is not recommended. This gives you quite a lot of power, use it wisely.<br><br>MNCtyping<br>(Menacing Typing)<br>Notifies you that someone is typing a DM so you can start typing back before they send it to confuse them.
 </div>
+
 <div class=panel id=mnctyping>Menacing Typing<br>
     By Pug#8082<br>
     - - - - -<br>
@@ -35,6 +37,33 @@ if (typedots[0].innerHTML!=&quot;&quot;&amp;&amp;cooldown==0) {cooldown=1; var g
 if (typedots[0]==undefined&amp;&amp;cooldown==1) {cooldown=0;}
 }, 500
 );"></div>
+<div class=panel id=jawsm>Just a wee sip mate<br>
+    By Pug#8082<br>
+    - - - - -<br>
+    <br>
+Just a wee sip mate<br>
+    <br>
+    Copy everything from the text box, go to Discord, CTRL+SHIFT+i, Console, slap everything in there, and then Enter. Then it works until Discord restarts.<br>
+    <br>
+    <input type=text value="var ico = document.createElement(&quot;div&quot;);
+ico.style = `position:absolute;left:calc(50% - 10vw);top:calc(50% - 20vh);height:40vh;width:20vw;background-repeat:none;
+background-size:cover;background-image:url('https://images-ext-2.discordapp.net/external/-EcAN0_rhASGEns8lWeT1PkCddmDRlUMSCdMXnh0m0A/https/media.discordapp.net/attachments/356516993219821570/877847664828485672/image0.gif');
+`;
+var x = 2;
+var xv = 0.5;
+var y = 2;
+var yv = 0.5;
+document.body.appendChild(ico);
+setInterval(function() {
+ico.style.left = x + &quot;vw&quot;;
+ico.style.top = y + &quot;vh&quot;;
+x += xv;
+y += yv;
+if (x&lt;0.5) {xv=xv*-1}
+if (x&gt;79.5) {xv=xv*-1}
+if (y&lt;0.5) {yv=yv*-1}
+if (y&gt;59.5) {yv=yv*-1}
+}, 10);"></div>
 </div>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
