@@ -17,6 +17,7 @@
 <button onclick="showpanel('gid');"><li>gid()</li></button><br>
 <button onclick="showpanel('pingomatic');"><li>pingomatic()</li></button><br>
 <button onclick="showpanel('harvestuser');"><li>harvestuser()</li></button><br>
+<button onclick="showpanel('unread');"><li>unread()</li></button><br>
 <button onclick="showpanel('hts');"><li>How to start</li></button><br>
 <button onclick="showpanel('example');"><li>Example</li></button><br>
 </ul>
@@ -119,7 +120,16 @@
     Format<br>
     <span class=thislineisgettingkindalongisntit>harvestuser("nameonserver");</span><br>
     <br>
-    harvestuser() uses a name to find someone on a server list and harvest their profile and name color, which saves a lot of time. Note that the input is how they appear on the sidebar, meaning their nickname and not their actual username. If they don't have a nickname on the server, then it is their username.
+    harvestuser() uses a name to find someone on a server list or DM list and harvest their profile and name color, which saves a lot of time. Note that the input is how they appear on the sidebar, meaning their nickname and not their actual username. If they don't have a nickname on the server or aren't on a server, then it is their username.
+    </div>
+<div class=panel id=harvestuser>How to use<br>
+    unread()<br>
+    - - - - -<br>
+    <br>
+    Format<br>
+    <span class=thislineisgettingkindalongisntit>unread("name", number);</span><br>
+    <br>
+    unread() uses a name to find someone on a server list or DM list and adds an unread DM notification on the sidebar.
     </div>
 <div class=panel id=hts>How to start<br>
     :D<br>
