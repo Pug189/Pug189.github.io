@@ -63,6 +63,7 @@ currkey = currkey.toLowerCase();
 if (document.getElementById("theword").value.toLowerCase().search(currkey) == -1 && guesses.search(currkey) == -1) {
     guesses += "<RED>" + currkey + "</RED>";
 strikes++;
+new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/incorrect.wav?raw=true').play();
 }
 if (document.getElementById("theword").value.toLowerCase().search(currkey) != -1 && guesses.search(currkey) == -1) {
 guesses += "<LIME>" + currkey + "</LIME>";
