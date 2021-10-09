@@ -1,0 +1,93 @@
+<body onkeypress="myKeyPress(event);">
+<h1 id=chain>O<br>/|\<br>/\</h1>
+<span id=showword></span><br>
+<input type=password id=theword>
+<br><br>
+Guesses:<br>
+<span id=guesses>Loading...</span>
+</body>
+<style>
+    P {font-family:monospace; text-decoration-line:underline; margin:5px; display:inline-block;}
+    body {font-family:monospace; text-align:center; font-size:3em; background:black; color:white; overflow:hidden;}
+    h1 {color:white; filter:drop-shadow(0px 0px 5px gray); pointer-events:none; user-select:none; transform-origin:top; animation:hangswing 1.5s infinite ease-in-out alternate}
+    RED {color:crimson; filter:drop-shadow(0px 0px 5px red);}
+    LIME {color:lime; filter:drop-shadow(0px 0px 5px lime);}
+    input {background:black; color:white; text-align:center; border:white solid 2px;}
+    #guesses {color:white;}
+    @keyframes hangswing {
+        0% {transform:rotate(-2deg)}
+        100% {transform:rotate(2deg)}
+}
+</style>
+<script>
+function strike(x) {
+document.getElementById("chain").innerHTML = "";
+if (x>0) {document.getElementById("chain").innerHTML += "<RED>O</RED>";}
+else {document.getElementById("chain").innerHTML += "O";}
+if (x>1) {document.getElementById("chain").innerHTML += "<br><RED>/</RED>";}
+else {document.getElementById("chain").innerHTML += "<br>/";}
+if (x>2) {document.getElementById("chain").innerHTML += "<RED>|</RED>";}
+else {document.getElementById("chain").innerHTML += "|";}
+if (x>3) {document.getElementById("chain").innerHTML += "<RED>\\</RED>";}
+else {document.getElementById("chain").innerHTML += "\\";}
+if (x>4) {document.getElementById("chain").innerHTML += "<br><RED>/</RED>";}
+else {document.getElementById("chain").innerHTML += "<br>/";}
+if (x>5) {document.getElementById("chain").innerHTML += "<RED>\\</RED>";}
+else {document.getElementById("chain").innerHTML += "\\";}
+}
+var strikes = 0;
+var word = "";
+var currkey = "";
+var guesses = " ";
+setInterval(function() {
+strike(strikes);
+word = document.getElementById("theword").value;
+word = word.toLowerCase();
+document.getElementById("guesses").innerHTML = guesses;
+encrywd();
+}, 500);
+function myKeyPress(e) {
+if (document.activeElement != document.getElementById("theword")) {
+  var keynum = "";
+  if (window.event) {
+    keynum = e.keyCode;
+  } else if (e.which) {
+    keynum = e.which;
+  }
+
+  currkey = String.fromCharCode(keynum);
+currkey = currkey.toLowerCase();
+if (document.getElementById("theword").value.toLowerCase().search(currkey) == -1 && guesses.search(currkey) == -1) {
+    guesses += "<RED>" + currkey + "</RED>";
+strikes++;
+}
+if (document.getElementById("theword").value.toLowerCase().search(currkey) != -1 && guesses.search(currkey) == -1) {
+guesses += "<LIME>" + currkey + "</LIME>";
+}
+}
+}
+//https://www.geeksforgeeks.org/how-to-replace-a-character-at-a-particular-index-in-javascript/
+function replaceChar(origString, replaceChar, index) {
+    let firstPart = origString.substr(0, index);
+    let lastPart = origString.substr(index + 1);
+    let newString = firstPart + replaceChar + lastPart;
+    return newString;
+}
+var encrywdstring = "";
+function encrywd() {
+encrywdstring = "";
+for (i = word.length;i>0;i--) {
+encrywdstring += "?";
+}
+for (i = word.length;i>0;i--) {
+for (j = guesses.length;j>0;j--) {
+var checkswipe = word.charAt(i-1) == guesses.charAt(j-1);
+ if (checkswipe == true) {
+encrywdstring = replaceChar(encrywdstring, guesses.charAt(j-1), i-1);
+}
+}
+}
+encrywdstring = encrywdstring.replaceAll("?", "<P>?</P>");
+document.getElementById("showword").innerHTML = encrywdstring;
+}
+</script>
