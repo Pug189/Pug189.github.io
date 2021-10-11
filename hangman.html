@@ -35,7 +35,7 @@ if (x>3) {document.getElementById("chain").innerHTML += "<RED>\\</RED>";}
 else {document.getElementById("chain").innerHTML += "\\";}
 if (x>4) {document.getElementById("chain").innerHTML += "<br><RED>/</RED>";}
 else {document.getElementById("chain").innerHTML += "<br>/";}
-if (x>5) {document.getElementById("chain").innerHTML += "<RED>\\</RED>";}
+if (x>5) {document.getElementById("chain").innerHTML += "<RED>\\</RED>"; guesses = word; setTimeout(function(){ window.location.reload(1); }, 5000);}
 else {document.getElementById("chain").innerHTML += "\\";}
 }
 var strikes = 0;
@@ -44,6 +44,7 @@ var currkey = "";
 var guesses = " ";
 setInterval(function() {
 strike(strikes);
+if (document.getElementById("showword").innerHTML.match(/\?/g) == null && strikes < 6 && word.length > 0) { setTimeout(function(){ window.location.reload(1); }, 5000);}
 word = document.getElementById("theword").value;
 word = word.toLowerCase();
 document.getElementById("guesses").innerHTML = guesses;
