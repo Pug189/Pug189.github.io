@@ -1,5 +1,6 @@
 <body onkeypress="myKeyPress(event);">
 <h1 id=chain>O<br>/|\<br>/\</h1>
+<div id=comments>Saving grace points let you guess incorrectly without getting a strike<br>Guessing two vowels in a row reveals another letter<br>Guessing two consonants in a row grants you a saving grace point<br>Once half the word is revealed, you have a chance to find out if it is a noun or not, a verb or not, or gain two saving grace points</div>
 <span id=showword></span><br>
 <input type=password id=theword><br>
 <div id=buttons><button type=button onclick="nnv='Noun'; document.getElementById('buttons').innerHTML = '';">Noun</button><button type=button onclick="nnv='NA'; document.getElementById('buttons').innerHTML = '';">Neither</button><button type=button onclick="nnv='Verb'; document.getElementById('buttons').innerHTML = '';">Verb</button></div>
@@ -21,6 +22,7 @@ Guesses:<br>
     h2 {color:black;}
     button {background:black; color:white; border:white 2px solid;}
     #guesses {color:white;}
+    #comments {font-size:0.4em;}
     @keyframes hangswing {
         0% {transform:rotate(-2deg)}
         100% {transform:rotate(2deg)}
@@ -66,6 +68,36 @@ var Renfri = 0;
 setInterval(function() {
 strike(strikes);
 if (document.getElementById("showword").innerHTML.match(/\?/g) == null && strikes < 6 && word.length > 0) {savinggrace += 15; setTimeout(function(){ window.location.reload(1); }, 5000);}
+word = document.getElementById("theword").value;
+word = word.toLowerCase();
+document.getElementById("guesses").innerHTML = guesses;
+encrywd();
+if (document.getElementById("showword").innerHTML != "") {
+if (document.getElementById("showword").innerHTML.match(/\?/g) != null) {
+questionclark = document.getElementById("showword").innerHTML.match(/\?/g).length;
+}
+if (otv == 0 && questionclark < (word.length / 2) || questionclark == undefined && word.length > 0) {
+otv++;
+Renfri = Math.floor((Math.random()*3) + 1); 
+switch (Renfri) {
+    case 1:
+document.getElementById("Striga").style = "animation:spinnerN 1.5s cubic-bezier(.13,.16,.36,1.02); animation-fill-mode:forwards;";
+if (nnv == "Noun") {document.getElementById("Witcher").innerHTML = "Noun";}
+else {document.getElementById("Witcher").innerHTML = "Not a noun";}
+break;
+    case 2:
+document.getElementById("Striga").style = "animation:spinnerV 1.5s cubic-bezier(.13,.16,.36,1.02); animation-fill-mode:forwards;";
+if (nnv == "Verb") {document.getElementById("Witcher").innerHTML = "Verb";}
+else {document.getElementById("Witcher").innerHTML = "Not a verb";}
+break;
+    case 3:
+document.getElementById("Striga").style = "animation:spinnerRC 1.5s cubic-bezier(.13,.16,.36,1.02); animation-fill-mode:forwards;";
+savinggrace += 2;
+document.getElementById("Witcher").innerHTML = "+2 SG";
+break;
+}
+}
+}
 var twocorrect = guesses.search("</LIME><LIME>");
 if (twocorrect != -1) {
 var beforetc = guesses.slice(twocorrect-1, twocorrect);
@@ -100,36 +132,6 @@ guesses +=  "<CYAN>" + word.charAt(questionplace) + "</CYAN>";
 guesses = guesses.replace("</LIME><LIME>", ":");}
 else if (aftertc == "consonant" && beforetc == "consonant") {savinggrace++; guesses = guesses.replace("</LIME><LIME>", ":");}
 else {guesses = guesses.replace("</LIME><LIME>", "");}
-}
-word = document.getElementById("theword").value;
-word = word.toLowerCase();
-document.getElementById("guesses").innerHTML = guesses;
-encrywd();
-if (document.getElementById("showword").innerHTML != "") {
-if (document.getElementById("showword").innerHTML.match(/\?/g) != null) {
-questionclark = document.getElementById("showword").innerHTML.match(/\?/g).length;
-}
-if (otv == 0 && questionclark < (word.length / 2) || questionclark == undefined && word.length > 0) {
-otv++;
-Renfri = Math.floor((Math.random()*3) + 1); 
-switch (Renfri) {
-    case 1:
-document.getElementById("Striga").style = "animation:spinnerN 1.5s cubic-bezier(.13,.16,.36,1.02); animation-fill-mode:forwards;";
-if (nnv == "Noun") {document.getElementById("Witcher").innerHTML = "Noun";}
-else {document.getElementById("Witcher").innerHTML = "Not a noun";}
-break;
-    case 2:
-document.getElementById("Striga").style = "animation:spinnerV 1.5s cubic-bezier(.13,.16,.36,1.02); animation-fill-mode:forwards;";
-if (nnv == "Verb") {document.getElementById("Witcher").innerHTML = "Verb";}
-else {document.getElementById("Witcher").innerHTML = "Not a verb";}
-break;
-    case 3:
-document.getElementById("Striga").style = "animation:spinnerRC 1.5s cubic-bezier(.13,.16,.36,1.02); animation-fill-mode:forwards;";
-savinggrace += 2;
-document.getElementById("Witcher").innerHTML = "+2 SG";
-break;
-}
-}
 }
 }, 500);
 function myKeyPress(e) {
