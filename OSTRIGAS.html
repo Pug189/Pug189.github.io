@@ -33,7 +33,7 @@ var timetaken = 0;
 var balancer = 0;
 var chronobreak = -1;
 document.getElementById("bogos").style.display = "none";
-setInterval(function () {document.getElementById("UnixT").innerHTML = Date.now();}, 1000);
+setInterval(function () {document.getElementById("UnixT").innerHTML = startD + "<br>" + Date.now();}, 1000);
 function stillherex() {
 if (timetaken != 0) {
 var waitasecond = Math.floor(Date.now() - timetaken);
