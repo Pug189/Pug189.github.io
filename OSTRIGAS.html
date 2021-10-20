@@ -7,6 +7,7 @@
 </head>
 <span id=top><marquee>Ostrigas (5M = +1) Note : THIS WILL NOT SAVE, TAKE SCREENSHOTS BEFORE LEAVING.</marquee></span>
 <div id=maincount>0</div>
+<div id=UnixT></div>
 <button type=button onclick="stillhere = 1; stillherex();" id=bogos>Still here?</button>
 <span id=bot><marquee>On occasion you'll be asked to confirm you're still here.</marquee></span>
 <style>
@@ -17,6 +18,7 @@ text-align:center;
 font-family:monospace;
 overflow:hidden;
 }
+  #UnixT {width:100vw; left:0; position:absolute; top:3em; text-align:center;}
     #top {top:0; left:0; position:absolute;}
     #bot {bottom:1em; left:0; position:absolute;}
     marquee {width:100vw; font-size:2em; font-family:monospace;}
@@ -31,6 +33,7 @@ var timetaken = 0;
 var balancer = 0;
 var chronobreak = -1;
 document.getElementById("bogos").style.display = "none";
+setInterval(function () {document.getElementById("UnixT").innerHTML = Date.now();}, 1000);
 function stillherex() {
 if (timetaken != 0) {
 var waitasecond = Math.floor(Date.now() - timetaken);
