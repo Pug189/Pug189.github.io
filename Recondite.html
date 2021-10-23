@@ -341,6 +341,10 @@ break;
 nopath();
 icl("There\'s a sword mounted on the wall beside the sleeping person. You smell food outside. A short nightstand is beside the empty bed, but there is nothing on it.");
 break;
+        case "DCB":
+icl("You go back to sleep and starve.");
+setTimeout(function () {location.reload();}, 5000);
+break;
         case "DCC":
 nopath();
 break;
@@ -459,6 +463,19 @@ opone("Go outside");
 optwo("Check the room");
 opthree("[X]");
 opfour("[X]");
+break;
+        case "BAAA": //s h e e e p
+icl("You unlock the front door and drowsily stumble outside.");
+opone("Walk aimlessly down the sidewalk");
+optwo("Walk to the shop");
+opthree("[X]");
+opfour("[X]");
+break;
+        case "BAAAC":
+nopath();
+break;
+        case "BAAAD":
+nopath();
 break;
         case "BAAB":
 icl("You knock on the door and are acknowledged with a stern \"What?\"");
@@ -653,7 +670,8 @@ new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/HERE.mp3?raw=t
 new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/HERE.mp3?raw=true').play();
 }
 var nani = cookieSearch("welcome");
-if (nani == "welcome = here") {
+var devskip = 0;
+if (nani == "welcome = here" || devskip == 1) {
 document.getElementById("cookies").style.display = "none";
 document.getElementById("cookies").style.pointerEvents = "none";
 document.getElementById("Start").innerHTML = "Start again";
