@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="Automatic Matrix Determinant Finder" property="og:description">
 </head>
-<h1>Automatic 3x3 Matrix Determinant Finder</h1><br><button type=button onclick="gridtogg();" id=metal>Switch 2x2</button>
+<h1>Automatic Matrix Determinant Finder</h1><br><button type=button onclick="gridtogg();" id=metal>Switch 2x2</button>
 <div id=matrixcontain>
 <div id="two">
 <input type=text class="TT" id="A"><input type=text class="TT" id="B"><br>
@@ -92,10 +92,10 @@ if (toggs == 1) {toggs = 0; document.getElementById("metal").innerHTML = "Switch
 if (toggs == 0.5) {toggs = 1;}
 }
 function GBI(letsgoletsid) {
-return parseFloat(document.getElementById(letsgoletsid).value);
+return parseFloat(eval(document.getElementById(letsgoletsid).value));
 }
 function GBC(letsgoletsclass) {
-return parseFloat(document.getElementsByClassName(letsgoletsclass)[0].value);
+return parseFloat(eval(document.getElementsByClassName(letsgoletsclass)[0].value));
 }
 function quadfill(quadID, A, B, C, D) {
 quadID.a = GBC(A);
