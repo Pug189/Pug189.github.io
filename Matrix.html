@@ -1,0 +1,93 @@
+<head>
+<title>Determinant Finder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="Automatic 3x3 Matrix Determinant Finder" property="og:description">
+</head>
+<h1>Automatic 3x3 Matrix Determinant Finder</h1>
+<div id=matrixcontain>
+<input type=text class="TL"><input type=text class="T"><input type=text class="TR"><br>
+<input type=text class="L"><input type=text class="C"><input type=text class="R"><br>
+<input type=text class="BL"><input type=text class="B"><input type=text class="BR"><br>
+</div>
+<div id=output></div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
+    body {background:black;}
+    h1 {font-family: 'Open Sans Condensed', sans-serif; text-align:center; color: white;}
+    input {
+font-family: 'Open Sans Condensed', sans-serif;
+border:white 2px solid;
+text-align:center;
+width:10vw;
+height:10vw;
+font-size:10vw;
+color:white;
+background:black;
+    }
+    #matrixcontain {
+position:absolute;
+top:calc(50% - 15vw);
+left:calc(50% - 15vw);
+}
+    #output {
+position:absolute;
+top:calc(50% - 5vw);
+left:calc(75% - 5vw);
+height:10vw;
+width:10vw;
+color:white;
+font-family: 'Open Sans Condensed', sans-serif;
+font-size:5vw;
+background:black;
+text-align:center;
+}
+</style>
+<script>
+var quadA = {
+'a': 0,
+'b': 0,
+'c': 0,
+'d': 0
+};
+var quadB = {
+'a': 0,
+'b': 0,
+'c': 0,
+'d': 0
+};
+var quadC = {
+'a': 0,
+'b': 0,
+'c': 0,
+'d': 0
+};
+var QAFinal = 0;
+var QBFinal = 0;
+var QCFinal = 0;
+var FearBeyondDeath = 0;
+function GBC(letsgoletsclass) {
+return parseFloat(document.getElementsByClassName(letsgoletsclass)[0].value);
+}
+function quadfill(quadID, A, B, C, D) {
+quadID.a = GBC(A);
+quadID.b = GBC(B);
+quadID.c = GBC(C);
+quadID.d = GBC(D);
+}
+function diagon(quadID) {
+return (quadID.a * quadID.d) - (quadID.b * quadID.c);
+}
+setInterval(
+function() {
+quadfill(quadA, "T", "TR", "B", "BR");
+quadfill(quadB, "TL", "TR", "BL", "BR");
+quadfill(quadC, "TL", "T", "BL", "B");
+
+QAFinal = (GBC("L") * -1) * diagon(quadA);
+QBFinal = GBC("C") * diagon(quadB);
+QCFinal = (GBC("R") * -1) * diagon(quadC);
+FearBeyondDeath = QAFinal + QBFinal + QCFinal;
+document.getElementById("output").innerHTML = FearBeyondDeath;
+}, 500
+);
+</script>
