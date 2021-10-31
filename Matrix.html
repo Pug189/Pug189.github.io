@@ -13,13 +13,16 @@
 <input type=text class="TL"><input type=text class="T"><input type=text class="TR"><br>
 <input type=text class="L"><input type=text class="C"><input type=text class="R"><br>
 <input type=text class="BL"><input type=text class="B"><input type=text class="BR"><br>
+<br>
+<h1>Cramer's Rule<br>Find Ordered Triple Via Substitution</h1><br>
+<input type=text class="OTA" placeholder="X"><input type=text class="OTB" placeholder="Y"><input type=text class="OTC" placeholder="Z">
 </div>
 </div>
 <div id=output></div>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
     body {background:black;}
-    h1 {font-family: 'Open Sans Condensed', sans-serif; text-align:center; color: white;}
+    h1 {font-family: 'Open Sans Condensed', sans-serif; text-align:center; color: white; text-align:center; font-size:3vw;}
     button {font-family: 'Open Sans Condensed', sans-serif; text-align:center; color: white; background:black; border:white 2px solid; height:10vw; width:20vw; font-size:5vw; position:absolute; top:calc(50% - 5vw); left:calc(20% - 10vw);}
     input {
 font-family: 'Open Sans Condensed', sans-serif;
@@ -52,9 +55,9 @@ left:calc(50% - 15vw);
     #output {
 position:absolute;
 top:calc(50% - 5vw);
-left:calc(75% - 5vw);
+left:calc(75% - 10vw);
 height:10vw;
-width:10vw;
+width:20vw;
 color:white;
 font-family: 'Open Sans Condensed', sans-serif;
 font-size:5vw;
@@ -106,18 +109,66 @@ quadID.d = GBC(D);
 function diagon(quadID) {
 return (quadID.a * quadID.d) - (quadID.b * quadID.c);
 }
-setInterval(
-function() {
-if (toggs == 0) {
+function threesolve() {
 quadfill(quadA, "T", "TR", "B", "BR");
 quadfill(quadB, "TL", "TR", "BL", "BR");
 quadfill(quadC, "TL", "T", "BL", "B");
-
 QAFinal = (GBC("L") * -1) * diagon(quadA);
 QBFinal = GBC("C") * diagon(quadB);
 QCFinal = (GBC("R") * -1) * diagon(quadC);
 FearBeyondDeath = QAFinal + QBFinal + QCFinal;
+}
+setInterval(
+function() {
+if (toggs == 0) {
+threesolve();
+var OTA = GBC("OTA");
+var OTB = GBC("OTB");
+var OTC = GBC("OTC");
+if (OTA && OTB && OTC) {
+threesolve();
+var outputOOPS = FearBeyondDeath;
+
+var SaveTL = document.getElementsByClassName("TL")[0].value;
+var SaveL = document.getElementsByClassName("L")[0].value;
+var SaveBL = document.getElementsByClassName("BL")[0].value;
+document.getElementsByClassName("TL")[0].value = OTA;
+document.getElementsByClassName("L")[0].value = OTB;
+document.getElementsByClassName("BL")[0].value = OTC;
+threesolve();
+var outputA = FearBeyondDeath / outputOOPS;
+document.getElementsByClassName("TL")[0].value = SaveTL;
+document.getElementsByClassName("L")[0].value = SaveL;
+document.getElementsByClassName("BL")[0].value = SaveBL;
+    
+var SaveT = document.getElementsByClassName("T")[0].value;
+var SaveC = document.getElementsByClassName("C")[0].value;
+var SaveB = document.getElementsByClassName("B")[0].value;
+document.getElementsByClassName("T")[0].value = OTA;
+document.getElementsByClassName("C")[0].value = OTB;
+document.getElementsByClassName("B")[0].value = OTC;
+threesolve();
+var outputB = FearBeyondDeath / outputOOPS;
+document.getElementsByClassName("T")[0].value = SaveT;
+document.getElementsByClassName("C")[0].value = SaveC;
+document.getElementsByClassName("B")[0].value = SaveB;
+
+var SaveTR = document.getElementsByClassName("TR")[0].value;
+var SaveR = document.getElementsByClassName("R")[0].value;
+var SaveBR = document.getElementsByClassName("BR")[0].value;
+document.getElementsByClassName("TR")[0].value = OTA;
+document.getElementsByClassName("R")[0].value = OTB;
+document.getElementsByClassName("BR")[0].value = OTC;
+threesolve();
+var outputC = FearBeyondDeath / outputOOPS;
+document.getElementsByClassName("TR")[0].value = SaveTR;
+document.getElementsByClassName("R")[0].value = SaveR;
+document.getElementsByClassName("BR")[0].value = SaveBR;
+document.getElementById("output").innerHTML = "(" + outputA + ", " + outputB + ", " + outputC + ")";
+}
+else {
 document.getElementById("output").innerHTML = FearBeyondDeath;
+}
 }
 if (toggs == 1) {
 document.getElementById("output").innerHTML = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C"));
