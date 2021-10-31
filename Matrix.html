@@ -1,19 +1,26 @@
 <head>
 <title>Determinant Finder</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta content="Automatic 3x3 Matrix Determinant Finder" property="og:description">
+<meta content="Automatic Matrix Determinant Finder" property="og:description">
 </head>
-<h1>Automatic 3x3 Matrix Determinant Finder</h1>
+<h1>Automatic 3x3 Matrix Determinant Finder</h1><br><button type=button onclick="gridtogg();" id=metal>Switch 2x2</button>
 <div id=matrixcontain>
+<div id="two">
+<input type=text class="TT" id="A"><input type=text class="TT" id="B"><br>
+<input type=text class="TT" id="C"><input type=text class="TT" id="D"><br>
+</div>
+<div id="three">
 <input type=text class="TL"><input type=text class="T"><input type=text class="TR"><br>
 <input type=text class="L"><input type=text class="C"><input type=text class="R"><br>
 <input type=text class="BL"><input type=text class="B"><input type=text class="BR"><br>
+</div>
 </div>
 <div id=output></div>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
     body {background:black;}
     h1 {font-family: 'Open Sans Condensed', sans-serif; text-align:center; color: white;}
+    button {font-family: 'Open Sans Condensed', sans-serif; text-align:center; color: white; background:black; border:white 2px solid; height:10vw; width:20vw; font-size:5vw; position:absolute; top:calc(50% - 5vw); left:calc(20% - 10vw);}
     input {
 font-family: 'Open Sans Condensed', sans-serif;
 border:white 2px solid;
@@ -24,6 +31,19 @@ font-size:10vw;
 color:white;
 background:black;
     }
+    .TT {
+font-family: 'Open Sans Condensed', sans-serif;
+border:white 2px solid;
+text-align:center;
+width:15vw;
+height:15vw;
+font-size:15vw;
+color:white;
+background:black;
+    }
+    #two {
+display:none;
+}
     #matrixcontain {
 position:absolute;
 top:calc(50% - 15vw);
@@ -65,6 +85,15 @@ var QAFinal = 0;
 var QBFinal = 0;
 var QCFinal = 0;
 var FearBeyondDeath = 0;
+var toggs = 0;
+function gridtogg() {
+if (toggs == 0) {toggs = 0.5; document.getElementById("metal").innerHTML = "Switch 3x3"; document.getElementById("three").style.display = "none"; document.getElementById("two").style.display = "block";}
+if (toggs == 1) {toggs = 0; document.getElementById("metal").innerHTML = "Switch 2x2"; document.getElementById("three").style.display = "block"; document.getElementById("two").style.display = "none";}
+if (toggs == 0.5) {toggs = 1;}
+}
+function GBI(letsgoletsid) {
+return parseFloat(document.getElementById(letsgoletsid).value);
+}
 function GBC(letsgoletsclass) {
 return parseFloat(document.getElementsByClassName(letsgoletsclass)[0].value);
 }
@@ -79,6 +108,7 @@ return (quadID.a * quadID.d) - (quadID.b * quadID.c);
 }
 setInterval(
 function() {
+if (toggs == 0) {
 quadfill(quadA, "T", "TR", "B", "BR");
 quadfill(quadB, "TL", "TR", "BL", "BR");
 quadfill(quadC, "TL", "T", "BL", "B");
@@ -88,6 +118,10 @@ QBFinal = GBC("C") * diagon(quadB);
 QCFinal = (GBC("R") * -1) * diagon(quadC);
 FearBeyondDeath = QAFinal + QBFinal + QCFinal;
 document.getElementById("output").innerHTML = FearBeyondDeath;
+}
+if (toggs == 1) {
+document.getElementById("output").innerHTML = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C"));
+}
 }, 500
 );
 </script>
