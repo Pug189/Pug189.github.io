@@ -8,6 +8,8 @@
 <div id="two">
 <input type=text class="TT" id="A"><input type=text class="TT" id="B"><br>
 <input type=text class="TT" id="C"><input type=text class="TT" id="D"><br>
+<h1>Cramer's Rule<br>Find Ordered Pair Via Substitution</h1><br>
+<input type=text class="OPA" placeholder="X"><input type=text class="OPB" placeholder="Y">
 </div>
 <div id="three">
 <input type=text class="TL"><input type=text class="T"><input type=text class="TR"><br>
@@ -44,6 +46,9 @@ font-size:15vw;
 color:white;
 background:black;
     }
+    .OPA {
+margin-left:5vw;
+}
     #two {
 display:none;
 }
@@ -171,6 +176,29 @@ document.getElementById("output").innerHTML = FearBeyondDeath;
 }
 if (toggs == 1) {
 document.getElementById("output").innerHTML = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C"));
+var OPA = GBC("OPA");
+var OPB = GBC("OPB");
+if (OPA && OPB) {
+var outputOOPS = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C"));
+
+var SaveA = GBI("A");
+var SaveC = GBI("C");
+document.getElementById("A").value = OPA;
+document.getElementById("C").value = OPB;
+var outputA = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C")) / outputOOPS;
+document.getElementById("A").value = SaveA;
+document.getElementById("C").value = SaveC;
+    
+var SaveB = GBI("B");
+var SaveD = GBI("D");
+document.getElementById("B").value = OPA;
+document.getElementById("D").value = OPB;
+var outputB = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C")) / outputOOPS;
+document.getElementById("B").value = SaveB;
+document.getElementById("D").value = SaveD;
+
+document.getElementById("output").innerHTML = "(" + outputA + ", " + outputB + ")";
+}
 }
 }, 500
 );
