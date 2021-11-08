@@ -39,15 +39,21 @@ var perm = 0;
 var timeskipper = 0;
 document.getElementById("bogos").style.display = "none";
 setInterval(function () {
-if ((Date.now() - timeskipper) > 5000) {
+var lastTime = (new Date()).getTime();
+
+setInterval(function() {
+  var currentTime = (new Date()).getTime();
+  if (currentTime > (lastTime + 2000*2)) {
 var chronofix = (Date.now() - timeskipper) / 300000;
 balancer = chronofix;
 chronobreak = balancer;
 balancer++;
-}
+  }
+  lastTime = currentTime;
+}, 2000);
 document.getElementById("UnixT").innerHTML = startD + "<br>" + Date.now();
-var timeskipper = Date.now();
 document.getElementById("maincount").innerHTML = Math.floor((Date.now() - startD) / 300000) - (Math.abs(balancer));
+timeskipper = Date.now();
 }, 1000);
 function stillherex() {
 if (timetaken != 0) {
