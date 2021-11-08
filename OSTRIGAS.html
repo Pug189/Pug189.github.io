@@ -34,15 +34,27 @@ var stillhere = 1;
 var timetaken = 0;
 var balancer = 0;
 var chronobreak = -1;
+var sleepfix = 0;
+var perm = 0;
+var timeskipper = 0;
 document.getElementById("bogos").style.display = "none";
-setInterval(function () {document.getElementById("UnixT").innerHTML = startD + "<br>" + Date.now();}, 1000);
+setInterval(function () {
+if ((Date.now() - timeskipper) > 5000) {
+var chronofix = (Date.now() - timeskipper) / 300000;
+balancer = chronofix;
+chronobreak = balancer;
+balancer++;
+}
+document.getElementById("UnixT").innerHTML = startD + "<br>" + Date.now();
+var timeskipper = Date.now();
+}, 1000);
 function stillherex() {
 if (timetaken != 0) {
 var waitasecond = Math.floor(Date.now() - timetaken);
 if (waitasecond < 350) {location.reload();}
 }
 if (stillhere == 0) {document.getElementById("bogos").style.display = "inherit";}
-if (stillhere == 1) {document.getElementById("bogos").style.display = "none"; timetaken = 0;}
+if (stillhere == 1) {document.getElementById("bogos").style.display = "none"; timetaken = 0; perm++;}
 }
 setInterval(
 function () {
@@ -59,6 +71,8 @@ if (stillhere == 1) {
 document.getElementById("maincount").innerHTML = Math.floor((Date.now() - startD) / 300000) - (Math.abs(balancer));
 }
 sugarpills = Math.floor((Math.random()*10) + 1);
-if (sugarpills == 5 && timetaken == 0) {stillhere = 0; stillherex(); timetaken = Date.now();}
+sleepfix++;
+if (sugarpills == 5 && timetaken == 0 || sleepfix > 6) {stillhere = 0; stillherex(); timetaken = Date.now();}
+if (sleepfix > 6) {sleepfix = 0;}
 }, 60000);
 </script>
