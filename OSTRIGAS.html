@@ -47,6 +47,7 @@ balancer++;
 }
 document.getElementById("UnixT").innerHTML = startD + "<br>" + Date.now();
 var timeskipper = Date.now();
+document.getElementById("maincount").innerHTML = Math.floor((Date.now() - startD) / 300000) - (Math.abs(balancer));
 }, 1000);
 function stillherex() {
 if (timetaken != 0) {
@@ -67,9 +68,6 @@ if (chronobreak >= balancer) {location.reload();}
 }, 310000);
 setInterval(
 function () {
-if (stillhere == 1) {
-document.getElementById("maincount").innerHTML = Math.floor((Date.now() - startD) / 300000) - (Math.abs(balancer));
-}
 sugarpills = Math.floor((Math.random()*10) + 1);
 sleepfix++;
 if (sugarpills == 5 && timetaken == 0 || sleepfix > 6) {stillhere = 0; stillherex(); timetaken = Date.now();}
