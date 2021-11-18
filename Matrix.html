@@ -70,6 +70,23 @@ font-family: 'Open Sans Condensed', sans-serif;
 font-size:5vw;
 text-align:center;
 }
+.frac {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    letter-spacing: 0.001em;
+    text-align: center;
+}
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: 3px solid white;
+}
+.frac span.symbol {
+    display: none;
+} 
 </style>
 <script>
 var quadA = {
@@ -198,8 +215,11 @@ document.getElementById("D").value = OPB;
 var outputB = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C"));
 document.getElementById("B").value = SaveB;
 document.getElementById("D").value = SaveD;
-
-document.getElementById("output").innerHTML = "(" + "<sup>" + outputA + "</sup>&frasl;<sub>" + outputOOPS + "</sub>" + ", " + "<sup>" + outputB + "</sup>&frasl;<sub>" + outputOOPS + "</sub>" + ")";
+//https://stackoverflow.com/questions/7525977/how-to-write-fraction-value-using-html
+function fractify(x, y) {
+return "<div class=\"frac\"><span>" + x + "</span><span class=\"symbol\">/</span><span class=\"bottom\">" + y + "</span></div>";
+}
+document.getElementById("output").innerHTML = "(" + fractify(outputA, outputOOPS) + ", " + fractify(outputB, outputOOPS) + ")";
 }
 }
 }, 500
