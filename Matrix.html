@@ -187,7 +187,7 @@ var SaveA = GBI("A");
 var SaveC = GBI("C");
 document.getElementById("A").value = OPA;
 document.getElementById("C").value = OPB;
-var outputA = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C")) / outputOOPS;
+var outputA = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C"));
 document.getElementById("A").value = SaveA;
 document.getElementById("C").value = SaveC;
     
@@ -195,11 +195,11 @@ var SaveB = GBI("B");
 var SaveD = GBI("D");
 document.getElementById("B").value = OPA;
 document.getElementById("D").value = OPB;
-var outputB = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C")) / outputOOPS;
+var outputB = (GBI("A") * GBI("D")) - (GBI("B") * GBI("C"));
 document.getElementById("B").value = SaveB;
 document.getElementById("D").value = SaveD;
 
-document.getElementById("output").innerHTML = "(" + outputA + ", " + outputB + ")";
+document.getElementById("output").innerHTML = "(" + "<sup>" + outputA + "</sup>&frasl;<sub>" + outputOOPS + "</sub>" + ", " + "<sup>" + outputB + "</sup>&frasl;<sub>" + outputOOPS + "</sub>" + ")";
 }
 }
 }, 500
