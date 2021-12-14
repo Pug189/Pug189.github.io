@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+<link rel="icon" type="image/png" href="https://github.com/Pug189/Pug189.github.io/blob/master/1442276.ico?raw=true" sizes="64x64">
+<meta content="Osiris amplification terminal" property="og:description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Project Osiris</title>
+<html lang="en">
+</head>
+<div id="liminal">
+<div id="extension">
+<form>
+    <input type=text id=chatinput placeholder="Send a message to #general">
+</form>
+<button class=cent type=button>☥</button>
+<button class=cent type=button>☬</button>
+<button class=cent type=button>✠</button>
+</div>
+</div>
+<div id="intension"></div>
+<div id="chains">
+    <div class=victim><div class=switcheroo>⚜</div>General</div>
+    <div class=victim><div class=switcheroo>⎲</div>Pug</div>
+    <div class=victim><div class=switcheroo>ᗓ</div>IzzFast</div>
+    <div class=victim><div class=switcheroo>⛧</div>Asuken</div>
+    <div class=victim><div class=switcheroo>༒</div>Ostia</div>
+    <div class=victim><div class=switcheroo>◈</div>Loxodon</div>
+</div>
+<style>
+    body {
+overflow:hidden;
+background:black;
+margin:0;
+padding:0;
+border:0;
+}
+    #chains {
+left:0;
+top:0;
+position:absolute;
+height:100%;
+width:7vw;
+background:linear-gradient(#202020, black, #202020);
+transition:0.5s;
+display:flex;
+justify-content:space-around;
+flex-direction:column;
+overflow:hidden;
+}
+    #chains:hover {
+width:20vw;
+}
+    .switcheroo {
+width:7vw;
+text-align:center;
+line-height:5vh;
+display:inline-block;
+transition:0.5s;
+user-select:none;
+overflow:hidden;
+}
+    .victim:hover .switcheroo {
+color:red;
+}
+    .victim:active .switcheroo {
+transform:rotate(180deg);
+}
+    #liminal {
+height:100%;
+width:93vw;
+left:7vw;
+position:absolute;
+background:linear-gradient(#101010, black);
+}
+    #liminal:before {
+height:100%;
+width:100%;
+background-image:url("https://github.com/Pug189/Pug189.github.io/blob/master/overcut.gif?raw=true");
+background-repeat:no-repeat;
+background-size:cover;
+background-position:center;
+content:'';
+position:absolute;
+filter:opacity(0.05);
+pointer-events:none;
+}
+    .cent {
+width:calc(100% / 3);
+height:100%;
+color:white;
+line-height:7vh;
+text-align:center;
+font-family:monospace;
+font-size:7vh;
+background:transparent;
+border:none;
+}
+    .cent:hover {
+color:#BABABA;
+}
+    .cent:active {
+color:red;
+text-shadow:0px 0px 5px red;
+animation:empowered 0.08s infinite linear;
+}
+    #extension {
+width:50%;
+height:7vh;
+top:calc(100% - 7vh);
+position:absolute;
+background:#101010;
+display:flex;
+flex-direction:row;
+justify-content:center;
+}
+    #chatinput {
+background:#161616;
+border:none;
+font-family:monospace;
+width:100%;
+height:100%;
+color:white;
+left:100%;
+position:absolute;
+}
+    .victim {
+height:5vh;
+text-align:left;
+line-height:5vh;
+width:20vw;
+color:white;
+font-family:monospace;
+font-size:5vh;
+background:linear-gradient(90deg, black, red);
+user-select:none;
+filter:drop-shadow(0px 0px 20px darkred) drop-shadow(0px 0px 5px red);
+}
+    .victim:hover {
+background:linear-gradient(90deg, black, #181818);
+}
+    @keyframes empowered {
+        0% {transform:translateX(2.5px) rotate(5deg);}
+        50% {transform:translateX(-2.5px) rotate(5deg);}
+        100% {transform:translateX(2.5px) rotate(5deg);}
+}
+</style>
+<script>
+    document.getElementById('chatinput').addEventListener('keypress', function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            document.getElementById('chatinput').value = "";
+            alert("Networking W.I.P");
+        }
+    });
+</script>
