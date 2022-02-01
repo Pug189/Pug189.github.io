@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Pug189/Pug189.github.io/master/TheGateway.ico" sizes="64x64">
+<meta content="An invitation. Look over it, think about it, and decide." property="og:description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>⎲ᗓ⛧༒◈</title>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div id=logo><div id=floatlucent>This is an invitation to Project Osiris, a solo project by Pug#8082.<br>Please, select a category above.</div></div>
+<div id="flexton"><button type="button" onclick="about();">What the game is about</button><button type="button" onclick="schedule();">Bossfight Schedule<br>& Music</button><button type="button" onclick="sheet();">Character Sheet</button></div>
+<div id="spookypanel" onclick="nopanel();"></div>
+</body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+    body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    #logo {
+background-image:url("https://github.com/Pug189/Pug189.github.io/blob/master/25A6M.jpg?raw=true");
+background-repeat:no-repeat;
+background-size:cover;
+background-position:center;
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+animation:saturateshift 1s infinite alternate ease-in-out;
+    }
+    #floatlucent {
+height:20vh;
+width:80vw;
+background:rgba(0,0,0,0.5);
+border-radius:50%/10%;
+border-left:crimson 2px solid;
+border-right:crimson 2px solid;
+left:calc(50% - 40vw);
+top:calc(50% - 10vh);
+position:absolute;
+color:white;
+line-height:7.5vh;
+transition:all 0.5s;
+text-align:center;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+animation:lecheems 2s infinite alternate ease-in-out;
+}
+#flexton {
+    width:80vw;
+    height:20vh;
+    position:absolute;
+    top:calc(25% - 10vh);
+    left:calc(50% - 40vw);
+    border:black solid 5px;
+    border-radius:5%/10%;
+    display:flex;
+    justify-content:space-around;
+    vertical-align:center;
+    transition:all 0.5s;
+    background:repeating-linear-gradient(45deg, rgba(255,0,0,0.5), black 20%);
+}
+button {
+    background:radial-gradient(transparent, black);
+    width:20vh;
+    height:100%;
+    border-radius:50%;
+    border:#646464 outset 4px;
+    color:white;
+    text-align:center;
+    font-size:2.5vh;
+    font-family: 'Bebas Neue', cursive;
+    transition:all 0.5s;
+}
+#spookypanel {
+    height:0vh;
+    width:90vw;
+    left:5vw;
+    top:5vh;
+    border-radius:2%;
+    background:rgba(0,0,0,0.8);
+    text-align:center;
+    position:absolute;
+    color:white;
+    overflow-y:scroll;
+}
+#plsfix {
+    width:100%;
+}
+button:active {
+    background:rgba(0,0,0,0.5);
+}
+button:hover {
+    border:black;
+    filter:drop-shadow(20px 20px 2px red) drop-shadow(-20px -20px 2px white);
+}
+    @keyframes lecheems {
+0% {border-left:crimson 2px solid;
+border-right:crimson 2px solid; border-radius:50%/10%;}
+100% {border-left:white 2px solid;
+border-right:white 2px solid; border-radius:10%/50%;}
+    }
+    @keyframes saturateshift {
+        0% {filter:saturate(1);}
+        100% {filter:saturate(2);}
+    }
+</style>
+
+<script>
+    function nopanel() {
+        $("#spookypanel")[0].style.height = "0vh";
+        $("#spookypanel")[0].innerHTML = "";
+    }
+    function about() {
+        $("#spookypanel")[0].style.height = "90vh";
+        $("#spookypanel")[0].innerHTML = "<b>PROJECT <span style='color:red'>OSIRIS</span></b> is a fully customizable invitation-only alternate reality game that has one event each year, lasting 6 months each. Each week except the last has a fight, with each 5th fight being a bossfight. These threats are referred to as Xonovelixis, and are semi-tailored against the party. If someone dies, they are permanently dead unless clearly stated otherwise. The goal is to work together, fight, survive, and feel cool all the while. Fights can be fast-paced, panicky, and exhilarating. All interactions between participants is in-character. All chance rolls, damage calculations, ect are calculated automatically by the webclient. Every participant is referred to in the chat and on the minimap via a symbol of their choosing, which also gets added to the logo of the game under the title. The game is fully equipped with hotkeys, shortcuts, realistic statistics, sound effects, boss music, regional proximity chat, a clean GUI, ect. Fighting is not mandatory for any participant, but skipping a fight increases the chances that everyone else will die.<br><br>Each participant chooses a power, entity, or object as their trait. This may not break the first law of thermodynamics, nor may it be generally overpowered. The Xonovelixis have their own, and the difficulty escalates throughout the course of the game.<br><br>If this seems fun and/or interesting to you, contact me. I'm Pug#8082. If I DMed this to you, even simpler.<br><img src='https://github.com/Pug189/Pug189.github.io/blob/master/PTDGR.png?raw=true' id='plsfix'>";
+    }
+    function schedule() {
+        $("#spookypanel")[0].style.height = "90vh";
+        $("#spookypanel")[0].innerHTML = `Symphonatic - Very tall Xonovelixi, emits spores that temporarily blind anyone who breathes them in. The Xonovelixi is somewhat slow, but has tough skin and has long lanky arms that hit hard.<br>Toccata - Dark and cold room, Xonovelixi has a steel scythe and can see in the dark.<br>The Wall - Xonovelixi is a spirit, can sprout stone pillars from the ground. They hurt a lot.<br>Restless - Middle of a desert, Xonovelixi is a masked humanoid with the ability to swap places with anyone.<br>◈!◈ Royal Leash - Triple-sized mechanical Xonovelixi. Very fast, very strong, very resilient.<br>An Enigmatic Encounter - Room has no atmosphere. Xonovelixi is unaffected and holds an electrified, spiked shield.<br>Void Walker - Stone plateau with a strong smell of sulfur. Xonovelixi opens portals from which chittering, insect-like monsters appear.<br>H.A.Y - Xonovelixi harvests souls and has a sentient, flying axe. It gets significantly stronger for every substantial thing it kills.<br>R U Afraid - Manipulates sound, gains the ability to teleport in the dark. Has a cloak.<br>◈!◈ Beastmode - Three identical hounds with plated, reinforced, glass armor. Every time one bites something it sets it ablaze and grows slightly larger, likewise with its armor.<br>Onenemy - Xonovelixi can split itself into multiple clones, each capable of operating itself. Harvests energy from elemental sources, including but not limited to fire, electricity, wind, and water.<br>Best Fish Tacos in Ensenada - Xonovelixi can reconstruct itself out of any nearby material for a short amount of time. Gains the special properties of the aforementioned material.<br>Dummy! - Xonovelixi feels no pain, but the one who inflicts pain feels all of it. The only way to kill it is to decapitate it. Has a knife that is inseparable from its hand.<br>Stuck in a Timeloop - Xonovelixi rewinds time every time it dies, making it possible to rewind until the point of its creation by killing it in rapid succession, where it finally disappears forever. Can temporarily steal traits.<br>◈!◈ Megalomania - Xonovelixi has broad, leathery, black wings and an incredibly sharp, incredibly strong lance. Reduces levels of clotting factors in blood of things around it, making bleeding hard to stop.<br>The Pizzicato Mafia - Xonovelixi has telekinesis, but has to perform the action. Can punch you from across a room, trip you with a flick of its wrist, or steal your relics by yanking them.<br>Battle for Eternity - Takes place on an infinitely tall pillar, from which falling means certain death if you have no way to prevent it. Xonovelixi builds up a charge every time it is hit, being able to throw anyone ludicrous distances.<br>Last Sprite Standing - Xonovelixi has a crystal shield and a throwing axe that returns on impact. If the shield is destroyed by a living thing that isn't the Xonovelixi, everyone in the area dies. <br>Escapism - Xonovelixi can place an indestructible cage over anyone, but only has one. Can move it as it wishes. If several people are close together, they may be trapped together. After 30 seconds, the cage pulverises anything inside it.<br>◈!◈ Guitarmass - Xonovelixi has an electric guitar. In both senses. Causes weakness and spontaneous cuts to its surroundings. Anything moving quickly will be electricuted regardless of distance or contact. The guitar is quite resilient.<br>Oracle - Xonovelixi dodges all attacks it is capable of dodging. Can predict attacks. Immune to homing attacks and knockback that may be caused by them. For every attack you miss, you get weaker and it gets faster.<br>Atlas - Xonovelixi can slide to its left and right rapidly, making it great at dodging most things. If anything/one looks at it, it/they become(s) a servant of the Xonovelixi. Relics, people, entities, all of it is affected.<br>Milos - The Xonovelixi posesses someone, forcing them to fight allies. Meanwhile the individual is having a 1v1 fight with a Xonovelixi from the past. If they die, the entity gets full control. If they win, they are freed and it dies.<br>Song That Might Play When You Fight Sans - Xonovelixi moves incredibly fast, slicing all it runs past regardless of if it actually made contact. If anything touches it, it gets flung comical distances. May break arms due to sheer force.<br>◈!◈ Spitfire - Three random previously fought Xonovelixis. They may not work well together, or they will be heavily challenging. The environment is also randomized.<br>
+
+&lt;?&gt; Harpoon - <br>&lt;?&gt; Ready Player One - <br>&lt;?&gt; Shredageddon - <br>&lt;?&gt; One String Bass Solo - <br>&lt;?&gt; Woho - <br>&lt;?&gt; One Last Breath - <br>&lt;?&gt; Sahara - <br>&lt;?&gt; Waltz Capriccio - <br>&lt;?&gt; Crunch Time - <br>
+
+◈!◈ indicates a bossfight. These happen every 5 weeks. Every 5th fight.<br>&lt;?&gt; indicates a fight that can happen at any time during the week, sometimes even in the middle of a separate fight. They adapt as the participants play, which makes them a significantly harder challenge when/if fought.<br>
+
+Modes :<br>
+
+Soulbound (Each participant controls two bodies with separate traits. One with WASDQE and the other with IJKLUO. If both have entities, this gets complicated very quickly.)<br>Teamblind (Can't tell who is who)<br>One Way Trip (The ground underneath you crumbles after five seconds, leaving a window to the void. Can't run through the same place twice without jumping, and at a certain point that won't work either.)<br>Lifesong (You have until the song ends to complete the fight otherwise you die.)<br>Boss Rush (When the song ends and the next starts, the next Xonovelixi spawns. If the previous isn't dead, you have two problems. Then three. This has no limit.)<br>Hydra Rush (When a Xonovelixi is killed, two take its place. The chain continues until the entire list has been summoned.)<br>Turntable (Participants take turns operating the Xonovelixi. Lots of fun, and it gives the Alchemist a break.)<br>Ghosttable (Same as turntable, but only ghosts. It lets them have fun too, while giving the living participants less stress apart from dying.)<br>Linked (If one person dies, everyone dies)<br>We Can Talk About This (Pause whenever you want. It pauses everything. You can discuss the next two seconds for 15 minutes.)<br>Overcore (Everything has 10x health, does 2x damage, is 50% faster, and has stronger effects.)<br>Uno Reverse (Everyone gets the traits that the Xonovelixi has until it dies, and vice versa. Very fun, very broken.)<br>Vitality Hourglass (Everyone's health is constantly draining. Stops when the event is completed)<br>Heptaminimal (Xonovelixis summon every day instead of every week)<br>Matrix (Everything happens 4x slower)<br>Practice (Everyone is resurrected at the end of the event, all cooldowns are removed, and all Xonovelixis are killed. Simply put, no lasting damage.)<br>Hamburger (All Xonovelixis are replaced with hamburgers. For no reason whatsoever. Eating the hamburger counts as defeating it. Your passive ability is to spoil. Great for practice.)<br><br><iframe src="https://open.spotify.com/embed/playlist/1IwRAOlU3jFiiF2k43rFSr?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+    }
+    function sheet() {
+        $("#spookypanel")[0].style.height = "90vh";
+        $("#spookypanel")[0].innerHTML = `The following is a character form for Project Osiris.<Br>It provides information needed to set up your trait, characteristics, interactions, and possessions within Osiris.<Br>Please answer somewhat in detail, as it is very helpful. Write as much as you want.<Br>The form is a guide, not a mold. Edit as you like and take all the time you need.<Br>Since the character being played is a close replica of yourself, please keep true to that.<Br>Feel free to ask any questions, whether they be about editing the form or why something is on it.<Br>For those new to Osiris, your trait is your power/object/entity. It must follow the first law of thermodynamics and not be too overpowered.<Br>
+
+Main hand: <Br>Height: <Br>Weight: <Br>Basic appearance : <Br>Scars, modifications, ect: <Br>Trait: <Br>Notable trait uses if any: <Br>Extra details and health/medical conditions (Glasses, braces, piercings, hemophilia, ect): <Br>Estimated strength, agility, and endurance: <Br>Sleep schedule*: <Br>Pain tolerance: <Br>Physical possessions**: <Br>Motivation***:<Br>Phobias:<Br>Talents****:<Br>Theme song*****:<Br>
+
+*Used with behind-the-scenes adenosine tracking to impact your stats and chances ever so slightly depending on how tired you are.<Br>**Anything you want to have with you, doesn't need to be particularly useful in combat or in any scenario at all.<Br>***How motivated you are by default, along with anything that helps you feel more motivated. Looking at you and me, procrastinators.<Br>****Whether you can throw an axe with godlike accuracy, know how to wall-run, or have a cool disappearing thumb party trick, slap it in there if you want to take it with you.<Br>*****Will be played when in their vicinity. If multiple people are around, the song will depend on what is happening.`;
+    }
+</script>
