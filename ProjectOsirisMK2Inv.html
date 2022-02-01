@@ -15,7 +15,8 @@
 <body>
 <div id=logo><div id=floatlucent>This is an invitation to Project Osiris, a solo project by Pug#8082.<br>Please, select a category above.</div></div>
 <div id="flexton"><button type="button" onclick="about();">What the game is about</button><button type="button" onclick="schedule();">Bossfight Schedule<br>& Music</button><button type="button" onclick="sheet();">Character Sheet</button></div>
-<div id="spookypanel" onclick="nopanel();"></div>
+<div id="spookypanel" onclick="twopanel();"></div>
+<p>Note : Double click the menu to close it</p>
 </body>
 
 <style>
@@ -95,6 +96,12 @@ button {
 #plsfix {
     width:100%;
 }
+p {
+    bottom:0;
+    right:5px;
+    color:red;
+    position:absolute;
+}
 button:active {
     background:rgba(0,0,0,0.5);
 }
@@ -115,6 +122,11 @@ border-right:white 2px solid; border-radius:10%/50%;}
 </style>
 
 <script>
+    var x = 0;
+    function twopanel() {
+x++;
+if (x>1) {nopanel(); x=0;}
+    }
     function nopanel() {
         $("#spookypanel")[0].style.height = "0vh";
         $("#spookypanel")[0].innerHTML = "";
