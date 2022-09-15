@@ -1,0 +1,885 @@
+<head>
+    <title>BOSSFIGHT</title>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/minecraftia" type="text/css"/>
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/897717877031972945/1018434160609742859/iron_axe.ico ">
+    <meta content="https://cdn.discordapp.com/attachments/897717877031972945/1018026785922883584/icon.png" property="og:image">
+    <meta content="Minimalist Minecraft AI PVP by Pug#8082" property="og:description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<!--By Pug#8082-->
+<body>
+<div id="display">
+BOSSFIGHT<br><br>
+Press <red>enter</red> to start<br>
+Press <red>right shift</red> for a tutorial<br>
+Press <red>right ctrl</red> for sandbox<br>
+Press <red>backspace</red> to toggle Nightmare Mode<br><br>
+<red>Nightmare Mode disabled</red>
+</div>
+<div id="xBox"><!--I'm sorry I had to-->
+<div id="enemX" class="xIndicator">N/A</div>
+<div id="playerX" class="xIndicator">O</div>
+</div>
+<hud>
+<img id="sword" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846801031770262/iron_sword.png">
+<img id="armor" class="disabled" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846801245671485/armor.png"></img>
+<img id="axe" class="disabled" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846801459597364/iron_axe.png"></img>
+<img id="trident" class="disabled" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846801669304481/trident.png"></img>
+<img id="pearl" class="disabled" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846801916760155/pearl.png"></img>
+<img id="crossbow" class="disabled" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846802151645276/crossbow.png"></img>
+<img id="shield" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846802424283157/shield.png"></img>
+<img id="potion" class="disabled" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846802659147876/potion.png"></img>
+<img id="totem" class="disabled" src="https://cdn.discordapp.com/attachments/897717877031972945/1017846802906632222/totem.png"></img>
+</hud>
+<button onclick="playSound('successful_hit'); hasClick = 1; document.getElementById('plsclick').remove();" id="plsclick">Please click so I can play audio<br>thank you thank you</button>
+</body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100');
+    body {
+        overflow:hidden;
+        background:black;
+        color:white;
+        text-shadow:0px 0px 2px white;
+        text-align:center;
+        vertical-align:center;
+        font-size:1vw;
+        font-family: 'MinecraftiaRegular';
+        font-weight: normal;
+        font-style: normal;
+    }
+    red {
+        color:red;
+        text-shadow:0px 0px 2px crimson;
+    }
+    white {
+        color:white;
+        text-shadow:0px 0px 2px white;
+    }
+    yellow {
+        color:gold;
+        text-shadow:0px 0px 2px yellow;
+    }
+    button {
+    left:0;
+    top:0;
+    position:absolute;
+    height:100%;
+    width:100%;
+    color:white;
+    background:black;
+    text-align:center;
+    line-height:100%;
+    font-size:1vw;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+    }
+    .xIndicator {
+    position:relative;
+    height:10vw;
+    width:100vw;
+    border-radius:5%;
+    background:transparent;
+    text-align:center;
+    line-height:10vw;
+    transition:all 1s;
+    }
+    #enemX {
+    color:red;
+    }
+    #playerX {
+    color:cyan;
+    }
+    #xBox {
+    position:absolute;
+    top:calc(50% - 10vw);
+    left:0;
+    font-size:0vw;
+    }
+    hud {
+    position:absolute;
+    display:flex;
+    width:45vw;
+    height:5vw;
+    background:transparent;
+    bottom:0;
+    left:calc(50% - 22.5vw);
+    }
+    .disabled {
+    filter:grayscale(1) opacity(0.1);
+    }
+</style>
+
+<script>
+
+/*Notes
+Tier 0 means you don't have it so I don't need to make that a boolean
+Shield tier increases the parry window
+Crossbows can hit the same turn as a sword, each being one use per move
+If you're on an even numbered X multishot hits all odd squares. Vice versa.
+Piercing ignores armor
+Loyalty yanks an enemy two X units towards you. If it would overshoot, don't.
+Riptide allows you to use the Z and X keys as left and right dashes, 3 units each
+Channeling hits every enemy square and does damage multiplied by the amount of things it hits.
+Each piece of armor is 5% damage reduction up to 4 pieces.
+Each prot level is 15% damage reduction up to 4 levels.
+Potions heal 50 HP
+Enderpearls take 50 HP (With maxed armor it's 10, so pog endgame item)
+Hold a direction and then press right arrow to throw a pearl in that direction.
+You teleport to that wall
+If you jumped before throwing a pearl you instead teleport to the closest enemy in the pearl's path.
+*/
+
+/*AI Types
+
+Type 0:
+Moves towards player, attacks if it moves onto your X. Blocks if you move onto its.
+WoC Swords.
+APS (Actions per second) 1.5
+
+Type 1:
+Type 0 but with attacking and blocking swapped.
+WoC Axes.
+APS 2
+
+Type 2:
+Jumps in increments of 2 starting from the origin, 0.
+If you're on an odd X, it'll reload.
+If it already has, it will fire.
+WoC Axe Crossbow (Always multishot, chance to have piercing)
+APS 2.5
+
+Type 3:
+Mode 1: Type 0 AI. Will only use swords.
+When at 75% HP or less will change to mode 2
+Mode 2: Uses all weapons. Will stay away from the player and occasionally pearl in to attack.
+Two potions, five pearls
+Full prot 4 armor, which can be a giveaway before it transitions
+Special Ability: Will crouch to dodge arrows/pearls and jump to crit you.
+WoC All weapons.
+APS Mode 1 : 2
+APS Mode 2 : 4
+*/
+
+class Player { //Player class constructor
+    constructor() {
+        this.health = 100,
+        this.armorPieces = 0;
+        this.swordTier = 1;
+        this.swordCD = 0; //Sword cooldown
+        this.crossbowTier = 0;
+        this.CBT = 0; //Crossbow timer (I had to, I'm not sorry)
+        this.accuracy = 80;
+        this.axeTier = 0;
+        this.axeCD = 0; //Axe cooldown
+        this.tridentTier = 0;
+        this.tridentCD = 0; //Trident cooldown
+        this.shieldTier = 0;
+        this.hasTotem = false; //Yes I'm only giving you one
+        this.potions = 0;
+        this.crossLoaded = false;
+        this.arrows = 0;
+        this.pearls = 0;
+        this.isShopping = false;
+        this.XP = 0;
+        this.hasSE = false; //has Sweeping Edge
+        this.PM = 0; //Piercing Multishot
+        this.LRC = 0; //Loyalty Riptide Channeling
+        this.prot = 0; //Protection Level
+        this.shielding = false;
+        this.shieldDisabled = false;
+        this.posX = 0;
+        this.inAir = false;
+        this.zone = 1; //Level
+        this.metaZone = 0; //Titlescreen, in-game, tutorial, sandbox
+        this.isCritting = false; //Stores roll results
+        this.blockedDamage = false; //Used for catching failed parries
+        this.hasRA = false; //Respawn anchor
+        this.RAC = 0; //Respawn anchor charges
+        this.reloading = false; //Controls indicators
+        //Cooldown interval holders
+        this.swordInter = [];
+        this.axeInter = [];
+        this.tridentInter = [];
+        this.crossbowInter = [];
+        //AI stats, ignore these
+        this.isAI = false; //Changes what happens when health is 0
+        this.currEnTIndex = -1; //Index in the "currEnT" object. Used for deletion.
+        this.type = 0; //AI attack pattern and equipment
+        this.APS = 0; //Actions Per Second
+        this.brain = 0; //Decision maker
+    }
+    damage(x) { //Mitigation
+    if (!this.shielding) {
+    if (this.isAI) {playSound("zombie_hurt");}
+    else {playSound("player_hurt");}
+    this.health -= x * ((1 - (this.armorPieces * 0.05)) - (this.prot * 0.15)); //Fancy damage reduction things
+    if (!this.isAI) {write("Health: " + this.health, true);}
+    if (this.health <= 0 && this.isAI) {if (this.hasTotem) {this.hasTotem = false; this.health = 50; playSound('totem'); return;} playSound("zombie_death"); playerStat.XP += (this.type + 1 + playerStat.isCritting + (nightmareMode * 2)) * 10; currEnT.splice(this.currEnTIndex, 1); enXlog(); clearInterval(this.brain); if (currEnT.length == 0) {win();}} //AI die (if no AIs remain, activate player win)
+    if (this.health <= 0 && !this.isAI) {if (this.hasTotem) {this.hasTotem = false; this.health = 50; write("Health: " + this.health, true); playSound('totem'); return;} if (this.RAC > 0) {this.RAC--; playSound('deplete'); deAI(); currEnT = []; this.health = 100; enGen(); enXlog(); ringmaster(); return;} lostCause();} //Player die
+    }
+    else {this.blockedDamage = true; playSound("block");}
+    }
+    attack(using) { //Damage dealer
+    if (this.shielding) {return;} //Don't attack while you have your shield up, that's cheating
+    for (i = currEnT.length - 1;i >= 0;i--) {
+    switch (using) {
+    case "sword": if (this.swordCD > 0) {return;} else {this.CD("sword", 1); if (Math.abs(currEnT[i].posX - playerStat.posX) <= 1 && this.hasSE) {this.critputer(using); currEnT[i].damage(10 * ((1 * this.isCritting) + 1));} if (currEnT[i].posX == playerStat.posX) {this.critputer(using); currEnT[i].damage(10 * ((1 * this.isCritting) + 1));}}break;
+    case "axe": if (this.axeCD > 0) {return;} else {this.CD("axe", 2); if (currEnT[i].posX == playerStat.posX) {this.critputer(using); currEnT[i].damage(20 * ((1 * this.isCritting) + 1));if (currEnT[i].shielding) {currEnT[i].shieldDisabled = true; currEnT[i].shielding = false; currEnT[i].shieldRes();}}}break;
+    case "trident": if (this.tridentCD > 0) {return;} else {this.CD("trident", 1); if (currEnT[i].posX == playerStat.posX) {this.critputer(using); currEnT[i].damage(10 * ((1 * this.isCritting) + 1));}}break;
+    case "crossbow": if (this.CBT > 0) {return;} else {this.CD("crossbow", 1); if (currEnT[i].posX == playerStat.posX) {this.critputer(using); currEnT[i].damage(15 * ((1 * this.isCritting) + 1));}}break;
+    }
+    }
+    this.isCritting = false;
+    }
+    reverseAttack(using) { //AI damage dealer
+    if (this.shielding) {return;} //Beep boop
+    switch (using) {
+    case "sword": if (this.swordCD > 0) {return;} else {this.CD("sword", 1); if (Math.abs(currEnT[this.currEnTIndex].posX - playerStat.posX) <= 1 && this.hasSE) {this.critputer(using); playerStat.damage(10 * ((1 * this.isCritting) + 1));} if (currEnT[this.currEnTIndex].posX == playerStat.posX) {this.critputer(using); playerStat.damage(10 * ((1 * this.isCritting) + 1));}}break;
+    case "axe": if (this.axeCD > 0) {return;} else {this.CD("axe", 2); if (currEnT[this.currEnTIndex].posX == playerStat.posX) {this.critputer(using); playerStat.damage(10 * ((1 * this.isCritting) + 1));if (playerStat.shielding) {playerStat.shieldDisabled = true; playerStat.shielding = false; playerStat.shieldRes();}}}break;
+    case "trident": if (this.tridentCD > 0) {return;} else {this.CD("trident", 1); if (currEnT[this.currEnTIndex].posX == playerStat.posX) {this.critputer(using); playerStat.damage(10 * ((1 * this.isCritting) + 1));}}break;
+    case "crossbow": if (this.CBT > 0) {return;} else {this.CD("crossbow", 1); if (currEnT[this.currEnTIndex].posX == playerStat.posX) {this.critputer(using); playerStat.damage(10 * ((1 * this.isCritting) + 1));}}break;
+    }
+    this.isCritting = false;
+    }
+    critputer(using) { //Crit chance calc
+    this.isCritting = false;
+    switch (using) {
+    case "sword":if (((this.swordTier * 15) + 10) >= randomatic(100)) {this.isCritting = true;}break;
+    case "crossbow":if (((this.crossbowTier * 15) + 10) >= randomatic(100)) {this.isCritting = true;}break;
+    case "axe":if (((this.axeTier * 15) + 10) >= randomatic(100)) {this.isCritting = true;}break;
+    case "trident":if (((this.tridentTier * 15) + 10) >= randomatic(100)) {this.isCritting = true;}break;
+    }
+    if (this.isCritting) {playSound('crit');}
+    }
+    wakeUp() { //AI applier
+    switch (this.type) {
+    case 0:
+    this.brain = setInterval(() => {
+    if (paused != 0) {return}
+    if (playerStat.posX == this.posX) {this.shielder();}
+    if (playerStat.posX < this.posX) {this.posX--; enXlog(); playSound('step');}
+    if (playerStat.posX > this.posX) {this.posX++; enXlog(); playSound('step');}
+    if (playerStat.posX == this.posX) {this.reverseAttack("sword");}
+    }, (1000 / this.APS) / ((1 + nightmareMode) * 1.5));
+    break;
+    case 1:
+    this.brain = setInterval(() => {
+    if (paused != 0) {return}
+    if (playerStat.posX == this.posX) {this.reverseAttack("axe"); paused = 1; setTimeout(() => {paused = 0;}, 100);}
+    if (playerStat.posX < this.posX) {this.posX--; enXlog(); playSound('step');}
+    if (playerStat.posX > this.posX) {this.posX++; enXlog(); playSound('step');}
+    if (playerStat.posX == this.posX) {this.shielder();}
+    }, (1000 / this.APS) / (1 + nightmareMode));
+    break;
+    case 2:
+    this.brain = setInterval(() => {}, (1000 / this.APS) / (1 + nightmareMode));
+    break;
+    case 3:
+    this.brain = setInterval(() => {}, (1000 / this.APS) / (1 + nightmareMode));
+    break;
+    }
+    }
+    shielder() {
+    if (this.shieldDisabled) {return;}
+    this.shielding = true;
+    this.blockedDamage = false;
+    if (this.isAI) {enXlog(); paused = 1;}
+    else {plaXlo(); hasClick = 0;}
+    setTimeout(() => {
+    if (this.blockedDamage == false) {this.shieldDisabled = true; this.shielding = false; this.shieldRes();}
+    this.shielding = false;
+    if (this.isAI) {enXlog(); paused = 0;}
+    else {plaXlo(); hasClick = 1;}
+    }, 500);
+    }
+    shieldRes() {
+    playSound("break");
+    setTimeout(() => {
+    this.shieldDisabled = false;
+    playSound("wood_click");
+    }, 5000);
+    }
+    CD(WoC, CDT) {
+    switch (WoC) {
+    case "sword": this.swordCD += CDT; this.swordInter[this.swordInter.length] = setInterval(() => {
+    if (this.swordCD > 0.01) {this.swordCD-=1;}
+    else {clearInterval(this.swordInter[0]); this.swordInter.splice(0, 1);}
+    }, 1000); break;
+    case "axe": this.axeCD += CDT; this.axeInter[this.axeInter.length] = setInterval(() => {
+    if (this.axeCD > 0.01) {this.axeCD-=1;}
+    else {clearInterval(this.axeInter[0]); this.axeInter.splice(0, 1);}
+    }, 1000); break;
+    case "trident": this.tridentCD += CDT; this.tridentInter[this.tridentInter.length] = setInterval(() => {
+    if (this.tridentCD > 0.01) {this.tridentCD-=1;}
+    else {clearInterval(this.tridentInter[0]); this.tridentInter.splice(0, 1);}
+    }, 1000); break;
+    case "crossbow": this.CBT += CDT; this.crossbowInter[this.crossbowInter.length] = setInterval(() => {
+    if (this.CBT > 0.01) {this.CBT-=1;}
+    else {clearInterval(this.crossbowInter[0]); this.crossbowInter.splice(0, 1);}
+    }, 1000); break;
+    }
+    }
+}
+function enGen() { //Generate new enemy
+switch (true) {
+case playerStat.zone < 3://AI Type 0
+currEnT[currEnT.length] = new Player;
+currEnT[currEnT.length - 1].APS = 1;
+currEnT[currEnT.length - 1].posX = 5;
+currEnT[currEnT.length - 1].isAI = true;
+currEnT[currEnT.length - 1].currEnTIndex = currEnT.length - 1;
+currEnT[currEnT.length - 1].wakeUp();
+break;
+case (playerStat.zone >= 3) && (playerStat.zone < 10)://AI Types 0 and 1
+switch (randomatic(2)) {
+case 1:
+currEnT[currEnT.length] = new Player;
+currEnT[currEnT.length - 1].APS = 1;
+currEnT[currEnT.length - 1].posX = 5;
+currEnT[currEnT.length - 1].isAI = true;
+currEnT[currEnT.length - 1].currEnTIndex = currEnT.length - 1;
+currEnT[currEnT.length - 1].wakeUp();
+break;
+case 2:
+if (randomatic(2) == 1) {//Chance to summon a second enemy of tier 0
+currEnT[currEnT.length] = new Player;
+currEnT[currEnT.length - 1].APS = 1;
+currEnT[currEnT.length - 1].posX = 5;
+currEnT[currEnT.length - 1].isAI = true;
+currEnT[currEnT.length - 1].currEnTIndex = currEnT.length - 1;
+currEnT[currEnT.length - 1].wakeUp();
+}
+currEnT[currEnT.length] = new Player;
+currEnT[currEnT.length - 1].tier = 1;
+currEnT[currEnT.length - 1].armorPieces = 2;
+currEnT[currEnT.length - 1].APS = 2;
+currEnT[currEnT.length - 1].posX = 5;
+currEnT[currEnT.length - 1].isAI = true;
+currEnT[currEnT.length - 1].currEnTIndex = currEnT.length - 1;
+currEnT[currEnT.length - 1].wakeUp();
+break;
+}
+break;
+case (playerStat.zone >= 10) && (playerStat.zone < 15)://AI Types 1, and 2
+break;
+case playerStat.zone >= 15://AI Type 2
+break;
+}
+}
+function enXlog() { //Update enemy positions on display
+enemX.innerHTML = "";
+for (i = currEnT.length; i > 0; i--) {
+if (Math.abs(currEnT[i - 1].posX - playerStat.posX) == 1) {
+enemX.innerHTML += "<yellow>" + numerate(currEnT[i - 1].posX) + "</yellow>";
+}
+else if (currEnT[i - 1].posX == playerStat.posX) {
+enemX.innerHTML += "<white>" + numerate(currEnT[i - 1].posX) + "</white>";
+}
+else {enemX.innerHTML += numerate(currEnT[i - 1].posX);}
+if (currEnT[i - 1].shielding) {enemX.innerHTML += "]";}
+enemX.innerHTML += ", ";
+}
+enemX.innerHTML = enemX.innerHTML.slice(0, -2);
+}
+function write(msg, override, inline) { //Print/Clear/Overwrite text on display
+if (override) {document.getElementById("display").innerHTML = msg; return}
+if (!inline) {document.getElementById("display").innerHTML += "<br>";}
+document.getElementById("display").innerHTML += msg;
+}
+function randomatic(max) { //Random number up to max
+return Math.floor(Math.random() * max) + 1;
+}
+function redshift(msg) { //Red text
+document.getElementById("display").innerHTML += `<red>${msg}</red>`;
+}
+function metashift(ms) { //Changes playerStat.metaZone
+playerStat.metaZone = ms;
+document.getElementById('xBox').style.fontSize = "0vw";
+playSound("set_spawn");
+switch (ms) {
+case 0:
+write("Loading titlescreen...", true);
+write("BOSSFIGHT", true); write("");
+write("Press"); redshift(" enter"); write(" to start", false, true);
+write("Press"); redshift(" right shift"); write(" for a tutorial", false, true);
+write("Press"); redshift(" right ctrl"); write(" for sandbox", false, true);
+write("Press"); redshift(" backspace"); write(" to toggle Nightmare Mode", false, true);
+write("");write("");redshift("Nightmare Mode"); if (nightmareMode) {redshift(" enabled");} else {redshift(" disabled");}
+break;
+case 1:
+if (!playerStat.isShopping) {write("Loading arena...", true); enGen(); enXlog(); ringmaster();}
+else {write("Loading shop...", true); listShop();}
+break;
+case 2:
+write("Loading tutorial...", true);
+write('', true);
+write("Welcome to the tutorial!");
+write("Use A and D to move");
+write("Space to jump (Jumping makes ender pearls hit enemies. Takes 50 HP, 10 with maxed armor)");
+write("The numeral indicates your X coordinate, O being zero (centered)");
+write("Use W to sword melee and S to block if you have a shield");
+write("Melee only works if you're on the same X as something");
+write("R to reload crossbows, E to shoot crossbows");
+write("Up Arrow to throw tridents, Down Arrow to crouch (projectile dodge)");
+write("Left Arrow to axe melee, Right Arrow to throw pearl");
+write("Q to drink potions, M for menu");
+break;
+case 3:
+write("Loading sandbox...", true);
+write(""); redshift("Spoiler alert, it doesn't load. I haven't made it yet.");
+cryoStat(true);
+break;
+}
+}
+function numerate(x) { //Integer to roman numeral
+numerator = "";
+if (x < 0) {numerator = "-";}
+switch (Math.abs(x)) {
+case 10:numerator += "X";break;
+case 9:numerator += "IX";break;
+case 8:numerator += "VIII";break;
+case 7:numerator += "VII";break;
+case 6:numerator += "VI";break;
+case 5:numerator += "V";break;
+case 4:numerator += "IV";break;
+case 3:numerator += "III";break;
+case 2:numerator += "II";break;
+case 1:numerator += "I";break;
+case 0:numerator += "O";break;
+}
+return numerator;
+}
+function sendSig(nal) { //Key press interpretation
+switch (playerStat.metaZone) {
+//Main Menu
+case 0:
+    switch (nal) {
+    case "Enter":metashift(1);break;
+    case "ShiftRight":metashift(2);break;
+    case "ControlRight":metashift(3);break;
+    case "Backspace":
+    nightmareMode=!nightmareMode;
+    write("Loading titlescreen...", true);
+    write("BOSSFIGHT", true); write("");
+    write("Press"); redshift(" enter"); write(" to start", false, true);
+    write("Press"); redshift(" right shift"); write(" for a tutorial", false, true);
+    write("Press"); redshift(" right ctrl"); write(" for sandbox", false, true);
+    write("Press"); redshift(" backspace"); write(" to toggle Nightmare Mode", false, true);
+    write("");write("");redshift("Nightmare Mode"); if (nightmareMode) {redshift(" enabled"); playSound('prepare_attack');} else {redshift(" disabled"); playSound('cast');}
+    break;
+    }
+break;
+//Standard Game
+case 1:
+    if (!playerStat.isShopping) {
+    switch (nal) {
+        case "KeyA":if (playerStat.posX > -10) {playerStat.posX--; plaXlo(); playSound('step');}break;
+        case "KeyD":if (playerStat.posX < 10) {playerStat.posX++; plaXlo(); playSound('step');}break;
+        case "KeyM":metashift(0); paused=1;break;
+        case "KeyW":playerStat.attack("sword");break;
+        case "KeyE":if (playerStat.crossbowTier == 0) {return;} if (playerStat.crossLoaded) {playerStat.crossLoaded = false; playSound("shoot"); playerStat.attack("crossbow");}break;
+        case "KeyR":if (playerStat.arrows > 0 && playerStat.crossbowTier > 0 && !playerStat.crossLoaded) {hasClick=0; playerStat.reloading = true; plaXlo(); playSound('loading_start'); setTimeout(() => {hasClick=1; playerStat.reloading = false; playSound('loading_end');}, 1000); playerStat.arrows--; playerStat.crossLoaded = true; plaXlo();}
+        case "ArrowUp":if (playerStat.tridentTier == 0) {return;} playerStat.attack("trident");break;
+        case "ArrowLeft":if (playerStat.axeTier == 0) {return;} playerStat.attack("axe");break;
+        case "KeyS":playerStat.shielder();break;
+        case "KeyQ":if (playerStat.potions > 0) {playerStat.potions--; playerStat.health += 50; write("Health: " + playerStat.health, true); playSound('drink');}break;
+        case "Space":if (!playerStat.inAir) {playerStat.inAir = true; setTimeout(() => {playerStat.inAir = false;}, 1000);}break;
+        case "ArrowRight":
+        if (playerStat.pearls == 0) {return;}
+        playerStat.pearls--;
+        if (currPressed.includes("KeyA")) {playerStat.damage(50); if (playerStat.inAir) {} else {playerStat.posX = -10;} plaXlo(); playSound("shoot");}
+        if (currPressed.includes("KeyD")) {playerStat.damage(50); if (playerStat.inAir) {dance: for (i = 0;i < 10 - playerStat.posX;i++) {for (j = currEnT.length;j > 0;j--) {if (currEnT[j - 1].posX == playerStat.posX + i) {playerStat.posX = currEnT[j - 1].posX; break dance;}}}} else {playerStat.posX = 10;} plaXlo(); playSound("shoot");}
+        break;
+    }
+    }
+    else {
+    switch (nal) { 
+        case "KeyM":metashift(0);break;
+        case "Digit1"://Sword
+        if (playerStat.XP >= 20 && playerStat.swordTier < 6) {playerStat.XP -= 20; playerStat.swordTier++; playSound('anvil_use');}
+        else if (playerStat.swordTier == 6 && playerStat.XP >= 50 && !playerStat.hasSE) {playerStat.XP -= 50; playerStat.hasSE = true; playSound('enchant');}
+        break;
+        case "Digit2"://Axe
+        if (playerStat.axeTier == 0) {if (playerStat.XP >= 10) {playerStat.XP -= 10; playerStat.axeTier = 1; playSound('pop'); document.getElementById('axe').className = "";}}
+        else {if (playerStat.XP >= 20 && playerStat.axeTier < 6) {playerStat.XP -= 20; playerStat.axeTier++; playSound('anvil_use');}}
+        break;
+        case "Digit3"://Trident
+        if (playerStat.tridentTier == 0) {if (playerStat.XP >= 10) {playerStat.XP -= 10; playerStat.tridentTier = 1; playSound('pop');  document.getElementById('trident').className = "";}}
+        else if (playerStat.XP >= 20 && playerStat.tridentTier < 6) {playerStat.XP -= 20; playerStat.tridentTier++; playSound('anvil_use');}
+        break;
+        case "Digit4"://Crossbow
+        if (playerStat.crossbowTier == 0) {if (playerStat.XP >= 10) {playerStat.XP -= 10; playerStat.crossbowTier = 1; playSound('pop');  document.getElementById('crossbow').className = "";}}
+        else {if (playerStat.XP >= 20 && playerStat.crossbowTier < 6) {playerStat.XP -= 20; playerStat.crossbowTier++; playSound('anvil_use');}}
+        break;
+        case "Digit5":if (playerStat.XP >= 15) {playerStat.XP -= 15; playerStat.arrows += 16; playSound('pop');}break;
+        case "Digit6":
+        if (playerStat.armorPieces < 4) {if (playerStat.XP >= 10) {playerStat.XP -= 10; playerStat.armorPieces++; playSound('equip');  document.getElementById('armor').className = "";}}
+        else if (playerStat.prot < 4) {if (playerStat.XP >= 30) {playerStat.XP -= 30; playerStat.prot++; playSound('enchant');}}
+        break;
+        case "Digit7":if (playerStat.XP >= 20) {playerStat.XP -= 20; playerStat.pearls++; playSound('pop'); document.getElementById('pearl').className = "";}break;
+        case "Digit8":if (playerStat.XP >= 100 && !playerStat.hasTotem) {playerStat.XP -= 100; playerStat.hasTotem = true; playSound('pop');  document.getElementById('totem').className = "";}break;
+        case "Digit9":if (playerStat.XP >= 15) {playerStat.XP -= 15; playerStat.potions++; playSound('pop'); document.getElementById('potion').className = "";}break;
+        case "Digit0":
+        if (!playerStat.hasRA) {if (playerStat.XP >= 50) {playerStat.XP -= 50; playerStat.hasRA = true; playSound('pop');}}
+        else if (playerStat.RAC < 4 && playerStat.XP >= 50) {playerStat.XP -= 50; playerStat.RAC++; playSound('charge');}
+        break;
+        case "Enter":playerStat.isShopping = false; playerStat.zone++; enGen(); enXlog(); ringmaster(); return;
+        case "KeyB": if (playerStat.XP >= 50 && playerStat.LRC == 0 && playerStat.tridentTier == 6) {playerStat.XP -= 50; playerStat.LRC = 1;} break;
+        case "KeyN": if (playerStat.XP >= 50 && playerStat.LRC == 0 && playerStat.tridentTier == 6) {playerStat.XP -= 50; playerStat.LRC = 2;} break;
+        case "KeyM": if (playerStat.XP >= 50 && playerStat.LRC == 0 && playerStat.tridentTier == 6) {playerStat.XP -= 50; playerStat.LRC = 3;} break;
+        case "KeyH": if (playerStat.XP >= 50 && playerStat.PM == 0 && playerStat.crossbowTier == 6) {playerStat.XP -= 50; playerStat.PM = 1;} break;
+        case "KeyJ": if (playerStat.XP >= 50 && playerStat.PM == 0 && playerStat.crossbowTier == 6) {playerStat.XP -= 50; playerStat.PM = 2;} break;
+    }
+    listShop();
+    }
+break;
+//Tutorial
+case 2:
+    switch (nal) {
+        case "KeyM":metashift(0);break;
+    }
+break;
+//Sandbox
+case 3:
+    switch (nal) {
+        case "KeyM":metashift(0);cryoStat(false);currEnT = [];break;
+    }
+break;
+}
+}
+function loggers(e, x) { //Key Press Hell main function (modified)
+    if (hasClick == 0) {return}
+    //Additional Info In Dev Tools Console
+    // console.log(e + ", " + e.type + ", " + e.key + ", " + e.code + ", " + e.keyCode);
+
+    //X being true means that a key is down. If it isn't added, add it
+    if (x && !currPressed.includes(e.code)) {currPressed[currPressed.length] = e.code}
+    //X being false means that a key has been lifted. If it exists, remove it
+    if (!x && currPressed.includes(e.code)) {
+    //Search the array for the index of the key code
+    var index = currPressed.indexOf(e.code);
+    //If it is not equal to -1 (which would mean it doesn't exist) remove it
+    if (index !== -1) {currPressed.splice(index, 1); sendSig(e.code);}
+    }
+}
+function PFL(url) { //Play From Link
+new Audio(url).play();
+}
+function playSound(sn) { //Switch statement with varied subsounds
+switch (sn) {
+
+case "pop":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018493656824545420/pop.ogg');
+break;
+
+case "totem":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018411406023987210/use_totem.ogg');
+break;
+
+case "drink":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018409688758485022/drink.ogg');
+break;
+
+case "anvil_use":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718929310883880/anvil_use.ogg');
+break;
+
+case "loading_start":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018276653463511113/loading_start.ogg');
+break;
+
+case "loading_end": //Crossbow loading end, not game loading end
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718224965607424/loading_end.ogg');
+break;
+
+case "break":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718929466077184/break.ogg');
+break;
+
+case "janky_firework":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719506367418388/launch1.ogg');
+    setTimeout(() => {PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719506539397220/twinkle_far1.ogg');}, 1500);
+break;
+
+case "zombie_death":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018068346828238878/death.ogg');
+break;
+
+case "wood_click":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018047989048156220/wood_click.ogg');
+break;
+
+case "successful_hit":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017720752537075722/successful_hit.ogg');
+break;
+
+case "hat":
+    PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017991998206128180/hat.ogg');
+break;
+
+case "prepare_attack": //Evoker sounds
+    switch (randomatic(2)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018495282171879484/prepare_attack1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018495282389991474/prepare_attack2.ogg');break;
+    }
+break;
+
+case "cast": //Evoker sounds once again
+    switch (randomatic(2)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018495282633257061/cast1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018495282801025064/cast2.ogg');break;
+    }
+break;
+
+case "deplete":
+    switch (randomatic(2)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721104925732954/deplete1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721105110290473/deplete2.ogg');break;
+    }
+break;
+
+case "zombie_hurt":
+    switch (randomatic(2)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018068347033751552/hurt1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018068347247656960/hurt2.ogg');break;
+    }
+break;
+
+case "bell_use":
+    switch (randomatic(2)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721360316895272/bell_use01.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721360547577876/bell_use02.ogg');break;
+    }
+break;
+
+case "crit":
+    switch (randomatic(3)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017720435288318024/crit1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017720435502219284/crit2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017720435670007828/crit3.ogg');break;
+    }
+break;
+
+case "player_hurt":
+    switch (randomatic(3)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718653736714270/hit1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718653975793684/hit2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718654223253524/hit3.ogg');break;
+    }
+break;
+
+case "charge": //Respawn anchor add glowstone
+    switch (randomatic(3)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721104288198786/charge1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721104485326848/charge2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721104665690142/charge3.ogg');break;
+    }
+break;
+
+case "set_spawn": //Respawn anchor set spawn
+    switch (randomatic(3)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721105349357568/set_spawn1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721105559068732/set_spawn2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721105814929438/set_spawn3.ogg');break;
+    }
+break;
+
+case "enchant":
+    switch (randomatic(3)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017720823471153172/enchant1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017720823718613012/enchant2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017720823932518460/enchant3.ogg');break;
+    }
+break;
+
+case "shoot":
+    switch (randomatic(3)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718225158557716/shoot1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718225338892309/shoot2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718225552814100/shoot3.ogg');break;
+    }
+break;
+
+case "block":
+    switch (randomatic(5)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721518903537745/block1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721519075508315/block2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721519239090236/block3.ogg');break;
+    case 4:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721522682605608/block4.ogg');break;
+    case 5:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017721523018141706/block5.ogg');break;
+    }
+break;
+
+case "equip":
+    switch (randomatic(6)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718349779714108/equip_iron1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718349985230848/equip_iron2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718350207533067/equip_iron3.ogg');break;
+    case 4:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718350463389706/equip_iron4.ogg');break;
+    case 5:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718350773760010/equip_iron5.ogg');break;
+    case 6:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017718351042203710/equip_iron6.ogg');break;
+    }
+break;
+
+case "step":
+    switch (randomatic(6)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719313895014400/stone1.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719314075373568/stone2.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719314272489522/stone3.ogg');break;
+    case 4:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719314448654346/stone4.ogg');break;
+    case 5:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719314637410384/stone5.ogg');break;
+    case 6:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1017719314830336021/stone6.ogg');break;
+    }
+break;
+
+case "cave":
+    switch (randomatic(7)) {
+    case 1:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018393953000771655/cave4.ogg');break;
+    case 2:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018393953239830538/cave6.ogg');break;
+    case 3:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018393953441173524/cave7.ogg');break;
+    case 4:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018393953751539786/cave8.ogg');break;
+    case 5:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018393954007388270/cave9.ogg');break;
+    case 6:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018393954196140153/cave12.ogg');break;
+    case 7:PFL('https://cdn.discordapp.com/attachments/897717877031972945/1018393954380681316/cave13.ogg');break;
+    }
+break;
+
+}
+}
+function ringmaster() { //Start arena fights
+write(`ROUND ${playerStat.zone}`, true);
+hasClick = 0;
+paused = 1;
+playerStat.posX = -5;
+plaXlo();
+setTimeout(() => {playSound("hat"); write("3", true);}, 3000);
+setTimeout(() => {playSound("hat"); write("2", true);document.getElementById('xBox').style.fontSize = "6vw";}, 4000);
+setTimeout(() => {playSound("hat"); write("1", true);}, 5000);
+setTimeout(() => {hasClick = 1; paused = 0; playSound("bell_use"); write("FIGHT", true);}, 6000);
+}
+function plaXlo() { //Updates player posX on GUI
+document.getElementById("playerX").innerText = numerate(playerStat.posX);
+if (playerStat.reloading) {document.getElementById("playerX").innerText += ":";}
+if (playerStat.shielding) {document.getElementById("playerX").innerText += "]";}
+}
+function deAI() { //Stops AI processes
+for (i = currEnT.length; i > 0; i--) {
+clearInterval(currEnT[i - 1].brain);
+}
+}
+function cryoStat(bl) { //Restore player data
+if (bl) {saveState = playerStat;}
+else {playerStat = saveState; saveState = {};}
+} 
+function win() { //Win result. Sends player to shop
+playSound('janky_firework');
+document.getElementById('xBox').style.fontSize = "0vw";
+write("Victory!", true);
+write("Remaining health " + playerStat.health);
+playerStat.isShopping = true;
+setTimeout(() => {
+listShop();
+}, 2000);
+}
+function listShop() { //Does what it says
+write("Welcome to the shop!", true);
+write("You have " + playerStat.XP + " XP");
+write("");
+//Sword
+if (playerStat.swordTier < 6) {
+write("[1] Upgrade sword tier : ");
+write((10 * (playerStat.swordTier + 1)) + " XP", false, true);
+}
+else if (!playerStat.hasSE) {write("[1] Enchant sword with Sweeping Edge : 50 XP");}
+else {write("Your sword is already enchanted");}
+//Axe
+if (playerStat.axeTier < 6) {
+if (playerStat.axeTier == 0) {write("[2] Buy axe : ");} else {write("[2] Upgrade axe tier : ");}
+write((10 * (playerStat.axeTier + 1)) + " XP", false, true);
+}
+else {write("Your axe is max tier");}
+//Trident
+if (playerStat.tridentTier < 6) {
+if (playerStat.tridentTier == 0) {write("[3] Buy trident : ");} else {write("[3] Upgrade trident tier : ");}
+write((10 * (playerStat.tridentTier + 1)) + " XP", false, true);
+}
+else if (playerStat.LRC == 0) {write("Enchant your trident with [B] Loyalty, [N] Riptide, or [M] Channeling : 50 XP (NOT DONE DOES NOTHING)");}
+else {write("Your trident is already enchanted");}
+//Crossbow
+if (playerStat.crossbowTier < 6) {
+if (playerStat.crossbowTier == 0) {write("[4] Buy crossbow : ");} else {write("[4] Upgrade crossbow tier : ");}
+write((10 * (playerStat.crossbowTier + 1)) + " XP", false, true);
+}
+else if (playerStat.PM == 0){write("Enchant your crossbow with [H] Piercing or [J] Multishot : 50 XP (NOT DONE DOES NOTHING");}
+else {write("Your crossbow is already enchanted");}
+//Arrows
+write(`[5] Buy arrows (16) : 15 XP (You have ${playerStat.arrows} arrows)`);
+//Armor
+if (playerStat.armorPieces < 4) {
+write(`[6] Buy armor : 10 XP (You have ${playerStat.armorPieces} pieces)`);
+}
+else if (playerStat.prot < 4) {
+write(`[6] Enchant armor : 30 XP (You have level ${playerStat.prot} protection)`);
+}
+else {write("Your armor is fully enchanted");}
+//Ender Pearls
+write(`[7] Buy ender pearl : 20 XP (You have ${playerStat.pearls} pearls)`);
+//ToU
+if (!playerStat.hasTotem) {write("[8] Buy totem of undying : 50 XP");}
+else {write("You already have a totem of undying");}
+//Potion
+write(`[9] Buy a potion : 15 XP (You have ${playerStat.potions} potions)`);
+//Respawn Anchor
+if (!playerStat.hasRA) {write('[0] Buy respawn anchor : 50 XP');}
+else if (playerStat.RAC < 4) {write(`[0] Add charge to respawn anchor : 100 XP (You have ${playerStat.RAC} charges)`);}
+else {write(`Your respawn anchor has full charges`);}
+//End
+write("");
+write("Enter to continue to the next round");
+}
+function /*You*/lostCause(/*YouDied*/) { //Loss result. Sends player to menu and resets stats
+metashift(0); paused=1;
+deAI(); currEnT = [];
+playerStat = new Player();
+playSound("cave");
+}
+document.addEventListener('keydown', (event)=> {    
+    loggers(event, true);
+});
+document.addEventListener('keyup', (event)=> {    
+    loggers(event, false);
+});
+
+const enemX = document.getElementById("enemX"); //Easy access constant
+var currEnT = []; //currEnT = Current Enemy Table
+var currPressed = []; //Key Press Hell array
+var hasClick = 0; //Locks key detection while 0
+var saveState = {}; //Player stats from arena to revert to when leaving sandbox
+var playerStat = new Player; //Player class constructed
+var i, j; //my beloved loop variables
+var paused; //AI stopper my beloved
+var numerator; //funny name
+var nightmareMode = false; //Terrifying
+
+</script>
+
+<!--
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@%%%%%@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@%%%     %%@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@%%   ,,...%%@@@@@@@@@@
+@@@@@@@@@@@@@@@%%%  ,,,,,,,,%%###@@@@@@@
+@@@@@@@@@@@@@@@@@@  ...,,///,,&&&@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@%%,,,//,,,@@@@@@@
+@@@@@@@@@@@@@@@@@@@@%%%##&&&,,,,,@@@@@@@
+@@@@@@@@@@@@@@@@@@%%(((&&@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@%%%##&&&@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@%%###&&@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@%%%((&&&@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@%%###&&@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@%%%((&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+-->
