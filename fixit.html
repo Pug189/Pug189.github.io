@@ -1,0 +1,141 @@
+<head>
+  <meta content="FIX IT FIX IT FIX IT" property="og:description">
+</head>
+<!-- Mmm repurposed code yummy tasty break it break it -->
+<body>
+<button onclick="bitescreammodify(30);">Fixit 30s</button>
+<button onclick="bitescreammodify(60);">Fixit 1m</button>
+<button onclick="bitescreammodify(300);">Fixit 5m</button>
+<button onclick="bitescreammodify(1800);">Fixit 30m</button>
+<button onclick="bitescreammodify(3600);">Fixit 1h</button>
+<button onclick="bitescreammodify(7200);">Fixit 2h</button>
+<button onclick="bitescreammodify(10800);">Fixit 3h</button>
+<button onclick="bitescreammodify(43200);">Fixit 12h</button>
+<button onclick="bitescreammodify(86400);">Fixit 1d</button>
+<button onclick="bitescreammodify(604800);">Fixit 7d</button>
+<div id=note><br><br>Fixit<br>Alarm<br><br>By Pug#8082</div>
+<button id=customs onclick="customseconds();">Custom (sec)</button>
+<button id=customm onclick="customminutes();">Custom (min)</button>
+<button id=customh onclick="customhours();">Custom (hrs)</button>
+<style>
+    body {
+padding:0;
+margin:0;
+}
+
+    button {
+height:10vh;
+width:50%;
+font-family:monospace;
+font-size:5vh;
+background:black;
+border:white solid 0.5vh;
+color:white;
+text-shadow:1px 0px 1px red, -1px 0px 1px cyan;
+}
+
+    #note {
+height:100%;
+position:absolute;
+top:0;
+right:0;
+text-align:center;
+width:50%;
+font-family:monospace;
+font-size:7.5vh;
+background:black;
+color:white;
+text-shadow:1px 0px 1px red, -1px 0px 1px cyan;
+}
+
+    #customs {
+height:10vh;
+position:absolute;
+bottom:20vh;
+right:0;
+}
+
+    #customm {
+height:10vh;
+width:50%;
+position:absolute;
+bottom:10vh;
+right:0;
+}
+
+    #customh {
+height:10vh;
+width:50%;
+position:absolute;
+bottom:0;
+right:0;
+}
+
+</style>
+
+<script>
+
+var fix = new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/fixit.wav?raw=true');
+var it = new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/fixit.wav?raw=true.wav');
+var brea = new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/fixit.wav?raw=true');
+var kit = new Audio('https://github.com/Pug189/Pug189.github.io/blob/master/fixit.wav?raw=true');
+
+function customseconds() {
+var customsec = prompt("How many seconds should the timer last?", "");
+bitescreammodify(customsec);
+}
+
+function customminutes() {
+var custommin = prompt("How many minutes should the timer last?", "");
+var multicusmin = custommin * 60;
+bitescreammodify(multicusmin);
+}
+
+function customhours() {
+var customhrs = prompt("How many hours should the timer last?", "");
+var multicushrs = customhrs * 60 * 60;
+bitescreammodify(multicushrs);
+}
+
+function bitescreammodify(x) {
+alert("Setting alarm, discard this alert box to start.");
+var totalout = x*1000;
+setTimeout(
+function() {
+setInterval(
+function() {
+bitescream();
+}, 250
+);
+}, totalout
+);
+}
+
+function bitescream() {
+
+var bitescream = Math.floor(Math.random() * 4) + 1;
+
+switch(bitescream) {
+
+    case 1:
+fix.play();
+break;
+
+    case 2:
+it.play();
+break;
+
+    case 3:
+brea.play();
+break;
+
+    case 4:
+kit.play();
+break;
+
+}
+
+}
+
+</script>
+</body>
