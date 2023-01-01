@@ -1,0 +1,74 @@
+<div id=timer>12:00:00</div><button id=starter onclick="startup();">Click to start</button>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+    body {
+margin:0;
+padding:0;
+background:black;
+}
+    #timer {
+height:100vh;
+width:100vw;
+color:white;
+font-family:'Press Start 2P';
+left:0;
+border:0;
+margin:0;
+padding:0;
+top:0;
+position:absolute;
+text-align:center;
+line-height:100vh;
+font-size:10vw;
+pointer-events:none;
+}
+    #starter {
+height:100vh;
+width:100vw;
+color:white;
+background:black;
+border:0;
+margin:0;
+padding:0;
+font-family:'Press Start 2P';
+left:0;
+top:0;
+position:absolute;
+text-align:center;
+line-height:100vh;
+font-size:5vw;
+}
+</style>
+<script>
+var megalodidit = 0;
+var verylatehotfix = new Audio('https://cdn.discordapp.com/attachments/897717877031972945/1058954873858686986/Post_Malone_-_Circles.mp3');
+function startup() {
+setInterval( function() {
+var date = new Date();
+var hour = date.getHours();
+var minutes = date.getMinutes();
+var seconds = date.getSeconds();
+var secondtimer = seconds.toString();
+var minutetimer = minutes.toString();
+if (secondtimer.length == 1) {
+secondtimer = "0" + secondtimer;
+}
+if (minutetimer.length == 1) {
+minutetimer = "0" + minutetimer;
+}
+if (hour>12) {hour = hour-12;}
+var hourtimer = hour.toString();
+if (hourtimer.length == 1) {
+hourtimer = "0" + hourtimer;
+}
+document.getElementById("timer").innerHTML = hourtimer + ":" + minutetimer + ":" + secondtimer;
+if (hour.toString() + ":" + minutes.toString() + ":" + seconds.toString() == "11:58:56") {
+if (megalodidit==0) {megalodidit = 1;
+verylatehotfix.play();
+}
+}
+
+}, 10);
+document.getElementById("starter").remove();
+}
+</script>
