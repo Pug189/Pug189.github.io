@@ -1,0 +1,57 @@
+<head>
+    <title>Key Press Hell</title>
+</head>
+
+<body>
+    <div id="display">Press every key to continue</div>
+</body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100');
+    body {
+        overflow:hidden;
+        background:black;
+        color:white;
+        text-shadow:0px 0px 2px white;
+        text-align:center;
+        line-height:100vh;
+        font-size:5em;
+        font-family: 'Antonio', sans-serif;
+    }
+</style>
+
+<script>
+var currPressed = [];
+const display = document.getElementById("display");
+
+function loggers(e, x) {
+    //Additional Info In Dev Tools Console
+    // console.log(e + ", " + e.type + ", " + e.key + ", " + e.code + ", " + e.keyCode);
+
+    //X being true means that a key is down. If it isn't added, add it
+    if (x && !currPressed.includes(e.code)) {currPressed[currPressed.length] = e.code}
+    //X being false means that a key has been lifted. If it exists, remove it
+    if (!x && currPressed.includes(e.code)) {
+    //Search the array for the index of the key code
+    var index = currPressed.indexOf(e.code);
+    //If it is not equal to -1 (which would mean it doesn't exist) remove it
+    if (index !== -1) {currPressed.splice(index, 1);}
+    }
+    //Reset the display text so it doesn't pile up on pre-existing text
+    display.innerHTML = "";
+    //Loop through each index of the array and print out each value followed by ", "
+    for (var i = currPressed.length - 1; i >= 0; i--) {
+     display.innerHTML += currPressed[i] + ", ";
+    }
+    //Remove the last two characters, those being the trailing comma and space
+    //The -2 underflows the index and jumps to the end with no need to find the text length
+    display.innerHTML = display.innerHTML.slice(0, -2);
+}
+
+document.addEventListener('keydown', (event)=> {    
+    loggers(event, true);
+});
+document.addEventListener('keyup', (event)=> {    
+    loggers(event, false);
+});
+</script>
